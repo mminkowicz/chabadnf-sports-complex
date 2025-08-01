@@ -36,10 +36,10 @@ const Donate = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-secondary-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
               Support Our Sports Complex
             </h1>
-            <p className="text-xl text-secondary-600 leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-6 sm:mb-8">
               Your generous donation helps us build the new sports complex for Camp Gan Israel.
               Every contribution makes a meaningful difference in creating a safe and active environment for our campers.
             </p>
@@ -66,7 +66,8 @@ const Donate = () => {
               allow="geolocation; microphone; camera; fullscreen; payment"
               src="https://form.jotform.com/252106096190048"
               frameBorder="0"
-              style={{minWidth:'100%',maxWidth:'100%',height:'539px',border:'none'}}
+              style={{minWidth:'100%',maxWidth:'100%',height:'600px',border:'none'}}
+              className="w-full"
               scrolling="no"
             >
             </iframe>

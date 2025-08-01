@@ -88,11 +88,11 @@ const Gallery = () => {
   return (
     <div className="pt-16 min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
       {/* Header */}
-      <div className="text-center py-12">
-        <h1 className="text-5xl md:text-7xl font-serif font-bold text-secondary-900 mb-6">
+      <div className="text-center py-8 sm:py-12">
+        <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
           New Sports Complex
         </h1>
-        <p className="text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto">
+        <p className="text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto px-4">
           Take a look at our exciting new project
         </p>
       </div>
@@ -111,38 +111,38 @@ const Gallery = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
-                                 className="w-full h-[600px] md:h-[700px] object-cover"
+                                 className="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] object-cover"
               />
             </AnimatePresence>
 
             {/* Navigation Buttons */}
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
             >
-              <ChevronLeft size={24} className="text-secondary-700" />
+              <ChevronLeft size={20} className="sm:w-6 sm:h-6 text-secondary-700" />
             </button>
 
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110"
             >
-              <ChevronRight size={24} className="text-secondary-700" />
+              <ChevronRight size={20} className="sm:w-6 sm:h-6 text-secondary-700" />
             </button>
 
             {/* Image Counter */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
+            <div className="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm">
               {currentImageIndex + 1} / {images.length}
             </div>
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-6 space-x-2">
+          <div className="flex justify-center mt-4 sm:mt-6 space-x-1 sm:space-x-2">
             {images.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentImageIndex 
                     ? 'bg-primary-600 scale-125' 
                     : 'bg-secondary-300 hover:bg-secondary-400'

@@ -189,10 +189,10 @@ const Dedications = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto mb-12"
           >
-            <h1 className="text-4xl md:text-6xl font-serif font-bold text-secondary-900 mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
               Sports Complex Dedications
             </h1>
-            <p className="text-xl text-secondary-600 leading-relaxed mb-8">
+            <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-6 sm:mb-8">
               Leave a lasting legacy by dedicating a facility in our new sports complex. 
               Your dedication will be remembered for generations to come.
             </p>
@@ -216,15 +216,15 @@ const Dedications = () => {
                 className="w-full h-96 md:h-[500px] object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
                 <div className="text-white">
-                  <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
+                  <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold mb-2 sm:mb-4">
                     Campus Dedication
                   </h2>
-                  <div className="text-4xl md:text-6xl font-bold text-primary-400 mb-4">
+                  <div className="text-3xl sm:text-4xl md:text-6xl font-bold text-primary-400 mb-2 sm:mb-4">
                     $900,000
                   </div>
-                  <p className="text-lg md:text-xl text-gray-200 mb-6 max-w-2xl">
+                  <p className="text-sm sm:text-lg md:text-xl text-gray-200 mb-4 sm:mb-6 max-w-2xl">
                     Name the entire sports complex in honor of your family or organization. 
                     The premier dedication opportunity for our new facility.
                   </p>
@@ -245,7 +245,7 @@ const Dedications = () => {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
           >
             {dedications.map((dedication, index) => {
               

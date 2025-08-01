@@ -27,11 +27,11 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-6">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-4 sm:mb-6">
                 Build It For
                 <span className="block text-primary-400">They Have Come</span>
               </h1>
-              <h2 className="text-3xl md:text-5xl font-serif font-bold mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold mb-6 sm:mb-8">
                 Camp Sports Complex
               </h2>
             </motion.div>
@@ -40,13 +40,13 @@ const Home = () => {
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12"
+              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12"
             >
-              <Link to="/donate" className="bg-primary-600 hover:bg-primary-700 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg">
+              <Link to="/donate" className="w-full sm:w-auto bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base sm:text-lg flex items-center justify-center">
                 Donate Now
                 <ArrowRight className="ml-2 inline group-hover:translate-x-1 transition-transform" size={20} />
               </Link>
-              <Link to="/dedications" className="bg-white/20 hover:bg-white/30 text-white font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30">
+              <Link to="/dedications" className="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30 text-center">
                 View Dedications
               </Link>
             </motion.div>
@@ -60,7 +60,7 @@ const Home = () => {
               <img
                 src={mascot}
                 alt="Camp Mascot"
-                className="w-32 h-32 md:w-40 md:h-40 object-contain"
+                className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
               />
             </motion.div>
           </div>

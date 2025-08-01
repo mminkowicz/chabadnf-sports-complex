@@ -42,7 +42,7 @@ const Navbar = () => {
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-center h-16 lg:h-20">
+        <div className="flex items-center justify-center h-16 sm:h-18 lg:h-20">
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center space-x-12">
             {navItems.map((item) => (
@@ -83,13 +83,13 @@ const Navbar = () => {
           {/* Mobile Menu Button - Absolute positioned */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden absolute right-4 p-2 rounded-md transition-colors ${
+            className={`lg:hidden absolute right-2 sm:right-4 p-2 rounded-md transition-colors ${
               isHomePage 
                 ? 'text-white hover:text-primary-400 hover:bg-white/10' 
                 : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
             }`}
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} className="sm:w-6 sm:h-6" /> : <Menu size={20} className="sm:w-6 sm:h-6" />}
           </button>
         </div>
 

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 import Home from './pages/Home';
 import About from './pages/About';
 import Gallery from './pages/Gallery';
@@ -10,8 +9,6 @@ import Donate from './pages/Donate';
 import Dedications from './pages/Dedications';
 
 function AppContent() {
-  const location = useLocation();
-  const isHomePage = location.pathname === '/';
 
   return (
     <div className="min-h-screen bg-white">

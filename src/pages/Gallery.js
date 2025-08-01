@@ -1,6 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+// Import all images from assets
+import baseballField from '../assets/Baseball Field.jpg';
+import basketballCourt from '../assets/basketball court.jpg';
+import kidsCarTrack from '../assets/kids car track.jpg';
+import mainDedication from '../assets/main dedication.jpg';
+import mascot from '../assets/mascot.png';
+import natureWalk from '../assets/Nature Walk.jpg';
+import pickleballCourt from '../assets/pickleball court.jpg';
+import playground from '../assets/playground.jpg';
+import soccerField from '../assets/soccer field.jpg';
 
 const Gallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -8,77 +19,62 @@ const Gallery = () => {
   const images = [
     {
       id: 1,
-      src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=400&fit=crop',
-      alt: 'Community gathering',
+      src: mainDedication,
+      alt: 'Main Sports Complex Dedication',
     },
     {
       id: 2,
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
-      alt: 'Educational program',
+      src: baseballField,
+      alt: 'Baseball Field',
     },
     {
       id: 3,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop',
-      alt: 'Sports facility',
+      src: basketballCourt,
+      alt: 'Basketball Court',
     },
     {
       id: 4,
-      src: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&h=400&fit=crop',
-      alt: 'Community members',
+      src: pickleballCourt,
+      alt: 'Pickleball Court',
     },
     {
       id: 5,
-      src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=400&fit=crop',
-      alt: 'Holiday celebration',
+      src: soccerField,
+      alt: 'Soccer Field',
     },
     {
       id: 6,
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
-      alt: 'Adult education',
+      src: playground,
+      alt: 'Playground',
     },
     {
       id: 7,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop',
-      alt: 'Current campus',
+      src: kidsCarTrack,
+      alt: 'Kids Car Track',
     },
     {
       id: 8,
-      src: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&h=400&fit=crop',
-      alt: 'Youth group',
+      src: natureWalk,
+      alt: 'Nature Walk Trail',
     },
     {
       id: 9,
-      src: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=400&fit=crop',
-      alt: 'Community service',
-    },
-    {
-      id: 10,
-      src: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
-      alt: 'Summer camp',
-    },
-    {
-      id: 11,
-      src: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&h=400&fit=crop',
-      alt: 'Construction site',
-    },
-    {
-      id: 12,
-      src: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&h=400&fit=crop',
-      alt: 'Family event',
+      src: mascot,
+      alt: 'Sports Complex Mascot',
     },
   ];
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => 
       prevIndex === images.length - 1 ? 0 : prevIndex + 1
     );
-  };
+  }, [images.length]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
     setCurrentImageIndex((prevIndex) => 
       prevIndex === 0 ? images.length - 1 : prevIndex - 1
     );
-  };
+  }, [images.length]);
 
   // Auto-advance slideshow
   useEffect(() => {
@@ -87,7 +83,7 @@ const Gallery = () => {
     }, 3000); // Change image every 3 seconds
 
     return () => clearInterval(interval);
-  }, [currentImageIndex]);
+  }, [nextImage]);
 
   return (
     <div className="pt-16 min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { Building, Star, Heart, Trophy, Users, Target, CheckCircle, ArrowRight } from 'lucide-react';
+import { Building } from 'lucide-react';
 import mainDedication from '../assets/main dedication.jpg';
 import baseballField from '../assets/Baseball Field.jpg';
 import kidsCarTrack from '../assets/kids car track.jpg';
 import basketballCourt from '../assets/basketball court.jpg';
 import pickleballCourt from '../assets/pickleball court.jpg';
 import soccerField from '../assets/soccer field.jpg';
+import playground from '../assets/playground.jpg';
+import natureWalk from '../assets/Nature Walk.jpg';
 
 const Dedications = () => {
   // Removed filter functionality
@@ -14,7 +16,7 @@ const Dedications = () => {
   const dedications = [
     {
       id: 1,
-      title: 'Main Sports Complex',
+      title: 'Campus Dedication',
       category: 'facilities',
       amount: '$900,000',
       image: mainDedication,
@@ -50,7 +52,7 @@ const Dedications = () => {
       category: 'facilities',
       amount: '$100,000',
       image: kidsCarTrack,
-      status: 'available'
+      status: 'sold'
     },
     {
       id: 6,
@@ -65,24 +67,65 @@ const Dedications = () => {
       title: 'Playground',
       category: 'facilities',
       amount: '$300,000',
-      image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=600&h=400&fit=crop',
+      image: playground,
       status: 'available'
     },
     {
       id: 8,
-      title: 'Swimming Pool',
+      title: 'Nature Trail',
       category: 'facilities',
-      amount: '$200,000',
-      image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=600&h=400&fit=crop',
-      status: 'reserved'
+      amount: '$100,000',
+      image: natureWalk,
+      status: 'available'
     },
     {
       id: 9,
-      title: 'Fitness Center',
+      title: 'Nature Nest',
       category: 'facilities',
-      amount: '$90,000',
+      amount: '$75,000',
       image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
       status: 'available'
+    },
+    {
+      id: 10,
+      title: 'Water Slides',
+      category: 'facilities',
+      amount: '$25,000',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+      status: 'available'
+    },
+    {
+      id: 11,
+      title: 'Gazebos',
+      category: 'facilities',
+      amount: '$25,000',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+      status: 'available'
+    },
+    {
+      id: 12,
+      title: 'Bleachers',
+      category: 'facilities',
+      amount: '$15,000',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+      status: 'available'
+    },
+    {
+      id: 13,
+      title: 'Benches',
+      category: 'facilities',
+      amount: '$10,000',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+      status: 'available'
+    },
+    {
+      id: 14,
+      title: 'Retreat House',
+      category: 'facilities',
+      amount: '$850,000',
+      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=400&fit=crop',
+      status: 'available',
+      phase: 'Phase 2'
     }
   ];
 
@@ -176,7 +219,7 @@ const Dedications = () => {
               <div className="absolute bottom-0 left-0 right-0 p-8 md:p-12">
                 <div className="text-white">
                   <h2 className="text-3xl md:text-5xl font-serif font-bold mb-4">
-                    Main Sports Complex
+                    Campus Dedication
                   </h2>
                   <div className="text-4xl md:text-6xl font-bold text-primary-400 mb-4">
                     $900,000
@@ -204,37 +247,46 @@ const Dedications = () => {
             animate="visible"
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {dedications.map((dedication) => (
-              <motion.div
-                key={dedication.id}
-                variants={itemVariants}
-                className="bg-white rounded-xl shadow-lg overflow-hidden card-hover"
-              >
-                <div className="relative">
-                  <img
-                    src={dedication.image}
-                    alt={dedication.title}
-                    className="w-full h-64 object-cover"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(dedication.status)}`}>
-                      {getStatusText(dedication.status)}
-                    </span>
+            {dedications.map((dedication, index) => {
+              
+              // Regular single dedication card
+              return (
+                <motion.div
+                  key={dedication.id}
+                  variants={itemVariants}
+                  className="bg-white rounded-xl shadow-lg overflow-hidden card-hover"
+                >
+                  <div className="relative">
+                    <img
+                      src={dedication.image}
+                      alt={dedication.title}
+                      className="w-full h-64 object-cover"
+                    />
+                    <div className="absolute top-4 right-4 flex items-center space-x-2">
+                      {dedication.phase && (
+                        <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200">
+                          {dedication.phase}
+                        </span>
+                      )}
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(dedication.status)}`}>
+                        {getStatusText(dedication.status)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
-                    {dedication.title}
-                  </h3>
-                  
-                  <div className="text-3xl font-bold text-primary-600 mb-4">
-                    {dedication.amount}
+                  <div className="p-6">
+                    <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
+                      {dedication.title}
+                    </h3>
+                    
+                    <div className="text-3xl font-bold text-primary-600 mb-4">
+                      {dedication.amount}
+                    </div>
+                    
+                    {/* Inquire button removed */}
                   </div>
-                  
-                  {/* Inquire button removed */}
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </motion.div>
 
           {dedications.length === 0 && (

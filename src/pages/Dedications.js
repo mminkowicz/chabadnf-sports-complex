@@ -187,24 +187,24 @@ const Dedications = () => {
   return (
     <div className="pt-16">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
+      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
         <div className="container-custom">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto mb-12"
+            className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-3 sm:mb-4">
               Sports Complex Dedications
             </h1>
-            <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-6 sm:mb-8">
+            <p className="text-base sm:text-lg text-secondary-600 leading-relaxed mb-4 sm:mb-6">
               Leave a lasting legacy by dedicating a facility in our new sports complex. 
               Your dedication will be remembered for generations to come.
             </p>
             <div className="flex items-center justify-center space-x-2 text-primary-600">
-              <Building className="w-6 h-6" />
-              <span className="text-lg font-semibold">Building the future together</span>
+              <Building className="w-5 h-5" />
+              <span className="text-base font-semibold">Building the future together</span>
             </div>
           </motion.div>
 
@@ -213,24 +213,24 @@ const Dedications = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-6xl mx-auto"
+            className="max-w-5xl mx-auto"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+            <div className="relative rounded-xl overflow-hidden shadow-xl">
             <img
               src={mainDedication}
                 alt="Main Sports Complex"
-                className="w-full h-96 md:h-[500px] object-cover"
+                className="w-full h-64 sm:h-80 md:h-96 object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-8 md:p-12">
+              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
                 <div className="text-white">
-                  <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold mb-2 sm:mb-4">
+                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-bold mb-1 sm:mb-2">
                     Campus Dedication
                   </h2>
-                  <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-primary-400 mb-2 sm:mb-4">
+                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-400 mb-1 sm:mb-2">
                 $900,000
                   </div>
-                  <p className="text-sm sm:text-lg md:text-xl text-gray-200 mb-4 sm:mb-6 max-w-2xl">
+                  <p className="text-xs sm:text-sm md:text-base text-gray-200 mb-2 sm:mb-3 max-w-xl">
                     Name the entire sports complex in honor of your family or organization. 
                     The premier dedication opportunity for our new facility.
                   </p>
@@ -251,7 +251,7 @@ const Dedications = () => {
               variants={containerVariants}
             initial="hidden"
             animate="visible"
-              className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8"
+              className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
             >
             {(() => {
               const rows = [];
@@ -268,19 +268,19 @@ const Dedications = () => {
                         <img
                           src={campusDedication.image}
                           alt={campusDedication.title}
-                          className="w-full h-64 object-cover"
+                          className="w-full h-48 sm:h-56 object-cover"
                         />
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(campusDedication.status)}`}>
+                        <div className="absolute top-3 right-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(campusDedication.status)}`}>
                             {getStatusText(campusDedication.status)}
                           </span>
                         </div>
                       </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
+                      <div className="p-4 sm:p-6">
+                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
                           {campusDedication.title}
                         </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
+                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
                           {campusDedication.amount}
                         </div>
                       </div>
@@ -297,19 +297,19 @@ const Dedications = () => {
                         <img
                           src={baseballField.image}
                           alt={baseballField.title}
-                          className="w-full h-64 object-cover"
+                          className="w-full h-48 sm:h-56 object-cover"
                         />
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(baseballField.status)}`}>
+                        <div className="absolute top-3 right-3">
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(baseballField.status)}`}>
                             {getStatusText(baseballField.status)}
                           </span>
                         </div>
                       </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
+                      <div className="p-4 sm:p-6">
+                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
                           {baseballField.title}
                         </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
+                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
                           {baseballField.amount}
                         </div>
                       </div>
@@ -335,24 +335,24 @@ const Dedications = () => {
                         <img
                           src={dedication.image}
                           alt={dedication.title}
-                          className="w-full h-64 object-cover"
+                          className="w-full h-48 sm:h-56 object-cover"
                         />
-                        <div className="absolute top-4 right-4 flex items-center space-x-2">
+                        <div className="absolute top-3 right-3 flex items-center space-x-2">
                           {dedication.phase && (
                             <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
                               {dedication.phase}
                             </span>
                           )}
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
+                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
                             {getStatusText(dedication.status)}
                           </span>
                         </div>
                       </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
+                      <div className="p-4 sm:p-6">
+                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
                           {dedication.title}
                         </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
+                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
                           {dedication.amount}
                         </div>
                       </div>

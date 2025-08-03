@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
@@ -6,17 +6,37 @@ import mainDedication from '../assets/main dedication.jpg';
 import mascot from '../assets/mascot.png';
 
 const Home = () => {
+  const [videoLoaded, setVideoLoaded] = useState(false);
+
   return (
     <div>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div className="absolute inset-0">
-          <img
-            src={mainDedication}
-            alt="Camp Sports Complex"
+          {/* Video Background */}
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
             className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/30"></div>
+            onLoadedData={() => setVideoLoaded(true)}
+            style={{ opacity: videoLoaded ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}
+          >
+            {/* Multiple sources for different screen sizes */}
+            <source src="/camp-video-desktop.mp4" type="video/mp4" media="(min-width: 1024px)" />
+            <source src="/camp-video-tablet.mp4" type="video/mp4" media="(min-width: 768px)" />
+            <source src="/camp-video-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+            {/* Fallback to original video */}
+            <source src="/Camp Expansion Rendering video.mp4" type="video/mp4" />
+            {/* Final fallback image */}
+            <img
+              src={mainDedication}
+              alt="Camp Sports Complex"
+              className="w-full h-full object-cover"
+            />
+          </video>
+          <div className="absolute inset-0 bg-black/40"></div>
         </div>
         
         <div className="container-custom relative z-10">

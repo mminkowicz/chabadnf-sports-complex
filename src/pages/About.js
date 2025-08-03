@@ -14,7 +14,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
               About Our Sports Complex Project
             </h1>
             <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed">

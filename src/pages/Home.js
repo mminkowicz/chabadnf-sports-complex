@@ -47,11 +47,11 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="mb-8"
             >
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-serif font-bold mb-4 sm:mb-6">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold mb-4 sm:mb-6">
                 Build It For
                 <span className="block text-primary-400">They Have Come</span>
               </h1>
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-serif font-bold mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif font-bold mb-6 sm:mb-8">
                 Camp Sports Complex
               </h2>
             </motion.div>

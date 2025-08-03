@@ -89,7 +89,7 @@ const Gallery = () => {
     <div className="pt-16 min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
       {/* Header */}
       <div className="text-center py-8 sm:py-12">
-        <h1 className="text-3xl sm:text-5xl md:text-7xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
+                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
           New Sports Complex
         </h1>
         <p className="text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto px-4">

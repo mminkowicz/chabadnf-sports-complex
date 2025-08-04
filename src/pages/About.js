@@ -14,7 +14,7 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
               About Our Sports Complex Project
             </h1>
             <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed">
@@ -35,7 +35,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
                 Our Story
               </h2>
               <p className="text-base sm:text-lg text-secondary-600 mb-4 sm:mb-6 leading-relaxed">

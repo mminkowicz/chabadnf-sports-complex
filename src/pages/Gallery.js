@@ -7,11 +7,16 @@ import baseballField from '../assets/Baseball Field.jpg';
 import basketballCourt from '../assets/basketball court.jpg';
 import kidsCarTrack from '../assets/kids car track.jpg';
 import mainDedication from '../assets/main dedication.jpg';
-import mascot from '../assets/mascot.png';
 import natureWalk from '../assets/Nature Walk.jpg';
+import natureNest from '../assets/nature nest.jpg';
 import pickleballCourt from '../assets/pickleball court.jpg';
 import playground from '../assets/playground.jpg';
 import soccerField from '../assets/soccer field.jpg';
+import waterSlides from '../assets/water slides.jpg';
+import gazebos from '../assets/gazeebos.png';
+import retreatHouse from '../assets/retreat house.png';
+import bleachers from '../assets/bleachers.png';
+import benches from '../assets/benches.png';
 
 const Gallery = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -21,46 +26,85 @@ const Gallery = () => {
       id: 1,
       src: mainDedication,
       alt: 'Main Sports Complex Dedication',
+      label: 'Aerial View',
     },
     {
       id: 2,
       src: baseballField,
       alt: 'Baseball Field',
+      label: 'Baseball Field',
     },
     {
       id: 3,
       src: basketballCourt,
       alt: 'Basketball Court',
+      label: 'Basketball Court',
     },
     {
       id: 4,
       src: pickleballCourt,
       alt: 'Pickleball Court',
+      label: 'Pickle Ball Court',
     },
     {
       id: 5,
       src: soccerField,
       alt: 'Soccer Field',
+      label: 'Soccer Field',
     },
     {
       id: 6,
       src: playground,
       alt: 'Playground',
+      label: 'Playground',
     },
     {
       id: 7,
       src: kidsCarTrack,
       alt: 'Kids Car Track',
+      label: 'Kids Car Track',
     },
     {
       id: 8,
       src: natureWalk,
       alt: 'Nature Walk Trail',
+      label: 'Nature Trail',
     },
     {
       id: 9,
-      src: mascot,
-      alt: 'Sports Complex Mascot',
+      src: waterSlides,
+      alt: 'Water Slides',
+      label: 'Water Slides',
+    },
+    {
+      id: 10,
+      src: gazebos,
+      alt: 'Gazebos',
+      label: 'Gazebos',
+    },
+    {
+      id: 11,
+      src: natureNest,
+      alt: 'Nature Nest',
+      label: 'Nature Nest',
+    },
+    {
+      id: 12,
+      src: retreatHouse,
+      alt: 'Retreat House',
+      label: 'Retreat House',
+    },
+    {
+      id: 13,
+      src: bleachers,
+      alt: 'Bleachers',
+      label: 'Bleachers',
+    },
+    {
+      id: 14,
+      src: benches,
+      alt: 'Benches',
+      label: 'Benches',
     },
   ];
 
@@ -89,12 +133,9 @@ const Gallery = () => {
     <div className="pt-16 min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
       {/* Header */}
       <div className="text-center py-8 sm:py-12">
-                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-secondary-900 mb-4 sm:mb-6">
+                      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
           New Sports Complex
         </h1>
-        <p className="text-lg sm:text-xl md:text-2xl text-secondary-600 max-w-3xl mx-auto px-4">
-          Take a look at our exciting new project
-        </p>
       </div>
 
       {/* Slideshow Container */}
@@ -103,16 +144,24 @@ const Gallery = () => {
           {/* Slideshow */}
           <div className="relative overflow-hidden rounded-2xl shadow-2xl">
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={currentImageIndex}
-                src={images[currentImageIndex].src}
-                alt={images[currentImageIndex].alt}
                 initial={{ opacity: 0, scale: 1.1 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.5 }}
-                                 className="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] object-cover"
-              />
+                className="relative"
+              >
+                <img
+                  src={images[currentImageIndex].src}
+                  alt={images[currentImageIndex].alt}
+                  className="w-full h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] object-cover"
+                />
+                {/* Image Label */}
+                <div className="absolute top-3 left-3 bg-black/70 text-white px-3 py-1 rounded-lg text-sm sm:text-base font-semibold backdrop-blur-sm">
+                  {images[currentImageIndex].label}
+                </div>
+              </motion.div>
             </AnimatePresence>
 
             {/* Navigation Buttons */}

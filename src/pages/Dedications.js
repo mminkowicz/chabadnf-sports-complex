@@ -10,7 +10,7 @@ import soccerField from '../assets/soccer field.jpg';
 import playground from '../assets/playground.jpg';
 import natureWalk from '../assets/Nature Walk.jpg';
 import natureNest from '../assets/nature nest.jpg';
-import retreatHouse from '../assets/retreat house.png';
+import retreatHouse from '../assets/Retreat house.jpg';
 import waterSlides from '../assets/water slides.jpg';
 import bleachers from '../assets/bleachers.png';
 import gazebos from '../assets/gazeebos.png';
@@ -202,10 +202,6 @@ const Dedications = () => {
               Leave a lasting legacy by dedicating a facility in our new sports complex. 
               Your dedication will be remembered for generations to come.
             </p>
-            <div className="flex items-center justify-center space-x-2 text-primary-600">
-              <Building className="w-5 h-5" />
-              <span className="text-base font-semibold">Building the future together</span>
-            </div>
           </motion.div>
 
           {/* Main Dedication Hero */}
@@ -271,7 +267,7 @@ const Dedications = () => {
                           className="w-full h-48 sm:h-56 object-cover"
                         />
                         <div className="absolute top-3 right-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(campusDedication.status)}`}>
+                          <span className={`px-3 py-2 rounded-full text-sm font-bold border-2 shadow-lg ${getStatusColor(campusDedication.status)}`}>
                             {getStatusText(campusDedication.status)}
                           </span>
                         </div>
@@ -283,6 +279,9 @@ const Dedications = () => {
                         <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
                           {campusDedication.amount}
                         </div>
+                        <p className="text-sm sm:text-base text-secondary-600 leading-relaxed">
+                          Name the entire sports complex in honor of your family or loved one.
+                        </p>
                       </div>
                     </div>
                   </motion.div>

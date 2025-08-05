@@ -7,6 +7,7 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Donate from './pages/Donate';
 import Dedications from './pages/Dedications';
+import Contact from './pages/Contact';
 
 function AppContent() {
 
@@ -20,6 +21,7 @@ function AppContent() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/dedications" element={<Dedications />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </AnimatePresence>
                    {/* Footer removed */}

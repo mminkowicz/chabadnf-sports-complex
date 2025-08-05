@@ -44,7 +44,7 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-3 sm:mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
               Contact Us
             </h1>
             <p className="text-base sm:text-lg text-secondary-600 leading-relaxed mb-4 sm:mb-6">
@@ -131,27 +131,16 @@ const Contact = () => {
               <form ref={form} onSubmit={handleSubmit} className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="firstName" className="block text-sm font-medium text-secondary-700 mb-2">
-                      First Name
+                    <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-2">
+                      Full Name
                     </label>
                     <input
                       type="text"
-                      id="firstName"
-                      name="firstName"
+                      id="name"
+                      name="name"
                       className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                      placeholder="Your first name"
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="lastName" className="block text-sm font-medium text-secondary-700 mb-2">
-                      Last Name
-                    </label>
-                    <input
-                      type="text"
-                      id="lastName"
-                      name="lastName"
-                      className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                      placeholder="Your last name"
+                      placeholder="Your full name"
+                      required
                     />
                   </div>
                 </div>
@@ -166,6 +155,7 @@ const Contact = () => {
                     name="email"
                     className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                     placeholder="your.email@example.com"
+                    required
                   />
                 </div>
 
@@ -179,6 +169,7 @@ const Contact = () => {
                     name="subject"
                     className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                     placeholder="What is this about?"
+                    required
                   />
                 </div>
 
@@ -192,6 +183,7 @@ const Contact = () => {
                     rows={5}
                     className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
                     placeholder="Tell us more about your inquiry..."
+                    required
                   ></textarea>
                 </div>
 

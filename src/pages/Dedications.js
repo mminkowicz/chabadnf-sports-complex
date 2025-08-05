@@ -194,7 +194,7 @@ const Dedications = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
           >
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-serif font-bold text-secondary-900 mb-3 sm:mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
               Sports Complex Dedications
             </h1>
             <p className="text-base sm:text-lg text-secondary-600 leading-relaxed mb-4 sm:mb-6">

@@ -93,7 +93,14 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Phone</h3>
-                    <p className="text-secondary-600 text-sm sm:text-base">770-410-9000</p>
+                    <p className="text-secondary-600 text-sm sm:text-base">
+                      <a 
+                        href="tel:770-410-9000" 
+                        className="hover:text-primary-600 hover:underline transition-colors duration-200"
+                      >
+                        770-410-9000
+                      </a>
+                    </p>
                   </div>
                 </div>
 
@@ -104,8 +111,15 @@ const Contact = () => {
                   <div>
                     <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Address</h3>
                     <p className="text-secondary-600 text-sm sm:text-base">
-                      10180 Jones Bridge Road<br />
-                      Alpharetta, Georgia 30022
+                      <a 
+                        href="https://maps.google.com/?q=10180+Jones+Bridge+Road+Alpharetta+Georgia+30022" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="hover:text-primary-600 hover:underline transition-colors duration-200"
+                      >
+                        10180 Jones Bridge Road<br />
+                        Alpharetta, Georgia 30022
+                      </a>
                     </p>
                   </div>
                 </div>

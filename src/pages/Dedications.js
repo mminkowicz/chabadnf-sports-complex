@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Building } from 'lucide-react';
 import mainDedication from '../assets/main dedication.jpg';
 import baseballField from '../assets/Baseball Field.jpg';
 import kidsCarTrack from '../assets/kids car track.jpg';
@@ -29,6 +28,14 @@ const Dedications = () => {
       status: 'available'
   },
   {
+    id: 7,
+    title: 'Playground',
+    category: 'facilities',
+      amount: '$300,000',
+    image: playground,
+      status: 'available'
+  },
+  {
     id: 2,
     title: 'Baseball Field',
     category: 'facilities',
@@ -53,14 +60,6 @@ const Dedications = () => {
       status: 'available'
   },
   {
-    id: 5,
-    title: 'Kids Car Track',
-    category: 'facilities',
-      amount: '$100,000',
-    image: kidsCarTrack,
-      status: 'sold'
-  },
-  {
     id: 6,
     title: 'Soccer Field',
     category: 'facilities',
@@ -69,12 +68,12 @@ const Dedications = () => {
       status: 'available'
   },
   {
-    id: 7,
-    title: 'Playground',
+    id: 5,
+    title: 'Kids Car Track',
     category: 'facilities',
-      amount: '$300,000',
-    image: playground,
-      status: 'available'
+      amount: '$100,000',
+    image: kidsCarTrack,
+      status: 'sold'
   },
   {
     id: 8,
@@ -112,7 +111,7 @@ const Dedications = () => {
     id: 12,
     title: 'Bleachers',
     category: 'facilities',
-      amount: '$15,000',
+      amount: '$5,000',
       image: bleachers,
       status: 'available'
   },
@@ -120,7 +119,7 @@ const Dedications = () => {
     id: 13,
     title: 'Benches',
     category: 'facilities',
-      amount: '$10,000',
+      amount: '$1,800',
       image: benches,
       status: 'available'
   },
@@ -217,6 +216,11 @@ const Dedications = () => {
                 alt="Main Sports Complex"
                 className="w-full h-64 sm:h-80 md:h-96 object-cover"
               />
+              <div className="absolute top-4 right-4">
+                <span className="px-3 py-2 rounded-full text-sm font-bold border-2 shadow-lg bg-green-100 text-green-800 border-green-200">
+                  Available
+                </span>
+              </div>
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
                 <div className="text-white">
@@ -227,8 +231,7 @@ const Dedications = () => {
                 $900,000
                   </div>
                   <p className="text-xs sm:text-sm md:text-base text-gray-200 mb-2 sm:mb-3 max-w-xl">
-                    Name the entire sports complex in honor of your family or organization. 
-                    The premier dedication opportunity for our new facility.
+                    Leave a lasting legacy — name the entire sports complex in honor of your family or a loved one.
                   </p>
                   {/* Main dedication inquire button removed */}
                 </div>
@@ -252,81 +255,8 @@ const Dedications = () => {
             {(() => {
               const rows = [];
               
-              // First: Campus Dedication and Baseball Field
-              const campusDedication = dedications.find(d => d.title === 'Campus Dedication');
-              const baseballField = dedications.find(d => d.title === 'Baseball Field');
-              
-              if (campusDedication) {
-                rows.push(
-                  <motion.div key={campusDedication.id} variants={itemVariants} className="lg:col-span-2">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={campusDedication.image}
-                          alt={campusDedication.title}
-                          className="w-full h-48 sm:h-56 object-cover"
-                        />
-                        <div className="absolute top-3 right-3">
-                          <span className={`px-3 py-2 rounded-full text-sm font-bold border-2 shadow-lg ${getStatusColor(campusDedication.status)}`}>
-                            {getStatusText(campusDedication.status)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-4 sm:p-6">
-                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
-                          {campusDedication.title}
-                        </h3>
-                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
-                          {campusDedication.amount}
-                        </div>
-                        <p className="text-sm sm:text-base text-secondary-600 leading-relaxed">
-                          Name the entire sports complex in honor of your family or loved one.
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              
-              if (baseballField) {
-                rows.push(
-                  <motion.div key={baseballField.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={baseballField.image}
-                          alt={baseballField.title}
-                          className="w-full h-48 sm:h-56 object-cover"
-                        />
-                        <div className="absolute top-3 right-3">
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(baseballField.status)}`}>
-                            {getStatusText(baseballField.status)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-4 sm:p-6">
-                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
-                          {baseballField.title}
-                        </h3>
-                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
-                          {baseballField.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              
-
-              
-
-              
-              // Add remaining regular cards (excluding Campus Dedication, Baseball Field, and the split card items)
-              const remainingDedications = dedications.filter(d => 
-                !['Campus Dedication', 'Baseball Field', 'Water Slides', 'Benches', 'Gazebos', 'Bleachers', 'Retreat House'].includes(d.title)
-              );
-              
-              remainingDedications.forEach((dedication) => {
+                            // Add all dedications in order (sorted by price from highest to lowest), excluding Campus Dedication which is already shown in hero section
+              dedications.filter(d => d.title !== 'Campus Dedication').forEach((dedication) => {
                 rows.push(
                   <motion.div key={dedication.id} variants={itemVariants} className="lg:col-span-1">
                     <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
@@ -360,161 +290,9 @@ const Dedications = () => {
                 );
                             });
               
-              // Add the four smaller cards
-              const waterSlides = dedications.find(d => d.title === 'Water Slides');
-              const gazebos = dedications.find(d => d.title === 'Gazebos');
-              const benches = dedications.find(d => d.title === 'Benches');
-              const bleachers = dedications.find(d => d.title === 'Bleachers');
+
               
-              if (waterSlides) {
-                rows.push(
-                  <motion.div key={waterSlides.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={waterSlides.image}
-                          alt={waterSlides.title}
-                          className="w-full h-64 object-cover"
-                        />
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(waterSlides.status)}`}>
-                            {getStatusText(waterSlides.status)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
-                          {waterSlides.title}
-                        </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
-                          {waterSlides.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              
-              if (gazebos) {
-                rows.push(
-                  <motion.div key={gazebos.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={gazebos.image}
-                          alt={gazebos.title}
-                          className="w-full h-64 object-cover"
-                        />
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(gazebos.status)}`}>
-                            {getStatusText(gazebos.status)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
-                          {gazebos.title}
-                        </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
-                          {gazebos.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              
-              if (benches) {
-                rows.push(
-                  <motion.div key={benches.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={benches.image}
-                          alt={benches.title}
-                          className="w-full h-64 object-cover"
-                        />
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(benches.status)}`}>
-                            {getStatusText(benches.status)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
-                          {benches.title}
-                        </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
-                          {benches.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              
-              if (bleachers) {
-                rows.push(
-                  <motion.div key={bleachers.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={bleachers.image}
-                          alt={bleachers.title}
-                          className="w-full h-64 object-cover"
-                        />
-                        <div className="absolute top-4 right-4">
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(bleachers.status)}`}>
-                            {getStatusText(bleachers.status)}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
-                          {bleachers.title}
-                        </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
-                          {bleachers.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
-              
-              // Add Retreat House at the very end
-              const retreatHouse = dedications.find(d => d.title === 'Retreat House');
-              if (retreatHouse) {
-                rows.push(
-                  <motion.div key={retreatHouse.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={retreatHouse.image}
-                          alt={retreatHouse.title}
-                          className="w-full h-64 object-cover"
-                        />
-                        <div className="absolute top-4 right-4 flex items-center space-x-2">
-                          <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
-                            Phase 2
-                          </span>
-                          <span className={`px-3 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor('available')}`}>
-                            {getStatusText('available')}
-                          </span>
-                        </div>
-                      </div>
-                      <div className="p-6">
-                        <h3 className="text-xl font-serif font-semibold text-secondary-900 mb-3">
-                          {retreatHouse.title}
-                        </h3>
-                        <div className="text-3xl font-bold text-primary-600 mb-4">
-                          {retreatHouse.amount}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              }
+
               
               return rows;
             })()}

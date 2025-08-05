@@ -14,7 +14,7 @@ const Footer = () => {
             className="flex flex-col items-center space-y-4"
           >
             <div className="text-sm text-secondary-400">
-              © 2024 Chabad of North Fulton. All rights reserved.
+              © 2025 Chabad of North Fulton. All rights reserved.
             </div>
             <div className="text-xs text-secondary-500">
               Site designed by{' '}

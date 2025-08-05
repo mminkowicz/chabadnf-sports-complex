@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -120,17 +120,17 @@ const Gallery = () => {
     );
   }, [images.length]);
 
-  // Auto-advance slideshow
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextImage();
-    }, 3000); // Change image every 3 seconds
+  // Auto-advance slideshow - DISABLED
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     nextImage();
+  //   }, 5000); // Change image every 5 seconds
 
-    return () => clearInterval(interval);
-  }, [nextImage]);
+  //   return () => clearInterval(interval);
+  // }, [nextImage]);
 
   return (
-    <div className="pt-16 min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50">
+    <div className="pt-16 bg-gradient-to-br from-primary-50 to-secondary-50">
       {/* Header */}
       <div className="text-center py-8 sm:py-12">
                       <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
@@ -201,6 +201,9 @@ const Gallery = () => {
           </div>
         </div>
       </div>
+      
+      {/* Bottom spacing to prevent footer overlap */}
+      <div className="pb-8"></div>
     </div>
   );
 };

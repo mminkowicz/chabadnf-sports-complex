@@ -13,6 +13,18 @@
     font-family: 'Inter', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+  
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    .container-custom {
+      @apply px-4;
+    }
+    
+    .section-padding {
+      @apply py-6 px-4;
+    }
   }
 }
 

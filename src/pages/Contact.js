@@ -70,46 +70,46 @@ const Contact = () => {
               </h2>
               
               <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Email</h3>
-                    <p className="text-secondary-600">rabbi@chabadnf.org</p>
+                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Email</h3>
+                    <p className="text-secondary-600 text-sm sm:text-base">rabbi@chabadnf.org</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Phone</h3>
-                    <p className="text-secondary-600">770-410-9000</p>
+                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Phone</h3>
+                    <p className="text-secondary-600 text-sm sm:text-base">770-410-9000</p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Address</h3>
-                    <p className="text-secondary-600">
+                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Address</h3>
+                    <p className="text-secondary-600 text-sm sm:text-base">
                       10180 Jones Bridge Road<br />
                       Alpharetta, Georgia 30022
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
-                    <Clock className="w-6 h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                    <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1">Contact Person</h3>
-                    <p className="text-secondary-600">
+                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Contact Person</h3>
+                    <p className="text-secondary-600 text-sm sm:text-base">
                       Rabbi Hirshy Minkowicz
                     </p>
                   </div>
@@ -122,27 +122,25 @@ const Contact = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-secondary-50 rounded-xl p-6 sm:p-8"
+              className="bg-secondary-50 rounded-xl p-4 sm:p-6 lg:p-8"
             >
               <h2 className="text-2xl sm:text-3xl font-serif font-bold text-secondary-900 mb-6">
                 Send Us a Message
               </h2>
               
               <form ref={form} onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-2">
-                      Full Name
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
-                      placeholder="Your full name"
-                      required
-                    />
-                  </div>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-secondary-700 mb-2">
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    placeholder="Your full name"
+                    required
+                  />
                 </div>
 
                 <div>

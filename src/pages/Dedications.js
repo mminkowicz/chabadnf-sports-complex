@@ -14,6 +14,7 @@ import waterSlides from '../assets/water slides.jpg';
 import bleachers from '../assets/bleachers.png';
 import gazebos from '../assets/gazeebos.png';
 import benches from '../assets/benches.png';
+import gym from '../assets/gym.jpg';
 
 const Dedications = () => {
   // Removed filter functionality
@@ -36,19 +37,27 @@ const Dedications = () => {
       status: 'available'
   },
   {
-    id: 2,
-    title: 'Baseball Field',
+    id: 6,
+    title: 'Soccer Field',
     category: 'facilities',
-      amount: '$250,000',
-    image: baseballField,
-      status: 'available'
+      amount: '$300,000',
+    image: soccerField,
+      status: 'sold'
   },
   {
     id: 3,
     title: 'Basketball Court',
     category: 'facilities',
-      amount: '$200,000',
+      amount: '$250,000',
     image: basketballCourt,
+      status: 'available'
+  },
+  {
+    id: 2,
+    title: 'Baseball Field',
+    category: 'facilities',
+      amount: '$200,000',
+    image: baseballField,
       status: 'available'
   },
   {
@@ -57,14 +66,6 @@ const Dedications = () => {
     category: 'facilities',
       amount: '$180,000',
     image: pickleballCourt,
-      status: 'available'
-  },
-  {
-    id: 6,
-    title: 'Soccer Field',
-    category: 'facilities',
-      amount: '$150,000',
-    image: soccerField,
       status: 'available'
   },
   {
@@ -119,7 +120,7 @@ const Dedications = () => {
     id: 13,
     title: 'Benches',
     category: 'facilities',
-      amount: '$1,800',
+      amount: '$3,600',
       image: benches,
       status: 'available'
   },
@@ -131,6 +132,14 @@ const Dedications = () => {
       image: retreatHouse,
     status: 'available',
       phase: 'Phase 2'
+    },
+  {
+    id: 15,
+    title: 'Gym',
+    category: 'facilities',
+      amount: '$4,000,000',
+      image: gym,
+      status: 'available'
     }
   ];
 

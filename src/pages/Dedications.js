@@ -40,7 +40,6 @@ const Dedications = () => {
     id: 6,
     title: 'Soccer Field',
     category: 'facilities',
-      amount: '$300,000',
     image: soccerField,
       status: 'sold'
   },
@@ -72,7 +71,6 @@ const Dedications = () => {
     id: 5,
     title: 'Kids Car Track',
     category: 'facilities',
-      amount: '$100,000',
     image: kidsCarTrack,
       status: 'sold'
   },
@@ -139,7 +137,8 @@ const Dedications = () => {
     category: 'facilities',
       amount: '$4,000,000',
       image: gym,
-      status: 'available'
+      status: 'available',
+      phase: 'Phase 2'
     }
   ];
 
@@ -290,9 +289,11 @@ const Dedications = () => {
                         <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
                           {dedication.title}
                         </h3>
-                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
-                          {dedication.amount}
-                        </div>
+                        {dedication.amount && (
+                          <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
+                            {dedication.amount}
+                          </div>
+                        )}
                       </div>
                     </div>
                   </motion.div>

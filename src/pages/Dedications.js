@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import mainDedication from '../assets/main dedication.jpg';
 import baseballField from '../assets/Baseball Field.jpg';
@@ -17,132 +17,171 @@ import benches from '../assets/benches.png';
 import gym from '../assets/gym.jpg';
 
 const Dedications = () => {
-  // Removed filter functionality
+  const [dedications, setDedications] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  const dedications = [
-  {
-    id: 1,
-    title: 'Campus Dedication',
-    category: 'facilities',
-      amount: '$900,000',
-    image: mainDedication,
-      status: 'available'
-  },
-  {
-    id: 7,
-    title: 'Playground',
-    category: 'facilities',
-      amount: '$300,000',
-    image: playground,
-      status: 'available'
-  },
-  {
-    id: 6,
-    title: 'Soccer Field',
-    category: 'facilities',
-    image: soccerField,
-      status: 'sold'
-  },
-  {
-    id: 3,
-    title: 'Basketball Court',
-    category: 'facilities',
-      amount: '$250,000',
-    image: basketballCourt,
-      status: 'available'
-  },
-  {
-    id: 2,
-    title: 'Baseball Field',
-    category: 'facilities',
-      amount: '$200,000',
-    image: baseballField,
-      status: 'available'
-  },
-  {
-    id: 4,
-    title: 'Pickleball Court',
-    category: 'facilities',
-      amount: '$180,000',
-    image: pickleballCourt,
-      status: 'available'
-  },
-  {
-    id: 5,
-    title: 'Kids Car Track',
-    category: 'facilities',
-    image: kidsCarTrack,
-      status: 'sold'
-  },
-  {
-    id: 8,
-    title: 'Nature Trail',
-    category: 'facilities',
-      amount: '$100,000',
-    image: natureWalk,
-      status: 'available'
-  },
-  {
-    id: 9,
-    title: 'Nature Nest',
-    category: 'facilities',
-      amount: '$75,000',
-      image: natureNest,
-      status: 'available'
-  },
-  {
-    id: 10,
-    title: 'Water Slides',
-    category: 'facilities',
-      amount: '$25,000',
-      image: waterSlides,
-      status: 'available'
-  },
-  {
-    id: 11,
-    title: 'Gazebos',
-    category: 'facilities',
-      amount: '$25,000',
-      image: gazebos,
-      status: 'available'
-  },
-  {
-    id: 12,
-    title: 'Bleachers',
-    category: 'facilities',
-      amount: '$5,000',
-      image: bleachers,
-      status: 'available'
-  },
-  {
-    id: 13,
-    title: 'Benches',
-    category: 'facilities',
-      amount: '$3,600',
-      image: benches,
-      status: 'available'
-  },
-  {
-    id: 14,
-    title: 'Retreat House',
-    category: 'facilities',
-      amount: '$850,000',
-      image: retreatHouse,
-    status: 'available',
-      phase: 'Phase 2'
-    },
-  {
-    id: 15,
-    title: 'Gym',
-    category: 'facilities',
-      amount: '$4,000,000',
-      image: gym,
-      status: 'available',
-      phase: 'Phase 2'
-    }
-  ];
+  // Image mapping for dedications
+  const imageMap = {
+    'Campus Dedication': mainDedication,
+    'Baseball Field': baseballField,
+    'Kids Car Track': kidsCarTrack,
+    'Basketball Court': basketballCourt,
+    'Pickleball Court': pickleballCourt,
+    'Soccer Field': soccerField,
+    'Playground': playground,
+    'Nature Trail': natureWalk,
+    'Nature Nest': natureNest,
+    'Retreat House': retreatHouse,
+    'Water Slides': waterSlides,
+    'Bleachers': bleachers,
+    'Gazebos': gazebos,
+    'Benches': benches,
+    'Gym': gym
+  };
 
-  // Show all dedications without filtering
+  useEffect(() => {
+    // Fetch dedications from API
+    fetch('http://localhost:3001/api/dedications')
+      .then(response => response.json())
+      .then(data => {
+        // Add images and category to each dedication
+        const dedicationsWithImages = data.map(dedication => ({
+          ...dedication,
+          category: 'facilities',
+          image: imageMap[dedication.title] || mainDedication // fallback image
+        }));
+        setDedications(dedicationsWithImages);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.log('Error loading dedications, using fallback data:', error);
+        // Fallback to hardcoded data if API fails
+        const fallbackDedications = [
+          {
+            id: 1,
+            title: 'Campus Dedication',
+            category: 'facilities',
+            amount: '$900,000',
+            image: mainDedication,
+            status: 'available'
+          },
+          {
+            id: 7,
+            title: 'Playground',
+            category: 'facilities',
+            amount: '$300,000',
+            image: playground,
+            status: 'available'
+          },
+          {
+            id: 6,
+            title: 'Soccer Field',
+            category: 'facilities',
+            image: soccerField,
+            status: 'sold'
+          },
+          {
+            id: 3,
+            title: 'Basketball Court',
+            category: 'facilities',
+            amount: '$250,000',
+            image: basketballCourt,
+            status: 'available'
+          },
+          {
+            id: 2,
+            title: 'Baseball Field',
+            category: 'facilities',
+            amount: '$200,000',
+            image: baseballField,
+            status: 'available'
+          },
+          {
+            id: 4,
+            title: 'Pickleball Court',
+            category: 'facilities',
+            amount: '$180,000',
+            image: pickleballCourt,
+            status: 'available'
+          },
+          {
+            id: 5,
+            title: 'Kids Car Track',
+            category: 'facilities',
+            image: kidsCarTrack,
+            status: 'sold'
+          },
+          {
+            id: 8,
+            title: 'Nature Trail',
+            category: 'facilities',
+            amount: '$100,000',
+            image: natureWalk,
+            status: 'available'
+          },
+          {
+            id: 9,
+            title: 'Nature Nest',
+            category: 'facilities',
+            amount: '$75,000',
+            image: natureNest,
+            status: 'available'
+          },
+          {
+            id: 10,
+            title: 'Water Slides',
+            category: 'facilities',
+            amount: '$25,000',
+            image: waterSlides,
+            status: 'available'
+          },
+          {
+            id: 11,
+            title: 'Gazebos',
+            category: 'facilities',
+            amount: '$25,000',
+            image: gazebos,
+            status: 'available'
+          },
+          {
+            id: 12,
+            title: 'Bleachers',
+            category: 'facilities',
+            amount: '$5,000',
+            image: bleachers,
+            status: 'available'
+          },
+          {
+            id: 13,
+            title: 'Benches',
+            category: 'facilities',
+            amount: '$3,600',
+            image: benches,
+            status: 'available'
+          },
+          {
+            id: 14,
+            title: 'Retreat House',
+            category: 'facilities',
+            amount: '$850,000',
+            image: retreatHouse,
+            status: 'available',
+            phase: 'Phase 2'
+          },
+          {
+            id: 15,
+            title: 'Gym',
+            category: 'facilities',
+            amount: '$4,000,000',
+            image: gym,
+            status: 'available',
+            phase: 'Phase 2'
+          }
+        ];
+        setDedications(fallbackDedications);
+        setLoading(false);
+      });
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -191,6 +230,16 @@ const Dedications = () => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="pt-16">
+        <div className="flex justify-center items-center min-h-screen">
+          <div className="text-xl text-gray-600">Loading dedications...</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -219,8 +268,8 @@ const Dedications = () => {
             className="max-w-5xl mx-auto"
           >
             <div className="relative rounded-xl overflow-hidden shadow-xl">
-            <img
-              src={mainDedication}
+              <img
+                src={mainDedication}
                 alt="Main Sports Complex"
                 className="w-full h-64 sm:h-80 md:h-96 object-cover"
               />
@@ -236,12 +285,11 @@ const Dedications = () => {
                     Campus Dedication
                   </h2>
                   <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-400 mb-1 sm:mb-2">
-                $900,000
+                    $900,000
                   </div>
                   <p className="text-xs sm:text-sm md:text-base text-gray-200 mb-2 sm:mb-3 max-w-xl">
                     Leave a lasting legacy — name the entire sports complex in honor of your family or a loved one.
                   </p>
-                  {/* Main dedication inquire button removed */}
                 </div>
               </div>
             </div>
@@ -249,66 +297,51 @@ const Dedications = () => {
         </div>
       </section>
 
-      {/* Filter section removed */}
-
       {/* Dedications Grid */}
       <section className="section-padding bg-secondary-50">
         <div className="container-custom">
           <motion.div
-              variants={containerVariants}
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
-              className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
-            >
-            {(() => {
-              const rows = [];
-              
-                            // Add all dedications in order (sorted by price from highest to lowest), excluding Campus Dedication which is already shown in hero section
-              dedications.filter(d => d.title !== 'Campus Dedication').forEach((dedication) => {
-                rows.push(
-                  <motion.div key={dedication.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={dedication.image}
-                          alt={dedication.title}
-                          className="w-full h-48 sm:h-56 object-cover"
-                        />
-                        <div className="absolute top-3 right-3 flex items-center space-x-2">
-                          {dedication.phase && (
-                            <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
-                              {dedication.phase}
-                            </span>
-                          )}
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
-                            {getStatusText(dedication.status)}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
+          >
+            {dedications
+              .filter(d => d.title !== 'Campus Dedication')
+              .map((dedication) => (
+                <motion.div key={dedication.id} variants={itemVariants} className="lg:col-span-1">
+                  <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
+                    <div className="relative">
+                      <img
+                        src={dedication.image}
+                        alt={dedication.title}
+                        className="w-full h-48 sm:h-56 object-cover"
+                      />
+                      <div className="absolute top-3 right-3 flex items-center space-x-2">
+                        {dedication.phase && (
+                          <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+                            {dedication.phase}
                           </span>
-                        </div>
-                      </div>
-                      <div className="p-4 sm:p-6">
-                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
-                          {dedication.title}
-                        </h3>
-                        {dedication.amount && (
-                          <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
-                            {dedication.amount}
-                          </div>
                         )}
+                        <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
+                          {getStatusText(dedication.status)}
+                        </span>
                       </div>
                     </div>
-                  </motion.div>
-                );
-                            });
-              
-
-              
-
-              
-              return rows;
-            })()}
+                    <div className="p-4 sm:p-6">
+                      <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
+                        {dedication.title}
+                      </h3>
+                      {dedication.amount && (
+                        <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
+                          {dedication.amount}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
           </motion.div>
-          
-
 
           {dedications.length === 0 && (
             <motion.div
@@ -317,12 +350,10 @@ const Dedications = () => {
               className="text-center py-12"
             >
               <p className="text-xl text-secondary-600">No dedications found in this category.</p>
-          </motion.div>
-        )}
+            </motion.div>
+          )}
         </div>
       </section>
-
-      {/* Benefits and Contact sections removed */}
     </div>
   );
 };

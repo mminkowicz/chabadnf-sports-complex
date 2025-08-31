@@ -6,6 +6,7 @@ import { Menu, X } from 'lucide-react';
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [adminClickCount, setAdminClickCount] = useState(0);
   const location = useLocation();
 
   useEffect(() => {
@@ -44,6 +45,25 @@ const Navbar = () => {
     >
       <div className="container-custom">
         <div className="flex items-center justify-center h-16 sm:h-18 lg:h-20">
+          {/* Admin Access - Click logo area 5 times */}
+          <div 
+            className="absolute left-4 cursor-pointer"
+            onClick={() => {
+              setAdminClickCount(prev => {
+                const newCount = prev + 1;
+                if (newCount >= 5) {
+                  window.location.href = '/admin';
+                  return 0;
+                }
+                return newCount;
+              });
+            }}
+          >
+            <div className="text-xs text-gray-400 opacity-0 hover:opacity-100 transition-opacity">
+              {adminClickCount}/5
+            </div>
+          </div>
+          
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center space-x-12">
             {navItems.map((item) => (

@@ -136,11 +136,22 @@ const AdminDashboard = () => {
       if (response.ok) {
         const result = await response.json();
         console.log('Update successful:', result);
-        setCampaignData(tempData);
-        setMessage('Campaign updated successfully! Changes are now live on the website.');
         
-        // Don't reload the page - just show success message
-        // The widget will automatically fetch updated data
+        // Refresh data from server to ensure consistency across all devices
+        const refreshResponse = await fetch('http://localhost:3001/api/campaign-data');
+        if (refreshResponse.ok) {
+          const refreshedData = await refreshResponse.json();
+          setCampaignData({
+            goal: refreshedData.goal,
+            raised: refreshedData.raised
+          });
+          setTempData({
+            goal: refreshedData.goal,
+            raised: refreshedData.raised
+          });
+        }
+        
+        setMessage('Campaign updated successfully! Changes are now live on the website.');
       } else {
         const error = await response.json();
         console.log('Update failed:', error);

@@ -6,6 +6,35 @@ const cors = require('cors');
 const app = express();
 const PORT = 3001;
 
+// File operation locks to prevent race conditions
+const fileLocks = new Map();
+
+// Helper function to acquire file lock
+const acquireLock = async (filePath) => {
+  if (fileLocks.has(filePath)) {
+    // Wait for existing lock to be released
+    while (fileLocks.has(filePath)) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+  }
+  fileLocks.set(filePath, true);
+};
+
+// Helper function to release file lock
+const releaseLock = (filePath) => {
+  fileLocks.delete(filePath);
+};
+
+// Helper function for safe file operations
+const safeFileOperation = async (filePath, operation) => {
+  await acquireLock(filePath);
+  try {
+    return await operation();
+  } finally {
+    releaseLock(filePath);
+  }
+};
+
 // Middleware
 app.use(cors());
 app.use(express.json());
@@ -27,9 +56,11 @@ app.post('/api/update-campaign', async (req, res) => {
       lastUpdated: lastUpdated
     };
 
-    // Write to the JSON file
+    // Write to the JSON file with file locking
     const filePath = path.join(__dirname, 'public', 'campaign-data.json');
-    await fs.writeFile(filePath, JSON.stringify(campaignData, null, 2));
+    await safeFileOperation(filePath, async () => {
+      await fs.writeFile(filePath, JSON.stringify(campaignData, null, 2));
+    });
 
     res.json({ 
       message: 'Campaign updated successfully',
@@ -37,12 +68,19 @@ app.post('/api/update-campaign', async (req, res) => {
     });
   } catch (error) {
     console.error('Error updating campaign:', error);
-    res.status(500).json({ message: 'Error updating campaign' });
+    res.status(500).json({ message: 'Error updating campaign. Please try again.' });
   }
 });
 
 app.get('/api/campaign-data', async (req, res) => {
   try {
+    // Add cache-busting headers to prevent browser caching
+    res.set({
+      'Cache-Control': 'no-cache, no-store, must-revalidate',
+      'Pragma': 'no-cache',
+      'Expires': '0'
+    });
+    
     const filePath = path.join(__dirname, 'public', 'campaign-data.json');
     const data = await fs.readFile(filePath, 'utf8');
     res.json(JSON.parse(data));
@@ -68,24 +106,26 @@ app.post('/api/update-dedication', async (req, res) => {
   try {
     const updatedDedication = req.body;
     
-    // Read current dedications
+    // Read and update dedications with file locking
     const filePath = path.join(__dirname, 'public', 'dedications-data.json');
-    let dedications = [];
-    
-    try {
-      const data = await fs.readFile(filePath, 'utf8');
-      dedications = JSON.parse(data);
-    } catch (error) {
-      // File doesn't exist, start with empty array
-    }
+    await safeFileOperation(filePath, async () => {
+      let dedications = [];
+      
+      try {
+        const data = await fs.readFile(filePath, 'utf8');
+        dedications = JSON.parse(data);
+      } catch (error) {
+        // File doesn't exist, start with empty array
+      }
 
-    // Update the specific dedication
-    dedications = dedications.map(d => 
-      d.id === updatedDedication.id ? updatedDedication : d
-    );
+      // Update the specific dedication
+      dedications = dedications.map(d => 
+        d.id === updatedDedication.id ? updatedDedication : d
+      );
 
-    // Write back to file
-    await fs.writeFile(filePath, JSON.stringify(dedications, null, 2));
+      // Write back to file
+      await fs.writeFile(filePath, JSON.stringify(dedications, null, 2));
+    });
 
     res.json({ 
       message: 'Dedication updated successfully',
@@ -93,7 +133,7 @@ app.post('/api/update-dedication', async (req, res) => {
     });
   } catch (error) {
     console.error('Error updating dedication:', error);
-    res.status(500).json({ message: 'Error updating dedication' });
+    res.status(500).json({ message: 'Error updating dedication. Please try again.' });
   }
 });
 
@@ -101,22 +141,24 @@ app.post('/api/add-dedication', async (req, res) => {
   try {
     const newDedication = req.body;
     
-    // Read current dedications
+    // Read and add dedication with file locking
     const filePath = path.join(__dirname, 'public', 'dedications-data.json');
-    let dedications = [];
-    
-    try {
-      const data = await fs.readFile(filePath, 'utf8');
-      dedications = JSON.parse(data);
-    } catch (error) {
-      // File doesn't exist, start with empty array
-    }
+    await safeFileOperation(filePath, async () => {
+      let dedications = [];
+      
+      try {
+        const data = await fs.readFile(filePath, 'utf8');
+        dedications = JSON.parse(data);
+      } catch (error) {
+        // File doesn't exist, start with empty array
+      }
 
-    // Add new dedication
-    dedications.push(newDedication);
+      // Add new dedication
+      dedications.push(newDedication);
 
-    // Write back to file
-    await fs.writeFile(filePath, JSON.stringify(dedications, null, 2));
+      // Write back to file
+      await fs.writeFile(filePath, JSON.stringify(dedications, null, 2));
+    });
 
     res.json({ 
       message: 'Dedication added successfully',
@@ -124,7 +166,7 @@ app.post('/api/add-dedication', async (req, res) => {
     });
   } catch (error) {
     console.error('Error adding dedication:', error);
-    res.status(500).json({ message: 'Error adding dedication' });
+    res.status(500).json({ message: 'Error adding dedication. Please try again.' });
   }
 });
 

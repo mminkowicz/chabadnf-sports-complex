@@ -1,17 +1,10 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import FundraisingWidget from '../components/FundraisingWidget';
 
 const Donate = () => {
   const iframeRef = useRef(null);
 
-  const handleDonateClick = () => {
-    // Scroll to the donation form
-    const formSection = document.getElementById('donation-form');
-    if (formSection) {
-      formSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+
 
   useEffect(() => {
     const script1 = document.createElement('script');
@@ -51,15 +44,6 @@ const Donate = () => {
             <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-6 sm:mb-8">
               <strong>We need $1.8 million to complete the project — and thanks to a generous donor, every dollar you give will be matched!</strong> That means your $1 becomes $2, doubling your impact and bringing us twice as close to our goal.
             </p>
-            
-            {/* Fundraising Widget */}
-            <div className="mt-8 mb-4">
-              <FundraisingWidget
-                goal={1800000}
-                raised={400000}
-                onDonateClick={handleDonateClick}
-              />
-            </div>
           </motion.div>
         </div>
       </section>

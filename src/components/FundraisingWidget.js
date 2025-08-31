@@ -15,7 +15,7 @@ const FundraisingWidget = ({
 
   useEffect(() => {
     // Fetch campaign data from the API
-    fetch('/api/campaign-data')
+    fetch('http://localhost:3001/api/campaign-data')
       .then(response => response.json())
       .then(data => {
         setCampaignData({

@@ -37,7 +37,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     // Load current campaign data
-    fetch('/api/campaign-data')
+    fetch('http://localhost:3001/api/campaign-data')
       .then(response => response.json())
       .then(data => {
         setCampaignData({
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
       });
 
     // Load dedications data
-    fetch('/api/dedications')
+    fetch('http://localhost:3001/api/dedications')
       .then(response => response.json())
       .then(data => {
         setDedications(data);
@@ -109,7 +109,14 @@ const AdminDashboard = () => {
     }));
   };
 
-
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+    }).format(value);
+  };
 
   const handleUpdate = async (e) => {
     // Prevent any form submission or page refresh
@@ -121,7 +128,7 @@ const AdminDashboard = () => {
     try {
       console.log('Updating campaign with data:', tempData);
       
-      const response = await fetch('/api/update-campaign', {
+      const response = await fetch('http://localhost:3001/api/update-campaign', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -164,7 +171,7 @@ const AdminDashboard = () => {
   // Dedication management functions
   const handleDedicationUpdate = async (dedication) => {
     try {
-      const response = await fetch('/api/update-dedication', {
+      const response = await fetch('http://localhost:3001/api/update-dedication', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -199,7 +206,7 @@ const AdminDashboard = () => {
     };
 
     try {
-      const response = await fetch('/api/add-dedication', {
+      const response = await fetch('http://localhost:3001/api/add-dedication', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -128,11 +128,11 @@ app.post('/api/add-dedication', async (req, res) => {
   }
 });
 
+// Serve static files
+app.use(express.static('public'));
+
 // Serve React app
 app.use(express.static('build'));
-
-// Serve static files from public directory
-app.use('/public', express.static('public'));
 
 // Catch-all route for React app
 app.get('*', (req, res) => {

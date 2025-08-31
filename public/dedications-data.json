@@ -14,7 +14,7 @@
   {
     "id": 6,
     "title": "Soccer Field",
-    "status": "available"
+    "status": "sold"
   },
   {
     "id": 3,
@@ -43,7 +43,7 @@
     "id": 8,
     "title": "Nature Trail",
     "amount": "$100,000",
-    "status": "sold"
+    "status": "available"
   },
   {
     "id": 9,

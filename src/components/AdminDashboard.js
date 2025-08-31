@@ -38,34 +38,52 @@ const AdminDashboard = () => {
   // Simple password - you can change this
   const ADMIN_PASSWORD = 'chabad2024';
 
+  // Load campaign data
   useEffect(() => {
-    // Load current campaign data
     fetch(`${API_BASE_URL}/campaign-data`)
       .then(response => response.json())
       .then(response => {
+        // Check if we have saved data in localStorage
+        const savedData = localStorage.getItem('chabadnf_campaign_data');
+        let dataToUse = response.data;
+        
+        if (savedData) {
+          const parsedSavedData = JSON.parse(savedData);
+          console.log('API data:', dataToUse);
+          console.log('Saved data:', parsedSavedData);
+          
+          // Always prefer localStorage data if it exists (since API resets)
+          dataToUse = parsedSavedData;
+          console.log('Using saved campaign data from localStorage');
+        }
+        
         setCampaignData({
-          goal: response.data?.goal || 1800000,
-          raised: response.data?.raised || 400000
+          goal: dataToUse?.goal || 1800000,
+          raised: dataToUse?.raised || 400000
         });
         setTempData({
-          goal: response.data?.goal || 1800000,
-          raised: response.data?.raised || 400000
+          goal: dataToUse?.goal || 1800000,
+          raised: dataToUse?.raised || 400000
         });
       })
       .catch(error => {
-        console.log('Using default campaign data:', error);
-      });
-
-    // Load dedications data
-    fetch(`${API_BASE_URL}/dedications`)
-      .then(response => response.json())
-      .then(response => {
-        setDedications(response.data || []);
-      })
-      .catch(error => {
-        console.log('Using default dedications data:', error);
-        // Load default dedications if API fails
-        loadDefaultDedications();
+        console.error('Error loading campaign data:', error);
+        // Try to load from localStorage as fallback
+        const savedData = localStorage.getItem('chabadnf_campaign_data');
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          setCampaignData({
+            goal: parsedData.goal || 1800000,
+            raised: parsedData.raised || 400000
+          });
+          setTempData({
+            goal: parsedData.goal || 1800000,
+            raised: parsedData.raised || 400000
+          });
+          console.log('Using localStorage fallback due to API error');
+        } else {
+          console.log('No localStorage data available, using defaults');
+        }
       });
   }, []);
 
@@ -131,16 +149,18 @@ const AdminDashboard = () => {
     try {
       console.log('Updating campaign with data:', tempData);
       
+      const updateData = {
+        goal: tempData.goal,
+        raised: tempData.raised,
+        lastUpdated: new Date().toISOString().split('T')[0]
+      };
+      
       const response = await fetch(`${API_BASE_URL}/update-campaign`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          goal: tempData.goal,
-          raised: tempData.raised,
-          lastUpdated: new Date().toISOString().split('T')[0]
-        })
+        body: JSON.stringify(updateData)
       });
 
       console.log('Response status:', response.status);
@@ -150,6 +170,10 @@ const AdminDashboard = () => {
         console.log('Update successful:', result);
         setCampaignData(tempData);
         setMessage('Campaign updated successfully! Changes are now live on the website.');
+        
+        // Save to localStorage as backup
+        localStorage.setItem('chabadnf_campaign_data', JSON.stringify(updateData));
+        console.log('Saved campaign data to localStorage as backup');
         
         // Don't reload the page - just show success message
         // The widget will automatically fetch updated data

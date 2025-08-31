@@ -21,18 +21,44 @@ const FundraisingWidget = ({
     fetch(`${API_BASE_URL}/campaign-data`)
       .then(response => response.json())
       .then(response => {
+        // Check if we have saved data in localStorage
+        const savedData = localStorage.getItem('chabadnf_campaign_data');
+        let dataToUse = response.data;
+        
+        if (savedData) {
+          const parsedSavedData = JSON.parse(savedData);
+          console.log('API data:', dataToUse);
+          console.log('Saved data:', parsedSavedData);
+          
+          // Always prefer localStorage data if it exists (since API resets)
+          dataToUse = parsedSavedData;
+          console.log('Using saved campaign data from localStorage');
+        }
+        
         setCampaignData({
-          goal: response.data?.goal || propGoal,
-          raised: response.data?.raised || propRaised
+          goal: dataToUse?.goal || propGoal,
+          raised: dataToUse?.raised || propRaised
         });
       })
       .catch(error => {
         console.log('Using default campaign data:', error);
-        // Fallback to props if API doesn't exist
-        setCampaignData({
-          goal: propGoal,
-          raised: propRaised
-        });
+        // Try to load from localStorage as fallback
+        const savedData = localStorage.getItem('chabadnf_campaign_data');
+        if (savedData) {
+          const parsedData = JSON.parse(savedData);
+          setCampaignData({
+            goal: parsedData.goal || propGoal,
+            raised: parsedData.raised || propRaised
+          });
+          console.log('Using localStorage fallback due to API error');
+        } else {
+          // Fallback to props if API doesn't exist
+          setCampaignData({
+            goal: propGoal,
+            raised: propRaised
+          });
+          console.log('No localStorage data available, using props');
+        }
       });
   }, [propGoal, propRaised]);
 

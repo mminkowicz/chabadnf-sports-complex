@@ -42,14 +42,14 @@ const AdminDashboard = () => {
     // Load current campaign data
     fetch(`${API_BASE_URL}/campaign-data`)
       .then(response => response.json())
-      .then(data => {
+      .then(response => {
         setCampaignData({
-          goal: data.goal || 1800000,
-          raised: data.raised || 400000
+          goal: response.data?.goal || 1800000,
+          raised: response.data?.raised || 400000
         });
         setTempData({
-          goal: data.goal || 1800000,
-          raised: data.raised || 400000
+          goal: response.data?.goal || 1800000,
+          raised: response.data?.raised || 400000
         });
       })
       .catch(error => {
@@ -59,8 +59,8 @@ const AdminDashboard = () => {
     // Load dedications data
     fetch(`${API_BASE_URL}/dedications`)
       .then(response => response.json())
-      .then(data => {
-        setDedications(data);
+      .then(response => {
+        setDedications(response.data || []);
       })
       .catch(error => {
         console.log('Using default dedications data:', error);

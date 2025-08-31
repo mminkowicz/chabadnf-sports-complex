@@ -20,10 +20,10 @@ const FundraisingWidget = ({
     // Fetch campaign data from the API
     fetch(`${API_BASE_URL}/campaign-data`)
       .then(response => response.json())
-      .then(data => {
+      .then(response => {
         setCampaignData({
-          goal: data.goal || propGoal,
-          raised: data.raised || propRaised
+          goal: response.data?.goal || propGoal,
+          raised: response.data?.raised || propRaised
         });
       })
       .catch(error => {

@@ -37,7 +37,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     // Load current campaign data
-    fetch('http://localhost:3001/api/campaign-data')
+    fetch('/api/campaign-data')
       .then(response => response.json())
       .then(data => {
         setCampaignData({
@@ -54,7 +54,7 @@ const AdminDashboard = () => {
       });
 
     // Load dedications data
-    fetch('http://localhost:3001/api/dedications')
+    fetch('/api/dedications')
       .then(response => response.json())
       .then(data => {
         setDedications(data);
@@ -119,7 +119,7 @@ const AdminDashboard = () => {
     try {
       console.log('Updating campaign with data:', tempData);
       
-      const response = await fetch('http://localhost:3001/api/update-campaign', {
+      const response = await fetch('/api/update-campaign', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -136,22 +136,11 @@ const AdminDashboard = () => {
       if (response.ok) {
         const result = await response.json();
         console.log('Update successful:', result);
-        
-        // Refresh data from server to ensure consistency across all devices
-        const refreshResponse = await fetch('http://localhost:3001/api/campaign-data');
-        if (refreshResponse.ok) {
-          const refreshedData = await refreshResponse.json();
-          setCampaignData({
-            goal: refreshedData.goal,
-            raised: refreshedData.raised
-          });
-          setTempData({
-            goal: refreshedData.goal,
-            raised: refreshedData.raised
-          });
-        }
-        
+        setCampaignData(tempData);
         setMessage('Campaign updated successfully! Changes are now live on the website.');
+        
+        // Don't reload the page - just show success message
+        // The widget will automatically fetch updated data
       } else {
         const error = await response.json();
         console.log('Update failed:', error);
@@ -173,7 +162,7 @@ const AdminDashboard = () => {
   // Dedication management functions
   const handleDedicationUpdate = async (dedication) => {
     try {
-      const response = await fetch('http://localhost:3001/api/update-dedication', {
+      const response = await fetch('/api/update-dedication', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -208,7 +197,7 @@ const AdminDashboard = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/api/add-dedication', {
+      const response = await fetch('/api/add-dedication', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

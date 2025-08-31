@@ -14,35 +14,23 @@ const FundraisingWidget = ({
   });
 
   useEffect(() => {
-    const fetchData = () => {
-      // Add cache-busting parameter to prevent browser caching
-      const timestamp = new Date().getTime();
-      fetch(`http://localhost:3001/api/campaign-data?t=${timestamp}`)
-        .then(response => response.json())
-        .then(data => {
-          setCampaignData({
-            goal: data.goal || propGoal,
-            raised: data.raised || propRaised
-          });
-        })
-        .catch(error => {
-          console.log('Using default campaign data:', error);
-          // Fallback to props if API doesn't exist
-          setCampaignData({
-            goal: propGoal,
-            raised: propRaised
-          });
+    // Fetch campaign data from the API
+    fetch('http://localhost:3001/api/campaign-data')
+      .then(response => response.json())
+      .then(data => {
+        setCampaignData({
+          goal: data.goal || propGoal,
+          raised: data.raised || propRaised
         });
-    };
-
-    // Fetch data immediately
-    fetchData();
-
-    // Set up interval to refresh data every 30 seconds
-    const interval = setInterval(fetchData, 30000);
-
-    // Cleanup interval on unmount
-    return () => clearInterval(interval);
+      })
+      .catch(error => {
+        console.log('Using default campaign data:', error);
+        // Fallback to props if API doesn't exist
+        setCampaignData({
+          goal: propGoal,
+          raised: propRaised
+        });
+      });
   }, [propGoal, propRaised]);
 
   const { goal, raised } = campaignData;

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+// API Base URL - Update this to your deployed backend URL
+const API_BASE_URL = 'https://chabadnf-backend.vercel.app/api';
+
 const FundraisingWidget = ({ 
   goal: propGoal = 1800000, 
   raised: propRaised = 400000, 
@@ -15,7 +18,7 @@ const FundraisingWidget = ({
 
   useEffect(() => {
     // Fetch campaign data from the API
-    fetch('http://localhost:3001/api/campaign-data')
+    fetch(`${API_BASE_URL}/campaign-data`)
       .then(response => response.json())
       .then(data => {
         setCampaignData({

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import FundraisingWidget from './FundraisingWidget';
 
+// API Base URL - Update this to your deployed backend URL
+const API_BASE_URL = 'https://chabadnf-backend.vercel.app/api';
+
 const AdminDashboard = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     // Check if user is already authenticated from localStorage
@@ -37,7 +40,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     // Load current campaign data
-    fetch('http://localhost:3001/api/campaign-data')
+    fetch(`${API_BASE_URL}/campaign-data`)
       .then(response => response.json())
       .then(data => {
         setCampaignData({
@@ -54,7 +57,7 @@ const AdminDashboard = () => {
       });
 
     // Load dedications data
-    fetch('http://localhost:3001/api/dedications')
+    fetch(`${API_BASE_URL}/dedications`)
       .then(response => response.json())
       .then(data => {
         setDedications(data);
@@ -128,7 +131,7 @@ const AdminDashboard = () => {
     try {
       console.log('Updating campaign with data:', tempData);
       
-      const response = await fetch('http://localhost:3001/api/update-campaign', {
+      const response = await fetch(`${API_BASE_URL}/update-campaign`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -171,7 +174,7 @@ const AdminDashboard = () => {
   // Dedication management functions
   const handleDedicationUpdate = async (dedication) => {
     try {
-      const response = await fetch('http://localhost:3001/api/update-dedication', {
+      const response = await fetch(`${API_BASE_URL}/update-dedication`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -206,7 +209,7 @@ const AdminDashboard = () => {
     };
 
     try {
-      const response = await fetch('http://localhost:3001/api/add-dedication', {
+      const response = await fetch(`${API_BASE_URL}/add-dedication`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

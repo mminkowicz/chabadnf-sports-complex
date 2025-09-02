@@ -87,27 +87,7 @@ const AdminDashboard = () => {
       });
   }, []);
 
-  const loadDefaultDedications = () => {
-    // This would be your current dedications data
-    const defaultDedications = [
-      { id: 1, title: 'Campus Dedication', amount: '$900,000', status: 'available' },
-      { id: 7, title: 'Playground', amount: '$300,000', status: 'available' },
-      { id: 6, title: 'Soccer Field', amount: '$300,000', status: 'sold' },
-      { id: 3, title: 'Basketball Court', amount: '$250,000', status: 'available' },
-      { id: 2, title: 'Baseball Field', amount: '$200,000', status: 'available' },
-      { id: 4, title: 'Pickleball Court', amount: '$180,000', status: 'available' },
-      { id: 5, title: 'Kids Car Track', amount: '$100,000', status: 'sold' },
-      { id: 8, title: 'Nature Trail', amount: '$100,000', status: 'available' },
-      { id: 9, title: 'Nature Nest', amount: '$75,000', status: 'available' },
-      { id: 10, title: 'Water Slides', amount: '$25,000', status: 'available' },
-      { id: 11, title: 'Gazebos', amount: '$25,000', status: 'available' },
-      { id: 12, title: 'Bleachers', amount: '$5,000', status: 'available' },
-      { id: 13, title: 'Benches', amount: '$3,600', status: 'available' },
-      { id: 14, title: 'Retreat House', amount: '$850,000', status: 'available', phase: 'Phase 2' },
-      { id: 15, title: 'Gym', amount: '$4,000,000', status: 'available', phase: 'Phase 2' }
-    ];
-    setDedications(defaultDedications);
-  };
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -130,14 +110,7 @@ const AdminDashboard = () => {
     }));
   };
 
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(value);
-  };
+
 
   const handleUpdate = async (e) => {
     // Prevent any form submission or page refresh

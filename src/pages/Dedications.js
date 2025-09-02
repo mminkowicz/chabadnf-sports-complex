@@ -15,6 +15,7 @@ import bleachers from '../assets/bleachers.png';
 import gazebos from '../assets/gazeebos.png';
 import benches from '../assets/benches.png';
 import gym from '../assets/gym.jpg';
+import campaignBricks from '../assets/campaignbricks.jpg';
 
 const Dedications = () => {
   // Removed filter functionality
@@ -26,6 +27,14 @@ const Dedications = () => {
     category: 'facilities',
       amount: '$900,000',
     image: mainDedication,
+      status: 'available'
+  },
+  {
+    id: 16,
+    title: 'Personalized Bricks',
+    category: 'facilities',
+      amount: '$1000 or 2/$1800',
+    image: campaignBricks,
       status: 'available'
   },
   {

@@ -8,6 +8,7 @@ import About from './pages/About';
 import Gallery from './pages/Gallery';
 import Donate from './pages/Donate';
 import Dedications from './pages/Dedications';
+import Bricks from './pages/Bricks';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import Test from './pages/Test';
@@ -24,6 +25,7 @@ function AppContent() {
           <Route path="/gallery" element={<Gallery />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/dedications" element={<Dedications />} />
+          <Route path="/bricks" element={<Bricks />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/test" element={<Test />} />

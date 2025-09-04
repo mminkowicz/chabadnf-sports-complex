@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [adminClickCount, setAdminClickCount] = useState(0);
+  const [isDedicationsOpen, setIsDedicationsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -18,16 +19,34 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Auto-open dropdown when on Dedications or Bricks page
+  useEffect(() => {
+    if (location.pathname === '/dedications' || location.pathname === '/bricks') {
+      setIsDedicationsOpen(true);
+    } else {
+      setIsDedicationsOpen(false);
+    }
+  }, [location.pathname]);
+
   const navItems = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Gallery', path: '/gallery' },
     { name: 'Donate', path: '/donate' },
-    { name: 'Dedications', path: '/dedications' },
+    { 
+      name: 'Dedications', 
+      path: '/dedications',
+      hasDropdown: true,
+      dropdownItems: [
+        { name: 'Dedications', path: '/dedications' },
+        { name: 'Bricks', path: '/bricks' }
+      ]
+    },
     { name: 'Contact', path: '/contact' },
   ];
 
   const isActive = (path) => location.pathname === path;
+  const isDedicationsActive = location.pathname === '/dedications' || location.pathname === '/bricks';
   const isHomePage = location.pathname === '/';
 
   return (
@@ -67,27 +86,102 @@ const Navbar = () => {
           {/* Desktop Navigation - Centered */}
           <div className="hidden lg:flex items-center space-x-12">
             {navItems.map((item) => (
-              <Link
-                key={item.name}
-                to={item.path}
-                className={`relative font-medium transition-colors duration-300 text-lg ${
-                  isActive(item.path)
-                    ? isHomePage ? 'text-primary-400' : 'text-primary-600'
-                    : isHomePage 
-                      ? 'text-white hover:text-primary-400' 
-                      : 'text-secondary-700 hover:text-primary-600'
-                }`}
-              >
-                {item.name}
-                {isActive(item.path) && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                      isHomePage ? 'bg-primary-400' : 'bg-primary-600'
+              <div key={item.name} className="relative">
+                {item.hasDropdown ? (
+                  <div
+                    className={`relative font-medium transition-colors duration-300 text-lg cursor-pointer ${
+                      isDedicationsActive
+                        ? isHomePage ? 'text-primary-400' : 'text-primary-600'
+                        : isHomePage 
+                          ? 'text-white hover:text-primary-400' 
+                          : 'text-secondary-700 hover:text-primary-600'
                     }`}
-                  />
+                    onMouseEnter={() => setIsDedicationsOpen(true)}
+                    onMouseLeave={() => {
+                      // Don't close if we're on the Dedications or Bricks page
+                      if (location.pathname !== '/dedications' && location.pathname !== '/bricks') {
+                        setIsDedicationsOpen(false);
+                      }
+                    }}
+                  >
+                    <div className="flex items-center space-x-1">
+                      <Link to={item.path}>{item.name}</Link>
+                      <ChevronDown size={16} className={`transition-transform duration-200 ${isDedicationsOpen ? 'rotate-180' : ''}`} />
+                    </div>
+                    {isDedicationsActive && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
+                          isHomePage ? 'bg-primary-400' : 'bg-primary-600'
+                        }`}
+                      />
+                    )}
+                    
+                    {/* Dropdown Menu */}
+                    <AnimatePresence>
+                      {isDedicationsOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.2 }}
+                          className={`absolute top-full left-0 mt-2 w-48 rounded-lg shadow-lg border z-50 ${
+                            isHomePage 
+                              ? 'bg-black/90 backdrop-blur-md border-white/20' 
+                              : 'bg-white border-secondary-200'
+                          }`}
+                          onMouseEnter={() => setIsDedicationsOpen(true)}
+                          onMouseLeave={() => {
+                            // Don't close if we're on the Dedications or Bricks page
+                            if (location.pathname !== '/dedications' && location.pathname !== '/bricks') {
+                              setIsDedicationsOpen(false);
+                            }
+                          }}
+                        >
+                          {item.dropdownItems.map((dropdownItem) => (
+                            <Link
+                              key={dropdownItem.name}
+                              to={dropdownItem.path}
+                              className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
+                                isActive(dropdownItem.path)
+                                  ? isHomePage 
+                                    ? 'text-primary-400 bg-white/10' 
+                                    : 'text-primary-600 bg-primary-50'
+                                  : isHomePage
+                                    ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                                    : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
+                              }`}
+                            >
+                              {dropdownItem.name}
+                            </Link>
+                          ))}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                ) : (
+                  <Link
+                    to={item.path}
+                    className={`relative font-medium transition-colors duration-300 text-lg ${
+                      isActive(item.path)
+                        ? isHomePage ? 'text-primary-400' : 'text-primary-600'
+                        : isHomePage 
+                          ? 'text-white hover:text-primary-400' 
+                          : 'text-secondary-700 hover:text-primary-600'
+                    }`}
+                  >
+                    {item.name}
+                    {isActive(item.path) && (
+                      <motion.div
+                        layoutId="activeTab"
+                        className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
+                          isHomePage ? 'bg-primary-400' : 'bg-primary-600'
+                        }`}
+                      />
+                    )}
+                  </Link>
                 )}
-              </Link>
+              </div>
             ))}
             <Link
               to="/donate"
@@ -130,22 +224,82 @@ const Navbar = () => {
             >
               <div className="py-4 space-y-2">
                 {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    to={item.path}
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-3 text-base font-medium transition-colors duration-300 ${
-                      isActive(item.path)
-                        ? isHomePage 
-                          ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
-                          : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
-                        : isHomePage
-                          ? 'text-white hover:text-primary-400 hover:bg-white/10'
-                          : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
-                    }`}
-                  >
-                    {item.name}
-                  </Link>
+                  <div key={item.name}>
+                    {item.hasDropdown ? (
+                      <div>
+                        <div
+                          onClick={() => {
+                            // If we're on Dedications or Bricks page, don't toggle - keep it open
+                            if (location.pathname === '/dedications' || location.pathname === '/bricks') {
+                              return;
+                            }
+                            setIsDedicationsOpen(!isDedicationsOpen);
+                          }}
+                          className={`flex items-center justify-between px-4 py-3 text-base font-medium transition-colors duration-300 cursor-pointer ${
+                            isDedicationsActive
+                              ? isHomePage 
+                                ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
+                                : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
+                              : isHomePage
+                                ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                                : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
+                          }`}
+                        >
+                          <span>{item.name}</span>
+                          <ChevronDown size={16} className={`transition-transform duration-200 ${isDedicationsOpen ? 'rotate-180' : ''}`} />
+                        </div>
+                        <AnimatePresence>
+                          {isDedicationsOpen && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: 'auto' }}
+                              exit={{ opacity: 0, height: 0 }}
+                              transition={{ duration: 0.2 }}
+                              className="overflow-hidden"
+                            >
+                              {item.dropdownItems.map((dropdownItem) => (
+                                <Link
+                                  key={dropdownItem.name}
+                                  to={dropdownItem.path}
+                                  onClick={() => {
+                                    setIsOpen(false);
+                                    setIsDedicationsOpen(false);
+                                  }}
+                                  className={`block px-8 py-2 text-sm font-medium transition-colors duration-300 ${
+                                    isActive(dropdownItem.path)
+                                      ? isHomePage 
+                                        ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
+                                        : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
+                                      : isHomePage
+                                        ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                                        : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
+                                  }`}
+                                >
+                                  {dropdownItem.name}
+                                </Link>
+                              ))}
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
+                    ) : (
+                      <Link
+                        to={item.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`block px-4 py-3 text-base font-medium transition-colors duration-300 ${
+                          isActive(item.path)
+                            ? isHomePage 
+                              ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
+                              : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
+                            : isHomePage
+                              ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                              : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
                 ))}
                 <div className="px-4 pt-2">
                   <Link

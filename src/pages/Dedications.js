@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import mainDedication from '../assets/main dedication.jpg';
 import baseballField from '../assets/Baseball Field.jpg';
 import kidsCarTrack from '../assets/kids car track.jpg';
@@ -274,37 +275,73 @@ const Dedications = () => {
               
                             // Add all dedications in order (sorted by price from highest to lowest), excluding Campus Dedication which is already shown in hero section
               dedications.filter(d => d.title !== 'Campus Dedication').forEach((dedication) => {
+                const isBricks = dedication.title === 'Personalized Bricks';
+                
                 rows.push(
                   <motion.div key={dedication.id} variants={itemVariants} className="lg:col-span-1">
-                    <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                      <div className="relative">
-                        <img
-                          src={dedication.image}
-                          alt={dedication.title}
-                          className="w-full h-48 sm:h-56 object-cover"
-                        />
-                        <div className="absolute top-3 right-3 flex items-center space-x-2">
-                          {dedication.phase && (
-                            <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
-                              {dedication.phase}
+                    {isBricks ? (
+                      <Link to="/bricks" className="block h-full">
+                        <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full cursor-pointer">
+                          <div className="relative">
+                            <img
+                              src={dedication.image}
+                              alt={dedication.title}
+                              className="w-full h-48 sm:h-56 object-cover"
+                            />
+                            <div className="absolute top-3 right-3 flex items-center space-x-2">
+                              {dedication.phase && (
+                                <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+                                  {dedication.phase}
+                                </span>
+                              )}
+                              <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
+                                {getStatusText(dedication.status)}
+                              </span>
+                            </div>
+                          </div>
+                          <div className="p-4 sm:p-6">
+                            <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
+                              {dedication.title}
+                            </h3>
+                            {dedication.amount && (
+                              <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
+                                {dedication.amount}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </Link>
+                    ) : (
+                      <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
+                        <div className="relative">
+                          <img
+                            src={dedication.image}
+                            alt={dedication.title}
+                            className="w-full h-48 sm:h-56 object-cover"
+                          />
+                          <div className="absolute top-3 right-3 flex items-center space-x-2">
+                            {dedication.phase && (
+                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
+                                {dedication.phase}
+                              </span>
+                            )}
+                            <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
+                              {getStatusText(dedication.status)}
                             </span>
+                          </div>
+                        </div>
+                        <div className="p-4 sm:p-6">
+                          <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
+                            {dedication.title}
+                          </h3>
+                          {dedication.amount && (
+                            <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
+                              {dedication.amount}
+                            </div>
                           )}
-                          <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
-                            {getStatusText(dedication.status)}
-                          </span>
                         </div>
                       </div>
-                      <div className="p-4 sm:p-6">
-                        <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
-                          {dedication.title}
-                        </h3>
-                        {dedication.amount && (
-                          <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
-                            {dedication.amount}
-                          </div>
-                        )}
-                      </div>
-                    </div>
+                    )}
                   </motion.div>
                 );
                             });

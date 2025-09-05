@@ -1,7 +1,28 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 const Bricks = () => {
+  useEffect(() => {
+    // Load JotForm script
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://pci.jotform.com/jsform/252453697623970';
+    script.async = true;
+    
+    // Append to the form container
+    const formContainer = document.getElementById('jotform-container');
+    if (formContainer) {
+      formContainer.appendChild(script);
+    }
+    
+    // Cleanup function
+    return () => {
+      if (formContainer && formContainer.contains(script)) {
+        formContainer.removeChild(script);
+      }
+    };
+  }, []);
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -33,7 +54,7 @@ const Bricks = () => {
             className="max-w-4xl mx-auto"
           >
             <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
-              <script type="text/javascript" src="https://pci.jotform.com/jsform/252453697623970"></script>
+              <div id="jotform-container"></div>
             </div>
           </motion.div>
         </div>

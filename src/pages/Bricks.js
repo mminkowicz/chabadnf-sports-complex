@@ -1,27 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 
 const Bricks = () => {
-  useEffect(() => {
-    // Load JotForm script
-    const script = document.createElement('script');
-    script.type = 'text/javascript';
-    script.src = 'https://pci.jotform.com/jsform/252453697623970';
-    script.async = true;
-    
-    // Append to the form container
-    const formContainer = document.getElementById('jotform-container');
-    if (formContainer) {
-      formContainer.appendChild(script);
-    }
-    
-    // Cleanup function
-    return () => {
-      if (formContainer && formContainer.contains(script)) {
-        formContainer.removeChild(script);
-      }
-    };
-  }, []);
 
   return (
     <div className="pt-16">
@@ -54,7 +34,15 @@ const Bricks = () => {
             className="max-w-4xl mx-auto"
           >
             <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
-              <div id="jotform-container"></div>
+              <iframe
+                src="https://form.jotform.com/252453697623970"
+                title="Bricks Dedication Form"
+                width="100%"
+                height="1000"
+                frameBorder="0"
+                scrolling="yes"
+                style={{ border: 'none' }}
+              />
             </div>
           </motion.div>
         </div>

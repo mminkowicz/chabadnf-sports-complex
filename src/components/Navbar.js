@@ -19,14 +19,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Auto-open dropdown when on Dedications or Bricks page
+  // Close dropdown when clicking outside
   useEffect(() => {
-    if (location.pathname === '/dedications' || location.pathname === '/bricks') {
-      setIsDedicationsOpen(true);
-    } else {
-      setIsDedicationsOpen(false);
+    const handleClickOutside = (event) => {
+      const dropdown = document.querySelector('.dedications-dropdown');
+      if (dropdown && !dropdown.contains(event.target)) {
+        setIsDedicationsOpen(false);
+      }
+    };
+
+    if (isDedicationsOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
     }
-  }, [location.pathname]);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isDedicationsOpen]);
 
   const navItems = [
     { name: 'Home', path: '/' },
@@ -89,7 +98,7 @@ const Navbar = () => {
               <div key={item.name} className="relative">
                 {item.hasDropdown ? (
                   <div
-                    className={`relative font-medium transition-colors duration-300 text-lg cursor-pointer ${
+                    className={`dedications-dropdown relative font-medium transition-colors duration-300 text-lg cursor-pointer ${
                       isDedicationsActive
                         ? isHomePage ? 'text-primary-400' : 'text-primary-600'
                         : isHomePage 
@@ -97,12 +106,7 @@ const Navbar = () => {
                           : 'text-secondary-700 hover:text-primary-600'
                     }`}
                     onMouseEnter={() => setIsDedicationsOpen(true)}
-                    onMouseLeave={() => {
-                      // Don't close if we're on the Dedications or Bricks page
-                      if (location.pathname !== '/dedications' && location.pathname !== '/bricks') {
-                        setIsDedicationsOpen(false);
-                      }
-                    }}
+                    onMouseLeave={() => setIsDedicationsOpen(false)}
                   >
                     <div className="flex items-center space-x-1">
                       <Link to={item.path}>{item.name}</Link>
@@ -131,12 +135,7 @@ const Navbar = () => {
                               : 'bg-white border-secondary-200'
                           }`}
                           onMouseEnter={() => setIsDedicationsOpen(true)}
-                          onMouseLeave={() => {
-                            // Don't close if we're on the Dedications or Bricks page
-                            if (location.pathname !== '/dedications' && location.pathname !== '/bricks') {
-                              setIsDedicationsOpen(false);
-                            }
-                          }}
+                          onMouseLeave={() => setIsDedicationsOpen(false)}
                         >
                           {item.dropdownItems.map((dropdownItem) => (
                             <Link
@@ -228,13 +227,7 @@ const Navbar = () => {
                     {item.hasDropdown ? (
                       <div>
                         <div
-                          onClick={() => {
-                            // If we're on Dedications or Bricks page, don't toggle - keep it open
-                            if (location.pathname === '/dedications' || location.pathname === '/bricks') {
-                              return;
-                            }
-                            setIsDedicationsOpen(!isDedicationsOpen);
-                          }}
+                          onClick={() => setIsDedicationsOpen(!isDedicationsOpen)}
                           className={`flex items-center justify-between px-4 py-3 text-base font-medium transition-colors duration-300 cursor-pointer ${
                             isDedicationsActive
                               ? isHomePage 

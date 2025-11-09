@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Donate = () => {
   const iframeRef = useRef(null);
@@ -14,7 +15,7 @@ const Donate = () => {
 
     script1.onload = () => {
       const script2 = document.createElement('script');
-      script2.textContent = 'window.jotformEmbedHandler("iframe[id=\'JotFormIFrame-252106096190048\']", "https://form.jotform.com/")';
+      script2.textContent = 'window.jotformEmbedHandler("iframe[id=\'JotFormIFrame-252994264245970\']", "https://form.jotform.com/")';
       document.head.appendChild(script2);
     };
 
@@ -48,6 +49,25 @@ const Donate = () => {
         </div>
       </section>
 
+      {/* Bricks Link Section */}
+      <section className="py-6 bg-white">
+        <div className="container-custom">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-center"
+          >
+            <Link
+              to="/bricks"
+              className="text-primary-600 hover:text-primary-700 font-medium text-lg underline transition-colors duration-300"
+            >
+              To dedicate a brick click here
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Donation Form Section */}
       <section id="donation-form" className="section-padding bg-white">
         <div className="container-custom">
@@ -60,12 +80,12 @@ const Donate = () => {
           >
             <iframe
               ref={iframeRef}
-              id="JotFormIFrame-252106096190048"
+              id="JotFormIFrame-252994264245970"
               title="Camp Sports Field Complex"
               onLoad={handleIframeLoad}
               allowTransparency="true"
               allow="geolocation; microphone; camera; fullscreen; payment"
-              src="https://form.jotform.com/252106096190048"
+              src="https://form.jotform.com/252994264245970"
               frameBorder="0"
               style={{minWidth:'100%',maxWidth:'100%',height:'600px',border:'none'}}
               className="w-full"

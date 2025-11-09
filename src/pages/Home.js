@@ -99,10 +99,10 @@ const Home = () => {
                 />
               </Link>
               <Link
-                to="/gallery"
+                to="/bricks"
                 className="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30 text-center"
               >
-                View Gallery
+                DEDICATE A BRICK
               </Link>
             </motion.div>
 

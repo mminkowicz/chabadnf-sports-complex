@@ -19,12 +19,12 @@ const Footer = () => {
             <div className="text-xs text-secondary-500">
               Site designed by{' '}
               <a 
-                href="https://optamyze.com" 
+                href="https://minkowa.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-primary-400 hover:text-primary-300 transition-colors duration-300"
               >
-                Optamyze
+                minkowa
               </a>
             </div>
           </motion.div>

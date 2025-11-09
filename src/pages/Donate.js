@@ -42,28 +42,17 @@ const Donate = () => {
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
               Support Our Sports Complex
             </h1>
-            <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-6 sm:mb-8">
+            <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-4 sm:mb-6">
               <strong>We need $1.8 million to complete the project — and thanks to a generous donor, every dollar you give will be matched!</strong> That means your $1 becomes $2, doubling your impact and bringing us twice as close to our goal.
             </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Bricks Link Section */}
-      <section className="py-6 bg-white">
-        <div className="container-custom">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-center"
-          >
-            <Link
-              to="/bricks"
-              className="text-primary-600 hover:text-primary-700 font-medium text-lg underline transition-colors duration-300"
-            >
-              To dedicate a brick click here
-            </Link>
+            <div className="mt-4 sm:mt-6">
+              <Link
+                to="/bricks"
+                className="text-primary-600 hover:text-primary-700 font-medium text-base sm:text-lg underline transition-colors duration-300"
+              >
+                To dedicate a brick click here
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>

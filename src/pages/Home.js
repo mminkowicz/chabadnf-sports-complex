@@ -102,7 +102,7 @@ const Home = () => {
                 to="/bricks"
                 className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
               >
-                DEDICATE A BRICK
+                Brick Dedications
               </Link>
             </motion.div>
 

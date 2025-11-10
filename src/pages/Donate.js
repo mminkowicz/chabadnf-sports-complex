@@ -28,6 +28,14 @@ const Donate = () => {
     window.parent.scrollTo(0, 0);
   };
 
+  const handleGeneralDonationsClick = (e) => {
+    e.preventDefault();
+    const formSection = document.getElementById('donation-form');
+    if (formSection) {
+      formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -45,13 +53,24 @@ const Donate = () => {
             <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-4 sm:mb-6">
               <strong>We need $1.8 million to complete the project — and thanks to a generous donor, every dollar you give will be matched!</strong> That means your $1 becomes $2, doubling your impact and bringing us twice as close to our goal.
             </p>
-            <div className="mt-4 sm:mt-6">
-              <Link
-                to="/bricks"
-                className="text-primary-600 hover:text-primary-700 font-medium text-base sm:text-lg underline transition-colors duration-300"
-              >
-                To dedicate a brick click here
-              </Link>
+            <div className="mt-4 sm:mt-6 space-y-2">
+              <div>
+                <Link
+                  to="/bricks"
+                  className="text-primary-600 hover:text-primary-700 font-medium text-base sm:text-lg underline transition-colors duration-300"
+                >
+                  To dedicate a brick click here
+                </Link>
+              </div>
+              <div>
+                <a
+                  href="#donation-form"
+                  onClick={handleGeneralDonationsClick}
+                  className="text-primary-600 hover:text-primary-700 font-medium text-base sm:text-lg underline transition-colors duration-300"
+                >
+                  General donations click here
+                </a>
+              </div>
             </div>
           </motion.div>
         </div>

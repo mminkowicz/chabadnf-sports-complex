@@ -100,7 +100,7 @@ const Home = () => {
               </Link>
               <Link
                 to="/bricks"
-                className="w-full sm:w-auto bg-white/20 hover:bg-white/30 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30 text-center"
+                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
               >
                 DEDICATE A BRICK
               </Link>

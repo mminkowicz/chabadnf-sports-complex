@@ -37,8 +37,8 @@ const Bricks = () => {
               src="https://form.jotform.com/252453697623970"
               title="Bricks Dedication Form"
               frameBorder="0"
-              style={{minWidth:'100%',maxWidth:'100%',height:'1000px',border:'none'}}
-              className="w-full"
+              style={{minWidth:'100%',maxWidth:'100%',border:'none'}}
+              className="w-full h-[600px] sm:h-[800px] md:h-[1000px]"
               scrolling="yes"
             />
           </motion.div>

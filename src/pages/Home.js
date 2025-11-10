@@ -90,7 +90,7 @@ const Home = () => {
             >
               <Link
                 to="/donate"
-                className="w-full sm:w-auto bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base sm:text-lg flex items-center justify-center"
+                className="w-auto bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base sm:text-lg flex items-center justify-center"
               >
                 Donate Now
                 <ArrowRight
@@ -100,7 +100,7 @@ const Home = () => {
               </Link>
               <Link
                 to="/bricks"
-                className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+                className="w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
               >
                 Brick Dedications
               </Link>

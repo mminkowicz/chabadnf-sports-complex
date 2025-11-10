@@ -33,17 +33,14 @@ const Bricks = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="bg-white rounded-xl shadow-lg p-6 sm:p-8">
-              <iframe
-                src="https://form.jotform.com/252453697623970"
-                title="Bricks Dedication Form"
-                width="100%"
-                height="1000"
-                frameBorder="0"
-                scrolling="yes"
-                style={{ border: 'none' }}
-              />
-            </div>
+            <iframe
+              src="https://form.jotform.com/252453697623970"
+              title="Bricks Dedication Form"
+              frameBorder="0"
+              style={{minWidth:'100%',maxWidth:'100%',height:'1000px',border:'none'}}
+              className="w-full"
+              scrolling="yes"
+            />
           </motion.div>
         </div>
       </section>

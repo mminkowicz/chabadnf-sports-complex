@@ -16,15 +16,15 @@ const Footer = () => {
             <div className="text-sm text-secondary-400">
               © 2025 Chabad of North Fulton. All rights reserved.
             </div>
-            <div className="text-xs text-secondary-500">
-              Site designed by{' '}
+            <div className="text-xs sm:text-sm text-secondary-500">
+              Created by{' '}
               <a 
                 href="https://minkowa.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="text-primary-400 hover:text-primary-300 transition-colors duration-300"
+                className="text-primary-400 hover:text-primary-300 transition-colors duration-300 font-semibold hover:underline"
               >
-                minkowa
+                Minkowa
               </a>
             </div>
           </motion.div>

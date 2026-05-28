@@ -128,15 +128,24 @@ app.post('/api/add-dedication', async (req, res) => {
   }
 });
 
-// Serve static files
-app.use(express.static('public'));
+const publicPath = path.join(__dirname, 'public');
+const buildPath = path.join(__dirname, 'build');
 
-// Serve React app
-app.use(express.static('build'));
+// Serve built assets first. public/index.html contains CRA tokens that should
+// not be served directly by Express.
+app.use(express.static(buildPath, { index: false }));
+app.use(express.static(publicPath, { index: false }));
+
+app.use((err, req, res, next) => {
+  if (err instanceof URIError) {
+    return res.status(400).send('Bad request');
+  }
+  return next(err);
+});
 
 // Catch-all route for React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  res.sendFile(path.join(buildPath, 'index.html'));
 });
 
 app.listen(PORT, () => {

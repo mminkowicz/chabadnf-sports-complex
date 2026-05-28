@@ -22,7 +22,7 @@ const Test = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
+            <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-normal text-secondary-900 mb-4 sm:mb-6">
               Test Page
             </h1>
             <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-6 sm:mb-8">

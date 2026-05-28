@@ -1,22 +1,22 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import mainDedication from '../assets/main dedication.jpg';
-import baseballField from '../assets/Baseball Field.jpg';
-import kidsCarTrack from '../assets/kids car track.jpg';
-import basketballCourt from '../assets/basketball court.jpg';
-import pickleballCourt from '../assets/pickleball court.jpg';
-import soccerField from '../assets/soccer field.jpg';
-import playground from '../assets/playground.jpg';
-import natureWalk from '../assets/Nature Walk.jpg';
-import natureNest from '../assets/nature nest.jpg';
-import retreatHouse from '../assets/Retreat house.jpg';
-import waterSlides from '../assets/water slides.jpg';
-import bleachers from '../assets/bleachers.png';
-import gazebos from '../assets/gazeebos.png';
-import benches from '../assets/benches.png';
-import gym from '../assets/gym.jpg';
-import campaignBricks from '../assets/campaignbricks.jpg';
+import mainDedication from '../assets/optimized/main dedication.webp';
+import baseballField from '../assets/optimized/Baseball Field.webp';
+import kidsCarTrack from '../assets/optimized/kids car track.webp';
+import basketballCourt from '../assets/optimized/basketball court.webp';
+import pickleballCourt from '../assets/optimized/pickleball court.webp';
+import soccerField from '../assets/optimized/soccer field.webp';
+import playground from '../assets/optimized/playground.webp';
+import natureWalk from '../assets/optimized/Nature Walk.webp';
+import natureNest from '../assets/optimized/nature nest.webp';
+import retreatHouse from '../assets/optimized/Retreat house.webp';
+import waterSlides from '../assets/optimized/water slides.webp';
+import bleachers from '../assets/optimized/bleachers.webp';
+import gazebos from '../assets/optimized/gazeebos.webp';
+import benches from '../assets/optimized/benches.webp';
+import gym from '../assets/optimized/gym.webp';
+import campaignBricks from '../assets/optimized/campaignbricks.webp';
 
 const Dedications = () => {
   // Removed filter functionality
@@ -202,20 +202,30 @@ const Dedications = () => {
   };
 
   return (
-    <div className="pt-16">
+    <main className="pt-16 bg-white">
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 bg-gradient-to-br from-primary-50 to-secondary-50">
-        <div className="container-custom">
+      <section className="relative overflow-hidden bg-secondary-900 text-white">
+        <div className="absolute inset-0">
+          <img
+            src={mainDedication}
+            alt=""
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/70 to-secondary-900/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
+        </div>
+        <div className="container-custom relative z-10 py-14 sm:py-20">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
+            className="max-w-3xl mb-8 sm:mb-12"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-4 sm:mb-6">
               Sports Complex Dedications
             </h1>
-            <p className="text-base sm:text-lg text-secondary-600 leading-relaxed mb-4 sm:mb-6">
+            <p className="text-base sm:text-lg text-white/82 leading-relaxed mb-4 sm:mb-6 max-w-2xl">
               Leave a lasting legacy by dedicating a facility in our new sports complex. 
               Your dedication will be remembered for generations to come.
             </p>
@@ -226,29 +236,29 @@ const Dedications = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-5xl mx-auto"
+            className="max-w-6xl"
           >
-            <div className="relative rounded-xl overflow-hidden shadow-xl">
+            <div className="relative overflow-hidden rounded-md shadow-2xl ring-1 ring-white/20">
             <img
               src={mainDedication}
                 alt="Main Sports Complex"
-                className="w-full h-64 sm:h-80 md:h-96 object-cover"
+                className="w-full h-72 sm:h-96 md:h-[520px] object-cover"
               />
               <div className="absolute top-4 right-4">
                 <span className="px-3 py-2 rounded-full text-sm font-bold border-2 shadow-lg bg-green-100 text-green-800 border-green-200">
                   Available
                 </span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
-                <div className="text-white">
-                  <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif font-bold mb-1 sm:mb-2">
+                <div className="max-w-2xl text-white">
+                  <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold mb-1 sm:mb-2">
                     Campus Dedication
                   </h2>
-                  <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-primary-400 mb-1 sm:mb-2">
+                  <div className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-300 mb-2 sm:mb-3">
                 $900,000
                   </div>
-                  <p className="text-xs sm:text-sm md:text-base text-gray-200 mb-2 sm:mb-3 max-w-xl">
+                  <p className="text-sm sm:text-base md:text-lg text-white/82 mb-2 sm:mb-3 max-w-xl">
                     Leave a lasting legacy — name the entire sports complex in honor of your family or a loved one.
                   </p>
                   {/* Main dedication inquire button removed */}
@@ -262,13 +272,13 @@ const Dedications = () => {
       {/* Filter section removed */}
 
       {/* Dedications Grid */}
-      <section className="section-padding bg-secondary-50">
+      <section className="section-padding bg-white">
         <div className="container-custom">
           <motion.div
               variants={containerVariants}
             initial="hidden"
             animate="visible"
-              className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-7"
             >
             {(() => {
               const rows = [];
@@ -281,13 +291,14 @@ const Dedications = () => {
                   <motion.div key={dedication.id} variants={itemVariants} className="lg:col-span-1">
                     {isBricks ? (
                       <Link to="/bricks" className="block h-full">
-                        <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full cursor-pointer">
-                          <div className="relative">
+                        <div className="group h-full cursor-pointer overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-secondary-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                          <div className="relative overflow-hidden">
                             <img
                               src={dedication.image}
                               alt={dedication.title}
-                              className="w-full h-48 sm:h-56 object-cover"
+                              className="w-full h-56 sm:h-64 object-cover transition duration-500 group-hover:scale-105"
                             />
+                            <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/80 via-secondary-900/5 to-transparent opacity-85" />
                             <div className="absolute top-3 right-3 flex items-center space-x-2">
                               {dedication.phase && (
                                 <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
@@ -299,12 +310,12 @@ const Dedications = () => {
                               </span>
                             </div>
                           </div>
-                          <div className="p-4 sm:p-6">
-                            <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
+                          <div className="p-5 sm:p-6">
+                            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-secondary-900 mb-2 sm:mb-3">
                               {dedication.title}
                             </h3>
                             {dedication.amount && (
-                              <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
+                              <div className="font-display text-2xl sm:text-3xl font-extrabold text-primary-600 mb-3 sm:mb-4">
                                 {dedication.amount}
                               </div>
                             )}
@@ -312,13 +323,14 @@ const Dedications = () => {
                         </div>
                       </Link>
                     ) : (
-                      <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover h-full">
-                        <div className="relative">
+                      <div className="group h-full overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-secondary-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+                        <div className="relative overflow-hidden">
                           <img
                             src={dedication.image}
                             alt={dedication.title}
-                            className="w-full h-48 sm:h-56 object-cover"
+                            className="w-full h-56 sm:h-64 object-cover transition duration-500 group-hover:scale-105"
                           />
+                          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/80 via-secondary-900/5 to-transparent opacity-85" />
                           <div className="absolute top-3 right-3 flex items-center space-x-2">
                             {dedication.phase && (
                               <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
@@ -330,12 +342,12 @@ const Dedications = () => {
                             </span>
                           </div>
                         </div>
-                        <div className="p-4 sm:p-6">
-                          <h3 className="text-lg sm:text-xl font-serif font-semibold text-secondary-900 mb-2 sm:mb-3">
+                        <div className="p-5 sm:p-6">
+                          <h3 className="font-display text-xl sm:text-2xl font-extrabold text-secondary-900 mb-2 sm:mb-3">
                             {dedication.title}
                           </h3>
                           {dedication.amount && (
-                            <div className="text-2xl sm:text-3xl font-bold text-primary-600 mb-3 sm:mb-4">
+                            <div className="font-display text-2xl sm:text-3xl font-extrabold text-primary-600 mb-3 sm:mb-4">
                               {dedication.amount}
                             </div>
                           )}
@@ -369,7 +381,7 @@ const Dedications = () => {
       </section>
 
       {/* Benefits and Contact sections removed */}
-    </div>
+    </main>
   );
 };
 

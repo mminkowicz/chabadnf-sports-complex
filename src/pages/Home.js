@@ -2,24 +2,22 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import mainDedication from "../assets/main dedication.jpg";
-import mascot from "../assets/mascot.png";
+import mainDedication from "../assets/optimized/main dedication.webp";
 
 const Home = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
-    <div>
+    <main>
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20">
+      <section className="relative min-h-[100svh] overflow-hidden text-white">
         <div className="absolute inset-0">
-          {/* Video Background */}
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
             onLoadedData={() => setVideoLoaded(true)}
             style={{
               opacity: videoLoaded ? 1 : 0,
@@ -42,86 +40,54 @@ const Home = () => {
               type="video/mp4"
               media="(max-width: 767px)"
             />
-            {/* Fallback to original video */}
             <source
-              src="/Camp Expansion Rendering video.mp4"
+              src="/camp-video-desktop.mp4"
               type="video/mp4"
             />
-            {/* Final fallback image */}
             <img
               src={mainDedication}
               alt="Camp Sports Complex"
-              className="w-full h-full object-cover"
+              className="h-full w-full object-cover"
             />
           </video>
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/62 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/36 via-transparent to-black/18" />
         </div>
 
-        <div className="container-custom relative z-10">
-          <div className="text-center text-white">
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8 }}
-              className="mb-8"
-            >
-              <h1
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-wide mb-4 sm:mb-6"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                Build It For
-                <span className="block text-primary-400">
-                  They Have Come
-                </span>
-              </h1>
-              <h2
-                className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black tracking-wide mb-6 sm:mb-8"
-                style={{ fontFamily: "Poppins, sans-serif" }}
-              >
-                Camp Sports Complex
-              </h2>
-            </motion.div>
+        <div className="container-custom relative z-10 flex min-h-[100svh] items-center pb-10 pt-28 sm:pt-32">
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-2xl"
+          >
+            <div className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.26em] text-primary-200 shadow-xl backdrop-blur-md">
+              Last Mile Campaign
+            </div>
+            <h1 className="font-display max-w-xl text-4xl font-extrabold leading-[0.96] tracking-normal text-white drop-shadow-2xl sm:text-5xl md:text-6xl">
+              Build It For They Have Come
+            </h1>
 
-            <motion.div
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center mb-8 sm:mb-12"
-            >
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 to="/donate"
-                className="w-auto bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-base sm:text-lg flex items-center justify-center"
+                className="inline-flex items-center justify-center rounded-md bg-primary-500 px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-primary-950/30 transition duration-300 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300/40 sm:px-6 sm:text-base"
               >
                 Donate Now
-                <ArrowRight
-                  className="ml-2 inline group-hover:translate-x-1 transition-transform"
-                  size={20}
-                />
+                <ArrowRight className="ml-2" size={18} />
               </Link>
               <Link
                 to="/bricks"
-                className="w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-center"
+                className="inline-flex items-center justify-center rounded-md border border-white/30 bg-black/20 px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/20 backdrop-blur-md transition duration-300 hover:bg-white/14 focus:outline-none focus:ring-4 focus:ring-white/30 sm:px-6 sm:text-base"
               >
-                Brick Dedications
+                Dedicate a Brick
               </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="flex justify-center"
-            >
-              <img
-                src={mascot}
-                alt="Camp Mascot"
-                className="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 object-contain"
-              />
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

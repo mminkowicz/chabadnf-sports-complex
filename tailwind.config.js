@@ -32,8 +32,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
-        'serif': ['Playfair Display', 'serif'],
+        'sans': ['Manrope', 'system-ui', 'sans-serif'],
+        'display': ['Sora', 'Manrope', 'system-ui', 'sans-serif'],
+        'serif': ['Sora', 'Manrope', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-in-out',

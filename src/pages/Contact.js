@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import mainDedication from '../assets/optimized/main dedication.webp';
 
 const Contact = () => {
   const form = useRef();
@@ -34,20 +35,30 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-16">
+    <main className="pt-16 bg-white">
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
-        <div className="container-custom">
+      <section className="relative overflow-hidden bg-secondary-900 text-white">
+        <div className="absolute inset-0">
+          <img
+            src={mainDedication}
+            alt=""
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/72 to-secondary-900/25" />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
+        </div>
+        <div className="container-custom relative z-10 py-14 sm:py-20 md:py-24">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-3xl mx-auto mb-8 sm:mb-12"
+            className="max-w-3xl"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-4 sm:mb-6">
               Contact Us
             </h1>
-            <p className="text-base sm:text-lg text-secondary-600 leading-relaxed mb-4 sm:mb-6">
+            <p className="max-w-2xl text-base sm:text-lg text-white/85 leading-relaxed mb-4 sm:mb-6">
               For more information about the project or to discuss legacy giving please contact:
             </p>
           </motion.div>
@@ -55,23 +66,23 @@ const Contact = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-secondary-50">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">
             {/* Contact Info */}
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
+              className="rounded-md bg-white p-5 shadow-xl ring-1 ring-secondary-200/70 sm:p-7 lg:p-8"
             >
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-secondary-900 mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-900 mb-6">
                 Get In Touch
               </h2>
               
-              <div className="space-y-4">
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+              <div className="space-y-3">
+                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
                     <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -87,8 +98,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
                     <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -104,8 +115,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
                     <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -124,8 +135,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
                     <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -143,9 +154,9 @@ const Contact = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="bg-secondary-50 rounded-xl p-4 sm:p-6 lg:p-8"
+              className="rounded-md bg-white p-5 shadow-2xl ring-1 ring-secondary-200/70 sm:p-7 lg:p-8"
             >
-              <h2 className="text-2xl sm:text-3xl font-serif font-bold text-secondary-900 mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-900 mb-6">
                 Send Us a Message
               </h2>
               
@@ -158,7 +169,7 @@ const Contact = () => {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                     placeholder="Your full name"
                     required
                   />
@@ -172,7 +183,7 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -186,7 +197,7 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
                     placeholder="What is this about?"
                     required
                   />
@@ -200,7 +211,7 @@ const Contact = () => {
                     id="message"
                     name="message"
                     rows={5}
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
                     placeholder="Tell us more about your inquiry..."
                     required
                   ></textarea>
@@ -209,7 +220,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg ${
+                  className={`w-full font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg ${
                     isSubmitting 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-primary-600 hover:bg-primary-700 text-white'
@@ -224,7 +235,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg"
+                  className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md"
                 >
                   ✅ Thank you! Your message has been sent successfully. We'll get back to you soon.
                 </motion.div>
@@ -234,7 +245,7 @@ const Contact = () => {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg"
+                  className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md"
                 >
                   ❌ Sorry, there was an error sending your message. Please try again or contact us directly.
                 </motion.div>
@@ -243,7 +254,7 @@ const Contact = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

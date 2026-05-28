@@ -86,7 +86,7 @@ const FundraisingWidget = ({
       className="max-w-lg mx-auto bg-white rounded-xl shadow-xl overflow-hidden border-2 border-primary-200"
     >
       <div className="bg-gradient-to-r from-primary-50 to-secondary-50 p-6">
-        <h3 className="text-xl font-bold text-secondary-900 mb-6 text-center" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
+        <h3 className="font-display text-xl font-bold text-secondary-900 mb-6 text-center">
           {title}
         </h3>
         

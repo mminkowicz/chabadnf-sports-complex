@@ -57,6 +57,10 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
   const isDedicationsActive = location.pathname === '/dedications' || location.pathname === '/bricks';
   const isHomePage = location.pathname === '/';
+  const closeMobileMenu = () => {
+    setIsOpen(false);
+    setIsDedicationsOpen(false);
+  };
 
   return (
     <motion.nav
@@ -197,6 +201,9 @@ const Navbar = () => {
           {/* Mobile Menu Button - Absolute positioned */}
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-navigation"
             className={`lg:hidden absolute right-2 sm:right-4 p-2 rounded-md transition-colors ${
               isHomePage 
                 ? 'text-white hover:text-primary-400 hover:bg-white/10' 
@@ -215,9 +222,10 @@ const Navbar = () => {
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
-              className={`lg:hidden ${
+              id="mobile-navigation"
+              className={`lg:hidden fixed left-0 right-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl ${
                 isHomePage 
-                  ? 'bg-black/80 backdrop-blur-md border-t border-white/20' 
+                  ? 'bg-black/90 backdrop-blur-md border-t border-white/20' 
                   : 'bg-white border-t border-secondary-200'
               }`}
             >
@@ -226,9 +234,12 @@ const Navbar = () => {
                   <div key={item.name}>
                     {item.hasDropdown ? (
                       <div>
-                        <div
+                        <button
+                          type="button"
                           onClick={() => setIsDedicationsOpen(!isDedicationsOpen)}
-                          className={`flex items-center justify-between px-4 py-3 text-base font-medium transition-colors duration-300 cursor-pointer ${
+                          aria-expanded={isDedicationsOpen}
+                          aria-controls="mobile-dedications-menu"
+                          className={`flex w-full items-center justify-between px-4 py-3 text-left text-base font-medium transition-colors duration-300 ${
                             isDedicationsActive
                               ? isHomePage 
                                 ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
@@ -240,10 +251,11 @@ const Navbar = () => {
                         >
                           <span>{item.name}</span>
                           <ChevronDown size={16} className={`transition-transform duration-200 ${isDedicationsOpen ? 'rotate-180' : ''}`} />
-                        </div>
+                        </button>
                         <AnimatePresence>
                           {isDedicationsOpen && (
                             <motion.div
+                              id="mobile-dedications-menu"
                               initial={{ opacity: 0, height: 0 }}
                               animate={{ opacity: 1, height: 'auto' }}
                               exit={{ opacity: 0, height: 0 }}
@@ -254,10 +266,7 @@ const Navbar = () => {
                                 <Link
                                   key={dropdownItem.name}
                                   to={dropdownItem.path}
-                                  onClick={() => {
-                                    setIsOpen(false);
-                                    setIsDedicationsOpen(false);
-                                  }}
+                                  onClick={closeMobileMenu}
                                   className={`block px-8 py-2 text-sm font-medium transition-colors duration-300 ${
                                     isActive(dropdownItem.path)
                                       ? isHomePage 
@@ -278,7 +287,7 @@ const Navbar = () => {
                     ) : (
                       <Link
                         to={item.path}
-                        onClick={() => setIsOpen(false)}
+                        onClick={closeMobileMenu}
                         className={`block px-4 py-3 text-base font-medium transition-colors duration-300 ${
                           isActive(item.path)
                             ? isHomePage 
@@ -297,8 +306,8 @@ const Navbar = () => {
                 <div className="px-4 pt-2">
                   <Link
                     to="/donate"
-                    onClick={() => setIsOpen(false)}
-                    className={`w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg ${
+                    onClick={closeMobileMenu}
+                    className={`block w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg ${
                       isHomePage 
                         ? 'bg-primary-600 hover:bg-primary-700 text-white' 
                         : 'btn-primary'

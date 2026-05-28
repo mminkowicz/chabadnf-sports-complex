@@ -1,32 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import mainDedication from '../assets/optimized/main dedication.webp';
 
 const Donate = () => {
-  const iframeRef = useRef(null);
-
-
-
   useEffect(() => {
-    const script1 = document.createElement('script');
-    script1.src = 'https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js';
-    script1.async = true;
-    document.head.appendChild(script1);
-
-    script1.onload = () => {
-      const script2 = document.createElement('script');
-      script2.textContent = 'window.jotformEmbedHandler("iframe[id=\'JotFormIFrame-252994264245970\']", "https://form.jotform.com/")';
-      document.head.appendChild(script2);
+    const resizeForm = () => {
+      if (window.jotformEmbedHandler) {
+        window.jotformEmbedHandler(
+          "iframe[id='JotFormIFrame-252994264245970']",
+          'https://form.jotform.com/'
+        );
+      }
     };
+
+    let script = document.getElementById('jotform-embed-handler');
+    if (!script) {
+      script = document.createElement('script');
+      script.id = 'jotform-embed-handler';
+      script.src = 'https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js';
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    script.addEventListener('load', resizeForm);
+    resizeForm();
 
     return () => {
-      document.head.removeChild(script1);
+      script.removeEventListener('load', resizeForm);
     };
   }, []);
-
-  const handleIframeLoad = () => {
-    window.parent.scrollTo(0, 0);
-  };
 
   const handleGeneralDonationsClick = (e) => {
     e.preventDefault();
@@ -37,47 +40,53 @@ const Donate = () => {
   };
 
   return (
-    <div className="pt-16">
+    <main className="pt-16 bg-white">
       {/* Hero Section */}
-      <section className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-br from-primary-50 to-secondary-50">
-        <div className="container-custom">
+      <section className="relative overflow-hidden bg-secondary-900 text-white">
+        <div className="absolute inset-0">
+          <img
+            src={mainDedication}
+            alt=""
+            className="h-full w-full object-cover"
+            aria-hidden="true"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/70 to-secondary-900/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
+        </div>
+        <div className="container-custom relative z-10 py-14 sm:py-20 md:py-24">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            className="max-w-4xl"
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-wide text-secondary-900 mb-4 sm:mb-6" style={{ fontFamily: 'Arial Black, Helvetica Bold, sans-serif' }}>
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-5 sm:mb-6">
               Support Our Sports Complex
             </h1>
-            <p className="text-lg sm:text-xl text-secondary-600 leading-relaxed mb-4 sm:mb-6">
+            <p className="max-w-3xl text-lg sm:text-xl text-white/85 leading-relaxed mb-6">
               <strong>We need $1.8 million to complete the project — and thanks to a generous donor, every dollar you give will be matched!</strong> That means your $1 becomes $2, doubling your impact and bringing us twice as close to our goal.
             </p>
-            <div className="mt-4 sm:mt-6 space-y-2">
-              <div>
-                <Link
-                  to="/bricks"
-                  className="text-primary-600 hover:text-primary-700 font-medium text-base sm:text-lg underline transition-colors duration-300"
-                >
-                  To dedicate a brick click here
-                </Link>
-              </div>
-              <div>
-                <a
-                  href="#donation-form"
-                  onClick={handleGeneralDonationsClick}
-                  className="text-primary-600 hover:text-primary-700 font-medium text-base sm:text-lg underline transition-colors duration-300"
-                >
-                  General donations click here
-                </a>
-              </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Link
+                to="/bricks"
+                className="inline-flex items-center justify-center rounded-md border border-white/30 bg-white/10 px-5 py-3 text-base font-extrabold text-white backdrop-blur transition duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
+              >
+                To dedicate a brick click here
+              </Link>
+              <a
+                href="#donation-form"
+                onClick={handleGeneralDonationsClick}
+                className="inline-flex items-center justify-center rounded-md bg-primary-500 px-5 py-3 text-base font-extrabold text-white shadow-xl shadow-primary-950/20 transition duration-300 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300/40"
+              >
+                General donations click here
+              </a>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Donation Form Section */}
-      <section id="donation-form" className="section-padding bg-white">
+      <section id="donation-form" className="section-padding bg-secondary-50">
         <div className="container-custom">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -86,24 +95,24 @@ const Donate = () => {
             transition={{ duration: 0.8 }}
             className="max-w-4xl mx-auto"
           >
-            <iframe
-              ref={iframeRef}
-              id="JotFormIFrame-252994264245970"
-              title="Camp Sports Field Complex"
-              onLoad={handleIframeLoad}
-              allowTransparency="true"
-              allow="geolocation; microphone; camera; fullscreen; payment"
-              src="https://form.jotform.com/252994264245970"
-              frameBorder="0"
-              style={{minWidth:'100%',maxWidth:'100%',height:'500px',border:'none'}}
-              className="w-full h-[500px] sm:h-[600px] md:h-[700px]"
-              scrolling="no"
-            >
-            </iframe>
+            <div className="relative min-h-[2200px] overflow-hidden rounded-md bg-white shadow-2xl ring-1 ring-secondary-200/70">
+              <iframe
+                id="JotFormIFrame-252994264245970"
+                title="Camp Sports Field Complex"
+                allowtransparency="true"
+                allow="geolocation; microphone; camera; fullscreen; payment"
+                src="https://form.jotform.com/252994264245970"
+                frameBorder="0"
+                loading="lazy"
+                style={{ minWidth: '100%', maxWidth: '100%', minHeight: '2200px', border: 'none' }}
+                className="w-full"
+                scrolling="yes"
+              />
+            </div>
           </motion.div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

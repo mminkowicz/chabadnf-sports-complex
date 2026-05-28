@@ -18,6 +18,8 @@
     text-rendering: optimizeLegibility;
     overflow-x: hidden;
     max-width: 100%;
+    background: #f6f7f3;
+    color: #0f172a;
   }
 
   h1,
@@ -42,19 +44,51 @@
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply inline-flex items-center justify-center rounded-md bg-primary-600 px-5 py-3 font-extrabold text-white shadow-lg shadow-primary-950/10 transition duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300/40;
   }
   
   .btn-secondary {
-    @apply bg-secondary-100 hover:bg-secondary-200 text-secondary-800 font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply inline-flex items-center justify-center rounded-md border border-secondary-200 bg-white px-5 py-3 font-extrabold text-secondary-900 shadow-sm transition duration-300 hover:border-primary-300 hover:text-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-200/60;
   }
   
   .section-padding {
-    @apply py-8 sm:py-12 px-4 sm:px-6 lg:px-8;
+    @apply px-4 py-14 sm:px-6 sm:py-20 lg:px-8;
   }
   
   .container-custom {
-    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .page-hero {
+    @apply relative flex min-h-[420px] items-center overflow-hidden bg-secondary-950 pt-20 text-white sm:min-h-[500px];
+  }
+
+  .hero-title {
+    @apply font-display max-w-4xl text-4xl font-extrabold leading-[0.98] tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl;
+  }
+
+  .hero-copy {
+    @apply mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl;
+  }
+
+  .surface-card {
+    @apply rounded-md border border-secondary-200/80 bg-white shadow-xl shadow-secondary-900/5;
+  }
+
+  .media-frame {
+    @apply overflow-hidden rounded-md shadow-2xl shadow-secondary-900/10 ring-1 ring-secondary-900/10;
+  }
+
+  .eyebrow {
+    @apply mb-4 text-xs font-extrabold uppercase tracking-[0.24em] text-primary-600;
+  }
+
+  .dark-eyebrow {
+    @apply mb-4 text-xs font-extrabold uppercase tracking-[0.24em] text-primary-200;
+  }
+
+  .form-frame {
+    @apply relative overflow-hidden rounded-md bg-white shadow-2xl shadow-secondary-900/10 ring-1 ring-secondary-200/80;
   }
   
   .text-gradient {

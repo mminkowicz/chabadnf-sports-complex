@@ -51,35 +51,35 @@ const Home = () => {
             />
           </video>
           <div className="absolute inset-0 bg-black/10" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/62 via-black/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/36 via-transparent to-black/18" />
+          <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(8,17,31,0.38)_0%,rgba(8,17,31,0.16)_46%,rgba(8,17,31,0.02)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(8,17,31,0.24)_0%,rgba(8,17,31,0.02)_48%,rgba(8,17,31,0.18)_100%)]" />
         </div>
 
-        <div className="container-custom relative z-10 flex min-h-[100svh] items-center pb-10 pt-28 sm:pt-32">
+        <div className="container-custom relative z-10 flex min-h-[100svh] items-start pb-12 pt-[42svh] sm:pt-[43svh]">
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="max-w-2xl"
+            className="max-w-4xl"
           >
-            <div className="mb-4 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.26em] text-primary-200 shadow-xl backdrop-blur-md">
+            <div className="mb-7 inline-flex rounded-full border border-white/20 bg-secondary-950/45 px-6 py-3 text-sm font-extrabold uppercase tracking-[0.35em] text-[#f5dcc0] shadow-xl shadow-black/20 backdrop-blur-sm">
               Last Mile Campaign
             </div>
-            <h1 className="font-display max-w-xl text-4xl font-extrabold leading-[0.96] tracking-normal text-white drop-shadow-2xl sm:text-5xl md:text-6xl">
+            <h1 className="font-display max-w-4xl text-5xl font-extrabold leading-[0.98] tracking-normal text-white drop-shadow-2xl sm:text-6xl lg:text-7xl xl:text-8xl">
               Build It For They Have Come
             </h1>
 
-            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Link
                 to="/donate"
-                className="inline-flex items-center justify-center rounded-md bg-primary-500 px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-primary-950/30 transition duration-300 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300/40 sm:px-6 sm:text-base"
+                className="inline-flex items-center justify-center rounded-md bg-primary-500 px-8 py-4 text-lg font-extrabold text-white shadow-xl shadow-primary-950/25 transition duration-300 hover:bg-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300/40"
               >
                 Donate Now
-                <ArrowRight className="ml-2" size={18} />
+                <ArrowRight className="ml-3" size={24} />
               </Link>
               <Link
                 to="/bricks"
-                className="inline-flex items-center justify-center rounded-md border border-white/30 bg-black/20 px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/20 backdrop-blur-md transition duration-300 hover:bg-white/14 focus:outline-none focus:ring-4 focus:ring-white/30 sm:px-6 sm:text-base"
+                className="inline-flex items-center justify-center rounded-md border border-white/30 bg-secondary-950/30 px-8 py-4 text-lg font-extrabold text-white shadow-xl shadow-black/20 backdrop-blur-sm transition duration-300 hover:bg-white/20 focus:outline-none focus:ring-4 focus:ring-white/30"
               >
                 Dedicate a Brick
               </Link>

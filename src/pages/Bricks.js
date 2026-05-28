@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
+import PageHero from '../components/PageHero';
 import campaignBricks from '../assets/optimized/campaignbricks.webp';
 
 const Bricks = () => {
@@ -31,38 +32,18 @@ const Bricks = () => {
   }, []);
 
   return (
-    <main className="pt-16 bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-secondary-900 text-white">
-        <div className="absolute inset-0">
-          <img
-            src={campaignBricks}
-            alt=""
-            className="h-full w-full object-cover"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/72 to-secondary-900/35" />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
-        </div>
-        <div className="container-custom relative z-10 py-14 sm:py-20">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl"
-          >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-4 sm:mb-6">
-              Personalized Bricks
-            </h1>
-            <p className="max-w-2xl text-base sm:text-lg text-white/85 leading-relaxed mb-4 sm:mb-6">
-              Honor a loved one with a personalized engraved brick—a lasting and meaningful tribute that will be a permanent part of the new Camp Sports Center for generations to come.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <main className="bg-[#f6f7f3]">
+      <PageHero image={campaignBricks}>
+        <h1 className="hero-title">
+          Personalized Bricks
+        </h1>
+        <p className="hero-copy">
+          Honor a loved one with a personalized engraved brick—a lasting and meaningful tribute that will be a permanent part of the new Camp Sports Center for generations to come.
+        </p>
+      </PageHero>
 
       {/* Form Section */}
-      <section className="section-padding bg-secondary-50">
+      <section className="section-padding">
         <div className="container-custom">
           <motion.div
             initial={{ y: 50, opacity: 0 }}
@@ -70,7 +51,7 @@ const Bricks = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="relative min-h-[3600px] overflow-hidden rounded-md bg-white shadow-2xl ring-1 ring-secondary-200/70">
+            <div className="form-frame min-h-[3600px]">
               <iframe
                 id="JotFormIFrame-252453697623970"
                 src="https://form.jotform.com/252453697623970"

@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import PageHero from '../components/PageHero';
 import mainDedication from '../assets/optimized/main dedication.webp';
 import baseballField from '../assets/optimized/Baseball Field.webp';
 import kidsCarTrack from '../assets/optimized/kids car track.webp';
@@ -201,172 +202,116 @@ const Dedications = () => {
     }
   };
 
-  return (
-    <main className="pt-16 bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-secondary-900 text-white">
-        <div className="absolute inset-0">
-          <img
-            src={mainDedication}
-            alt=""
-            className="h-full w-full object-cover"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/70 to-secondary-900/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
-        </div>
-        <div className="container-custom relative z-10 py-14 sm:py-20">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl mb-8 sm:mb-12"
-          >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-4 sm:mb-6">
-              Sports Complex Dedications
-            </h1>
-            <p className="text-base sm:text-lg text-white/82 leading-relaxed mb-4 sm:mb-6 max-w-2xl">
-              Leave a lasting legacy by dedicating a facility in our new sports complex. 
-              Your dedication will be remembered for generations to come.
-            </p>
-          </motion.div>
+  const campusDedication = dedications.find((dedication) => dedication.title === 'Campus Dedication');
+  const dedicationCards = dedications.filter((dedication) => dedication.title !== 'Campus Dedication');
 
-          {/* Main Dedication Hero */}
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-6xl"
-          >
-            <div className="relative overflow-hidden rounded-md shadow-2xl ring-1 ring-white/20">
-            <img
-              src={mainDedication}
-                alt="Main Sports Complex"
-                className="w-full h-72 sm:h-96 md:h-[520px] object-cover"
-              />
-              <div className="absolute top-4 right-4">
-                <span className="px-3 py-2 rounded-full text-sm font-bold border-2 shadow-lg bg-green-100 text-green-800 border-green-200">
-                  Available
-                </span>
-              </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
-                <div className="max-w-2xl text-white">
-                  <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold mb-1 sm:mb-2">
+  return (
+    <main className="bg-[#f6f7f3]">
+      <PageHero image={mainDedication}>
+        <h1 className="hero-title">
+          Sports Complex Dedications
+        </h1>
+        <p className="hero-copy">
+          Leave a lasting legacy by dedicating a facility in our new sports complex. 
+          Your dedication will be remembered for generations to come.
+        </p>
+      </PageHero>
+
+      {campusDedication && (
+        <section className="section-padding pb-0">
+          <div className="container-custom">
+            <motion.div
+              initial={{ y: 40, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.7 }}
+              className="surface-card overflow-hidden"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]">
+                <div className="relative min-h-[320px] lg:min-h-[520px]">
+                  <img
+                    src={campusDedication.image}
+                    alt="Main Sports Complex"
+                    className="absolute inset-0 h-full w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/60 via-transparent to-transparent" />
+                </div>
+                <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-12">
+                  <div className="mb-5">
+                    <span className={`inline-flex rounded-full border px-3 py-1 text-xs font-extrabold ${getStatusColor(campusDedication.status)}`}>
+                      {getStatusText(campusDedication.status)}
+                    </span>
+                  </div>
+                  <h2 className="font-display text-3xl font-extrabold leading-tight text-secondary-950 sm:text-4xl">
                     Campus Dedication
                   </h2>
-                  <div className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold text-primary-300 mb-2 sm:mb-3">
-                $900,000
+                  <div className="font-display mt-3 text-4xl font-extrabold text-primary-600 sm:text-5xl">
+                    $900,000
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-white/82 mb-2 sm:mb-3 max-w-xl">
+                  <p className="mt-5 max-w-md text-base leading-relaxed text-secondary-700 sm:text-lg">
                     Leave a lasting legacy — name the entire sports complex in honor of your family or a loved one.
                   </p>
-                  {/* Main dedication inquire button removed */}
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Filter section removed */}
+            </motion.div>
+          </div>
+        </section>
+      )}
 
       {/* Dedications Grid */}
-      <section className="section-padding bg-white">
+      <section className="section-padding">
         <div className="container-custom">
           <motion.div
-              variants={containerVariants}
+            variants={containerVariants}
             initial="hidden"
             animate="visible"
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 lg:gap-7"
-            >
-            {(() => {
-              const rows = [];
-              
-                            // Add all dedications in order (sorted by price from highest to lowest), excluding Campus Dedication which is already shown in hero section
-              dedications.filter(d => d.title !== 'Campus Dedication').forEach((dedication) => {
+            className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-7"
+          >
+            {dedicationCards.map((dedication) => {
                 const isBricks = dedication.title === 'Personalized Bricks';
-                
-                rows.push(
-                  <motion.div key={dedication.id} variants={itemVariants} className="lg:col-span-1">
+
+                const card = (
+                  <div className="surface-card group h-full overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-secondary-900/10">
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={dedication.image}
+                        alt={dedication.title}
+                        className="h-60 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-64"
+                      />
+                      <div className="absolute left-3 top-3 flex flex-wrap gap-2">
+                        {dedication.phase && (
+                          <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-1 text-xs font-bold text-blue-800 shadow-sm">
+                            {dedication.phase}
+                          </span>
+                        )}
+                        <span className={`rounded-full border px-2 py-1 text-xs font-bold shadow-sm ${getStatusColor(dedication.status)}`}>
+                          {getStatusText(dedication.status)}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-5 sm:p-6">
+                      <h3 className="font-display text-xl font-extrabold text-secondary-950 sm:text-2xl">
+                        {dedication.title}
+                      </h3>
+                      {dedication.amount && (
+                        <div className="font-display mt-3 text-2xl font-extrabold text-primary-600 sm:text-3xl">
+                          {dedication.amount}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                );
+
+                return (
+                  <motion.div key={dedication.id} variants={itemVariants}>
                     {isBricks ? (
                       <Link to="/bricks" className="block h-full">
-                        <div className="group h-full cursor-pointer overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-secondary-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                          <div className="relative overflow-hidden">
-                            <img
-                              src={dedication.image}
-                              alt={dedication.title}
-                              className="w-full h-56 sm:h-64 object-cover transition duration-500 group-hover:scale-105"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/80 via-secondary-900/5 to-transparent opacity-85" />
-                            <div className="absolute top-3 right-3 flex items-center space-x-2">
-                              {dedication.phase && (
-                                <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
-                                  {dedication.phase}
-                                </span>
-                              )}
-                              <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
-                                {getStatusText(dedication.status)}
-                              </span>
-                            </div>
-                          </div>
-                          <div className="p-5 sm:p-6">
-                            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-secondary-900 mb-2 sm:mb-3">
-                              {dedication.title}
-                            </h3>
-                            {dedication.amount && (
-                              <div className="font-display text-2xl sm:text-3xl font-extrabold text-primary-600 mb-3 sm:mb-4">
-                                {dedication.amount}
-                              </div>
-                            )}
-                          </div>
-                        </div>
+                        {card}
                       </Link>
-                    ) : (
-                      <div className="group h-full overflow-hidden rounded-md bg-white shadow-lg ring-1 ring-secondary-200/70 transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
-                        <div className="relative overflow-hidden">
-                          <img
-                            src={dedication.image}
-                            alt={dedication.title}
-                            className="w-full h-56 sm:h-64 object-cover transition duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/80 via-secondary-900/5 to-transparent opacity-85" />
-                          <div className="absolute top-3 right-3 flex items-center space-x-2">
-                            {dedication.phase && (
-                              <span className="px-2 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800 border border-blue-200 shadow-sm">
-                                {dedication.phase}
-                              </span>
-                            )}
-                            <span className={`px-2 py-1 rounded-full text-xs font-medium border shadow-sm ${getStatusColor(dedication.status)}`}>
-                              {getStatusText(dedication.status)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="p-5 sm:p-6">
-                          <h3 className="font-display text-xl sm:text-2xl font-extrabold text-secondary-900 mb-2 sm:mb-3">
-                            {dedication.title}
-                          </h3>
-                          {dedication.amount && (
-                            <div className="font-display text-2xl sm:text-3xl font-extrabold text-primary-600 mb-3 sm:mb-4">
-                              {dedication.amount}
-                            </div>
-                          )}
-                        </div>
-                      </div>
-                    )}
+                    ) : card}
                   </motion.div>
                 );
-                            });
-              
-
-              
-
-              
-              return rows;
-            })()}
+              })}
           </motion.div>
-          
-
 
           {dedications.length === 0 && (
             <motion.div

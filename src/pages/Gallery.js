@@ -130,19 +130,18 @@ const Gallery = () => {
   // }, [nextImage]);
 
   return (
-    <main className="min-h-screen pt-16 bg-secondary-900 text-white">
-      {/* Header */}
-      <div className="relative z-10 text-center py-6 sm:py-8">
-        <h1 className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-normal text-white">
+    <main className="min-h-screen bg-secondary-950 pt-16 text-white">
+      <div className="container-custom py-7 sm:py-10">
+        <h1 className="font-display max-w-3xl text-3xl font-extrabold tracking-normal text-white sm:text-4xl md:text-5xl">
           New Sports Complex
         </h1>
       </div>
 
       {/* Slideshow Container */}
-      <div className="container-custom flex items-center justify-center flex-1 pb-8">
+      <div className="container-custom flex flex-1 items-center justify-center pb-10">
         <div className="relative w-full max-w-7xl mx-auto">
           {/* Slideshow */}
-          <div className="relative overflow-hidden rounded-md shadow-2xl ring-1 ring-white/15">
+          <div className="relative overflow-hidden rounded-md shadow-2xl shadow-black/30 ring-1 ring-white/10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentImageIndex}
@@ -155,11 +154,11 @@ const Gallery = () => {
                 <img
                   src={images[currentImageIndex].src}
                   alt={images[currentImageIndex].alt}
-                  className="w-full h-[520px] sm:h-[620px] md:h-[700px] lg:h-[calc(100svh-13rem)] min-h-[520px] object-cover"
+                  className="h-[520px] min-h-[520px] w-full object-cover sm:h-[620px] md:h-[700px] lg:h-[calc(100svh-14rem)]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-black/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/75 via-transparent to-black/10" />
                 {/* Image Label */}
-                <div className="absolute bottom-5 left-5 bg-black/35 text-white px-4 py-2 rounded-md text-sm sm:text-base font-bold backdrop-blur-sm ring-1 ring-white/15">
+                <div className="absolute bottom-5 left-5 rounded-md bg-black/40 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm ring-1 ring-white/20 sm:text-base">
                   {images[currentImageIndex].label}
                 </div>
               </motion.div>
@@ -170,7 +169,7 @@ const Gallery = () => {
               type="button"
               onClick={prevImage}
               aria-label="Previous gallery image"
-              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-black/35 hover:bg-black/55 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 backdrop-blur ring-1 ring-white/20"
+              className="absolute left-2 top-1/2 flex h-10 w-10 -translate-y-1/2 transform items-center justify-center rounded-full bg-black/40 shadow-lg ring-1 ring-white/20 backdrop-blur transition-all duration-300 hover:bg-black/60 hover:scale-105 sm:left-4 sm:h-12 sm:w-12"
             >
               <ChevronLeft size={20} className="sm:w-6 sm:h-6 text-white" />
             </button>
@@ -179,13 +178,13 @@ const Gallery = () => {
               type="button"
               onClick={nextImage}
               aria-label="Next gallery image"
-              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 sm:w-12 sm:h-12 bg-black/35 hover:bg-black/55 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 backdrop-blur ring-1 ring-white/20"
+              className="absolute right-2 top-1/2 flex h-10 w-10 -translate-y-1/2 transform items-center justify-center rounded-full bg-black/40 shadow-lg ring-1 ring-white/20 backdrop-blur transition-all duration-300 hover:bg-black/60 hover:scale-105 sm:right-4 sm:h-12 sm:w-12"
             >
               <ChevronRight size={20} className="sm:w-6 sm:h-6 text-white" />
             </button>
 
             {/* Image Counter */}
-            <div className="absolute bottom-5 right-5 bg-black/35 text-white px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm backdrop-blur ring-1 ring-white/15">
+            <div className="absolute bottom-5 right-5 rounded-full bg-black/40 px-3 py-1 text-xs text-white backdrop-blur ring-1 ring-white/20 sm:px-4 sm:py-2 sm:text-sm">
               {currentImageIndex + 1} / {images.length}
             </div>
           </div>
@@ -202,7 +201,7 @@ const Gallery = () => {
                 className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   index === currentImageIndex 
                     ? 'bg-primary-400 scale-125' 
-                    : 'bg-white/35 hover:bg-white/65'
+                    : 'bg-white/40 hover:bg-white/70'
                 }`}
               />
             ))}

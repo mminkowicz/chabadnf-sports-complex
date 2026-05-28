@@ -1,79 +1,51 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import mascot from '../assets/mascot.png';
+import PageHero from '../components/PageHero';
 import mainDedication from '../assets/optimized/main dedication.webp';
 import playground from '../assets/optimized/playground.webp';
 
 const About = () => {
   return (
-    <main className="pt-16 bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-secondary-900 text-white">
-        <div className="absolute inset-0">
-          <img
-            src={mainDedication}
-            alt=""
-            className="h-full w-full object-cover"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/70 to-secondary-900/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
-        </div>
-        <div className="container-custom relative z-10 py-16 sm:py-20 md:py-28">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl"
-          >
-            <h1 className="font-display max-w-3xl text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-5 sm:mb-6">
-              About Our Sports Complex Project
-            </h1>
-            <p className="max-w-2xl text-lg sm:text-xl text-white/85 leading-relaxed">
-              We're building a state-of-the-art sports complex to provide Camp Gan Israel campers 
-              with the outdoor facilities they need to play, grow, and thrive in a safe and active environment.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <main className="bg-[#f6f7f3]">
+      <PageHero image={mainDedication}>
+        <h1 className="hero-title">
+          About Our Sports Complex Project
+        </h1>
+        <p className="hero-copy">
+          We're building a state-of-the-art sports complex to provide Camp Gan Israel campers 
+          with the outdoor facilities they need to play, grow, and thrive in a safe and active environment.
+        </p>
+      </PageHero>
 
       {/* Our Story Section */}
-      <section className="relative section-padding bg-white">
+      <section className="relative section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] gap-8 lg:gap-14 items-center">
+          <div className="surface-card overflow-hidden">
+            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr]">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative"
+              className="relative min-h-[340px] lg:min-h-[620px]"
             >
-              <div className="relative overflow-hidden rounded-md shadow-2xl">
-                <img
-                  src={playground}
-                  alt=""
-                  className="h-[360px] w-full object-cover sm:h-[460px] lg:h-[560px]"
-                  aria-hidden="true"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/55 via-transparent to-transparent" />
-              </div>
-              <div className="absolute -bottom-8 right-5 hidden h-32 w-32 items-center justify-center rounded-full bg-white p-4 shadow-2xl ring-8 ring-white/30 sm:flex lg:h-40 lg:w-40">
-                <img
-                  src={mascot}
-                  alt="Camp Mascot"
-                  className="h-full w-full object-contain"
-                />
-              </div>
+              <img
+                src={playground}
+                alt=""
+                className="absolute inset-0 h-full w-full object-cover"
+                aria-hidden="true"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/60 via-transparent to-transparent" />
             </motion.div>
             <motion.div
               initial={{ x: 50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:pl-2"
+              className="p-6 sm:p-9 lg:p-12"
             >
-              <div className="border-l-4 border-primary-500 pl-5 sm:pl-7">
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-normal text-secondary-900 mb-5 sm:mb-7">
+              <div className="max-w-2xl">
+                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-normal text-secondary-950 mb-5 sm:mb-7">
                   Our Story
                 </h2>
                 <div className="space-y-5 text-secondary-700">
@@ -94,6 +66,7 @@ const About = () => {
                 </div>
               </div>
             </motion.div>
+            </div>
           </div>
         </div>
       </section>

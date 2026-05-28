@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import PageHero from '../components/PageHero';
 import mainDedication from '../assets/optimized/main dedication.webp';
 
 const Contact = () => {
@@ -35,38 +36,18 @@ const Contact = () => {
   };
 
   return (
-    <main className="pt-16 bg-white">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-secondary-900 text-white">
-        <div className="absolute inset-0">
-          <img
-            src={mainDedication}
-            alt=""
-            className="h-full w-full object-cover"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 via-secondary-900/72 to-secondary-900/25" />
-          <div className="absolute inset-0 bg-gradient-to-t from-secondary-900/70 via-transparent to-transparent" />
-        </div>
-        <div className="container-custom relative z-10 py-14 sm:py-20 md:py-24">
-          <motion.div
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-3xl"
-          >
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-normal leading-[0.98] mb-4 sm:mb-6">
-              Contact Us
-            </h1>
-            <p className="max-w-2xl text-base sm:text-lg text-white/85 leading-relaxed mb-4 sm:mb-6">
-              For more information about the project or to discuss legacy giving please contact:
-            </p>
-          </motion.div>
-        </div>
-      </section>
+    <main className="bg-[#f6f7f3]">
+      <PageHero image={mainDedication}>
+        <h1 className="hero-title">
+          Contact Us
+        </h1>
+        <p className="hero-copy">
+          For more information about the project or to discuss legacy giving please contact:
+        </p>
+      </PageHero>
 
       {/* Contact Information */}
-      <section className="section-padding bg-secondary-50">
+      <section className="section-padding">
         <div className="container-custom">
           <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">
             {/* Contact Info */}
@@ -74,15 +55,15 @@ const Contact = () => {
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="rounded-md bg-white p-5 shadow-xl ring-1 ring-secondary-200/70 sm:p-7 lg:p-8"
+              className="space-y-4"
             >
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-900 mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-950">
                 Get In Touch
               </h2>
               
               <div className="space-y-3">
-                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
+                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
                     <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -98,8 +79,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
+                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
                     <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -115,8 +96,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
+                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
                     <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -135,8 +116,8 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-3 sm:space-x-4 rounded-md border border-secondary-200 bg-secondary-50/80 p-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-100 rounded-md flex items-center justify-center">
+                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
+                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
                     <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
                   </div>
                   <div>
@@ -154,9 +135,9 @@ const Contact = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="rounded-md bg-white p-5 shadow-2xl ring-1 ring-secondary-200/70 sm:p-7 lg:p-8"
+              className="surface-card p-5 sm:p-7 lg:p-8"
             >
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-900 mb-6">
+              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-950 mb-6">
                 Send Us a Message
               </h2>
               

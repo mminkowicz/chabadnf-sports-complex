@@ -57,6 +57,7 @@ const Navbar = () => {
   const isActive = (path) => location.pathname === path;
   const isDedicationsActive = location.pathname === '/dedications' || location.pathname === '/bricks';
   const isHomePage = location.pathname === '/';
+  const navIsTransparent = isHomePage && !isScrolled;
   const closeMobileMenu = () => {
     setIsOpen(false);
     setIsDedicationsOpen(false);
@@ -68,18 +69,18 @@ const Navbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-white/80 backdrop-blur-sm shadow-md'
-          : isHomePage 
-            ? 'bg-transparent' 
-            : 'bg-white/95 backdrop-blur-md shadow-lg'
+        navIsTransparent
+          ? 'bg-transparent'
+          : 'bg-white/95 shadow-sm backdrop-blur-xl ring-1 ring-secondary-900/5'
       }`}
     >
       <div className="container-custom">
-        <div className="flex items-center justify-center h-16 sm:h-18 lg:h-20">
+        <div className={`flex h-16 items-center sm:h-20 ${
+          navIsTransparent ? 'justify-between lg:h-24 lg:justify-center' : 'justify-between lg:h-20'
+        }`}>
           {/* Admin Access - Click logo area 5 times */}
-          <div 
-            className="absolute left-4 cursor-pointer"
+          <div
+            className="absolute left-4 top-4 cursor-pointer"
             onClick={() => {
               setAdminClickCount(prev => {
                 const newCount = prev + 1;
@@ -95,18 +96,44 @@ const Navbar = () => {
               {adminClickCount}/5
             </div>
           </div>
+
+          <Link
+            to="/"
+            onClick={closeMobileMenu}
+            className={`group flex items-center gap-3 transition duration-300 ${
+              navIsTransparent ? 'text-white lg:hidden' : 'text-secondary-950'
+            }`}
+          >
+            <span className={`flex h-10 w-10 items-center justify-center rounded-md text-sm font-extrabold shadow-lg transition ${
+              navIsTransparent
+                ? 'bg-white/10 text-white ring-1 ring-white/20 backdrop-blur'
+                : 'bg-secondary-950 text-white'
+            }`}>
+              CGI
+            </span>
+            <span className="hidden leading-tight sm:block">
+              <span className="block text-sm font-extrabold">Camp Gan Israel</span>
+              <span className={`block text-xs font-semibold ${
+                navIsTransparent ? 'text-white/70' : 'text-secondary-500'
+              }`}>Sports Complex</span>
+            </span>
+          </Link>
           
-          {/* Desktop Navigation - Centered */}
-          <div className="hidden lg:flex items-center space-x-12">
+          {/* Desktop Navigation */}
+          <div className={`hidden items-center lg:flex ${
+            navIsTransparent ? 'space-x-14 xl:space-x-16' : 'space-x-8'
+          }`}>
             {navItems.map((item) => (
               <div key={item.name} className="relative">
                 {item.hasDropdown ? (
                   <div
-                    className={`dedications-dropdown relative font-medium transition-colors duration-300 text-lg cursor-pointer ${
+                    className={`dedications-dropdown relative cursor-pointer transition-colors duration-300 ${
+                      navIsTransparent ? 'text-xl font-medium' : 'text-sm font-bold'
+                    } ${
                       isDedicationsActive
-                        ? isHomePage ? 'text-primary-400' : 'text-primary-600'
-                        : isHomePage 
-                          ? 'text-white hover:text-primary-400' 
+                        ? navIsTransparent ? 'text-primary-400' : 'text-primary-600'
+                        : navIsTransparent
+                          ? 'text-white/90 hover:text-white' 
                           : 'text-secondary-700 hover:text-primary-600'
                     }`}
                     onMouseEnter={() => setIsDedicationsOpen(true)}
@@ -120,7 +147,7 @@ const Navbar = () => {
                       <motion.div
                         layoutId="activeTab"
                         className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                          isHomePage ? 'bg-primary-400' : 'bg-primary-600'
+                          navIsTransparent ? 'bg-primary-400' : 'bg-primary-600'
                         }`}
                       />
                     )}
@@ -133,9 +160,9 @@ const Navbar = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className={`absolute top-full left-0 mt-2 w-48 rounded-lg shadow-lg border z-50 ${
-                            isHomePage 
-                              ? 'bg-black/90 backdrop-blur-md border-white/20' 
+                          className={`absolute left-0 top-full z-50 mt-3 w-48 overflow-hidden rounded-md border shadow-xl ${
+                            navIsTransparent
+                              ? 'border-white/20 bg-secondary-950/95 backdrop-blur-md' 
                               : 'bg-white border-secondary-200'
                           }`}
                           onMouseEnter={() => setIsDedicationsOpen(true)}
@@ -147,11 +174,11 @@ const Navbar = () => {
                               to={dropdownItem.path}
                               className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg ${
                                 isActive(dropdownItem.path)
-                                  ? isHomePage 
-                                    ? 'text-primary-400 bg-white/10' 
+                                  ? navIsTransparent
+                                    ? 'text-primary-300 bg-white/10' 
                                     : 'text-primary-600 bg-primary-50'
-                                  : isHomePage
-                                    ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                                  : navIsTransparent
+                                    ? 'text-white hover:text-primary-300 hover:bg-white/10'
                                     : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
                               }`}
                             >
@@ -165,11 +192,13 @@ const Navbar = () => {
                 ) : (
                   <Link
                     to={item.path}
-                    className={`relative font-medium transition-colors duration-300 text-lg ${
+                    className={`relative transition-colors duration-300 ${
+                      navIsTransparent ? 'text-xl font-medium' : 'text-sm font-bold'
+                    } ${
                       isActive(item.path)
-                        ? isHomePage ? 'text-primary-400' : 'text-primary-600'
-                        : isHomePage 
-                          ? 'text-white hover:text-primary-400' 
+                        ? navIsTransparent ? 'text-primary-400' : 'text-primary-600'
+                        : navIsTransparent
+                          ? 'text-white/90 hover:text-white' 
                           : 'text-secondary-700 hover:text-primary-600'
                     }`}
                   >
@@ -178,7 +207,7 @@ const Navbar = () => {
                       <motion.div
                         layoutId="activeTab"
                         className={`absolute -bottom-1 left-0 right-0 h-0.5 ${
-                          isHomePage ? 'bg-primary-400' : 'bg-primary-600'
+                          navIsTransparent ? 'bg-primary-400' : 'bg-primary-600'
                         }`}
                       />
                     )}
@@ -188,11 +217,11 @@ const Navbar = () => {
             ))}
             <Link
               to="/donate"
-              className={`${
-                isHomePage 
-                  ? 'bg-primary-600 hover:bg-primary-700 text-white' 
-                  : 'btn-primary'
-              } font-semibold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg text-lg`}
+              className={`rounded-md bg-primary-600 font-extrabold text-white transition duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300/40 ${
+                navIsTransparent
+                  ? 'px-10 py-5 text-xl shadow-2xl shadow-primary-950/25'
+                  : 'px-5 py-3 text-sm shadow-lg shadow-primary-950/10'
+              }`}
             >
               Donate Now
             </Link>
@@ -205,8 +234,8 @@ const Navbar = () => {
             aria-expanded={isOpen}
             aria-controls="mobile-navigation"
             className={`lg:hidden absolute right-2 sm:right-4 p-2 rounded-md transition-colors ${
-              isHomePage 
-                ? 'text-white hover:text-primary-400 hover:bg-white/10' 
+              navIsTransparent
+                ? 'text-white hover:bg-white/10' 
                 : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
             }`}
           >
@@ -223,9 +252,9 @@ const Navbar = () => {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3 }}
               id="mobile-navigation"
-              className={`lg:hidden fixed left-0 right-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl ${
-                isHomePage 
-                  ? 'bg-black/90 backdrop-blur-md border-t border-white/20' 
+              className={`lg:hidden fixed left-0 right-0 top-16 z-40 max-h-[calc(100vh-4rem)] overflow-y-auto shadow-2xl sm:top-20 ${
+                navIsTransparent 
+                  ? 'bg-secondary-950/95 backdrop-blur-md border-t border-white/20' 
                   : 'bg-white border-t border-secondary-200'
               }`}
             >
@@ -241,11 +270,11 @@ const Navbar = () => {
                           aria-controls="mobile-dedications-menu"
                           className={`flex w-full items-center justify-between px-4 py-3 text-left text-base font-medium transition-colors duration-300 ${
                             isDedicationsActive
-                              ? isHomePage 
-                                ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
+                              ? navIsTransparent 
+                                ? 'text-primary-200 bg-white/10 border-r-4 border-primary-200'
                                 : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
-                              : isHomePage
-                                ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                              : navIsTransparent
+                                ? 'text-white hover:text-primary-200 hover:bg-white/10'
                                 : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
                           }`}
                         >
@@ -269,11 +298,11 @@ const Navbar = () => {
                                   onClick={closeMobileMenu}
                                   className={`block px-8 py-2 text-sm font-medium transition-colors duration-300 ${
                                     isActive(dropdownItem.path)
-                                      ? isHomePage 
-                                        ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
+                                      ? navIsTransparent 
+                                        ? 'text-primary-200 bg-white/10 border-r-4 border-primary-200'
                                         : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
-                                      : isHomePage
-                                        ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                                      : navIsTransparent
+                                        ? 'text-white hover:text-primary-200 hover:bg-white/10'
                                         : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
                                   }`}
                                 >
@@ -290,11 +319,11 @@ const Navbar = () => {
                         onClick={closeMobileMenu}
                         className={`block px-4 py-3 text-base font-medium transition-colors duration-300 ${
                           isActive(item.path)
-                            ? isHomePage 
-                              ? 'text-primary-400 bg-white/10 border-r-4 border-primary-400'
+                            ? navIsTransparent 
+                              ? 'text-primary-200 bg-white/10 border-r-4 border-primary-200'
                               : 'text-primary-600 bg-primary-50 border-r-4 border-primary-600'
-                            : isHomePage
-                              ? 'text-white hover:text-primary-400 hover:bg-white/10'
+                            : navIsTransparent
+                              ? 'text-white hover:text-primary-200 hover:bg-white/10'
                               : 'text-secondary-700 hover:text-primary-600 hover:bg-primary-50'
                         }`}
                       >
@@ -307,8 +336,8 @@ const Navbar = () => {
                   <Link
                     to="/donate"
                     onClick={closeMobileMenu}
-                    className={`block w-full text-center font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg ${
-                      isHomePage 
+                    className={`block w-full rounded-md px-6 py-3 text-center font-extrabold shadow-lg transition duration-300 ${
+                      navIsTransparent 
                         ? 'bg-primary-600 hover:bg-primary-700 text-white' 
                         : 'btn-primary'
                     }`}

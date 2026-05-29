@@ -11,23 +11,26 @@ const About = () => {
         <h1 className="hero-title">
           About Our Sports Complex Project
         </h1>
-        <p className="hero-copy">
-          We're building a state-of-the-art sports complex to provide Camp Gan Israel campers 
-          with the outdoor facilities they need to play, grow, and thrive in a safe and active environment.
-        </p>
+        <div className="hero-copy space-y-5">
+          <p>
+            We're building a state-of-the-art sports complex to provide Camp Gan Israel campers with the outdoor facilities they need to play, grow, and thrive in a safe and active environment.
+          </p>
+          <p>
+            Now, with the project nearly complete, we've launched our Last Mile Campaign to raise the final $300,000 needed to cross the finish line. Thanks to a generous $150,000 challenge grant from the Zalik Foundation, every dollar donated, up to $150,000, will be matched dollar-for-dollar, helping us complete the project and bring this dream to life.
+          </p>
+        </div>
       </PageHero>
 
       {/* Our Story Section */}
       <section className="relative section-padding">
         <div className="container-custom">
-          <div className="surface-card overflow-hidden">
-            <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr]">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="relative min-h-[340px] lg:min-h-[620px]"
+              className="media-frame relative aspect-[4/3] min-h-[320px] lg:aspect-[5/4]"
             >
               <img
                 src={playground}
@@ -42,10 +45,10 @@ const About = () => {
               whileInView={{ x: 0, opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="p-6 sm:p-9 lg:p-12"
+              className="relative"
             >
-              <div className="max-w-2xl">
-                <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-normal text-secondary-950 mb-5 sm:mb-7">
+              <div className="max-w-2xl border-l-4 border-primary-500 pl-6 sm:pl-8">
+                <h2 className="font-display mb-5 text-3xl font-extrabold tracking-normal text-secondary-950 sm:mb-7 sm:text-4xl lg:text-5xl">
                   Our Story
                 </h2>
                 <div className="space-y-5 text-secondary-700">
@@ -66,7 +69,6 @@ const About = () => {
                 </div>
               </div>
             </motion.div>
-            </div>
           </div>
         </div>
       </section>

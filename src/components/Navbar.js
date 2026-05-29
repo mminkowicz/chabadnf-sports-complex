@@ -75,8 +75,8 @@ const Navbar = () => {
       }`}
     >
       <div className="container-custom">
-        <div className={`flex h-16 items-center sm:h-20 ${
-          navIsTransparent ? 'justify-between lg:h-24 lg:justify-center' : 'justify-between lg:h-20'
+        <div className={`relative flex h-16 items-center justify-between sm:h-20 ${
+          navIsTransparent ? 'lg:h-24 lg:justify-center' : 'lg:h-20 lg:justify-center'
         }`}>
           {/* Admin Access - Click logo area 5 times */}
           <div
@@ -101,7 +101,7 @@ const Navbar = () => {
             to="/"
             onClick={closeMobileMenu}
             className={`group flex items-center gap-3 transition duration-300 ${
-              navIsTransparent ? 'text-white lg:hidden' : 'text-secondary-950'
+              navIsTransparent ? 'text-white lg:hidden' : 'text-secondary-950 lg:hidden'
             }`}
           >
             <span className={`flex h-10 w-10 items-center justify-center rounded-md text-sm font-extrabold shadow-lg transition ${
@@ -121,7 +121,7 @@ const Navbar = () => {
           
           {/* Desktop Navigation */}
           <div className={`hidden items-center lg:flex ${
-            navIsTransparent ? 'space-x-14 xl:space-x-16' : 'space-x-8'
+            navIsTransparent ? 'space-x-14 xl:space-x-16' : 'space-x-10'
           }`}>
             {navItems.map((item) => (
               <div key={item.name} className="relative">
@@ -215,17 +215,18 @@ const Navbar = () => {
                 )}
               </div>
             ))}
-            <Link
-              to="/donate"
-              className={`rounded-md bg-primary-600 font-extrabold text-white transition duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300/40 ${
-                navIsTransparent
-                  ? 'px-10 py-5 text-xl shadow-2xl shadow-primary-950/25'
-                  : 'px-5 py-3 text-sm shadow-lg shadow-primary-950/10'
-              }`}
-            >
-              Donate Now
-            </Link>
           </div>
+
+          <Link
+            to="/donate"
+            className={`absolute right-0 hidden rounded-md bg-primary-600 font-extrabold text-white transition duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300/40 lg:inline-flex ${
+              navIsTransparent
+                ? 'px-10 py-5 text-xl shadow-2xl shadow-primary-950/25'
+                : 'px-6 py-4 text-base shadow-lg shadow-primary-950/10'
+            }`}
+          >
+            Donate Now
+          </Link>
 
           {/* Mobile Menu Button - Absolute positioned */}
           <button

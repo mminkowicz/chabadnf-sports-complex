@@ -34,9 +34,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        'sans': ['Manrope', 'system-ui', 'sans-serif'],
-        'display': ['Sora', 'Manrope', 'system-ui', 'sans-serif'],
-        'serif': ['Sora', 'Manrope', 'system-ui', 'sans-serif'],
+        'sans': ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        'display': ['Sora', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        'serif': ['Sora', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.6s ease-in-out',

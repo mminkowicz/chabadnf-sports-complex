@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import PageHero from '../components/PageHero';
 
 // Import all images from assets
 import baseballField from '../assets/optimized/Baseball Field.webp';
@@ -130,18 +131,19 @@ const Gallery = () => {
   // }, [nextImage]);
 
   return (
-    <main className="min-h-screen bg-secondary-950 pt-16 text-white">
-      <div className="container-custom py-7 sm:py-10">
-        <h1 className="font-display max-w-3xl text-3xl font-extrabold tracking-normal text-white sm:text-4xl md:text-5xl">
+    <main className="bg-[#f6f7f3]">
+      <PageHero image={mainDedication}>
+        <h1 className="hero-title">
           New Sports Complex
         </h1>
-      </div>
+      </PageHero>
 
       {/* Slideshow Container */}
-      <div className="container-custom flex flex-1 items-center justify-center pb-10">
-        <div className="relative w-full max-w-7xl mx-auto">
+      <section className="section-padding">
+        <div className="container-custom">
+          <div className="grid gap-6 lg:grid-cols-[1fr_320px] lg:items-start">
           {/* Slideshow */}
-          <div className="relative overflow-hidden rounded-md shadow-2xl shadow-black/30 ring-1 ring-white/10">
+          <div className="media-frame relative bg-secondary-950">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentImageIndex}
@@ -154,11 +156,11 @@ const Gallery = () => {
                 <img
                   src={images[currentImageIndex].src}
                   alt={images[currentImageIndex].alt}
-                  className="h-[520px] min-h-[520px] w-full object-cover sm:h-[620px] md:h-[700px] lg:h-[calc(100svh-14rem)]"
+                  className="h-[460px] min-h-[460px] w-full object-cover sm:h-[620px] lg:h-[720px]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/75 via-transparent to-black/10" />
                 {/* Image Label */}
-                <div className="absolute bottom-5 left-5 rounded-md bg-black/40 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm ring-1 ring-white/20 sm:text-base">
+                <div className="absolute bottom-5 left-5 rounded-md bg-secondary-950/60 px-4 py-2 text-sm font-bold text-white backdrop-blur-sm ring-1 ring-white/20 sm:text-base">
                   {images[currentImageIndex].label}
                 </div>
               </motion.div>
@@ -189,28 +191,45 @@ const Gallery = () => {
             </div>
           </div>
 
-          {/* Dots Indicator */}
-          <div className="flex justify-center mt-4 sm:mt-6 space-x-1 sm:space-x-2">
-            {images.map((_, index) => (
+          <div className="rounded-md border border-secondary-200/80 bg-white p-3 shadow-xl shadow-secondary-900/5">
+            <div className="mb-3 px-2">
+              <p className="eyebrow mb-2">Explore</p>
+              <h2 className="font-display text-2xl font-extrabold text-secondary-950">
+                Complex Views
+              </h2>
+            </div>
+            <div className="grid max-h-[720px] gap-2 overflow-y-auto pr-1 sm:grid-cols-2 lg:grid-cols-1">
+              {images.map((image, index) => (
               <button
                 key={index}
                 type="button"
                 onClick={() => setCurrentImageIndex(index)}
-                aria-label={`Go to gallery image ${index + 1} of ${images.length}: ${images[index].label}`}
+                aria-label={`Go to gallery image ${index + 1} of ${images.length}: ${image.label}`}
                 aria-current={index === currentImageIndex ? 'true' : undefined}
-                className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+                  className={`group grid grid-cols-[74px_1fr] items-center gap-3 rounded-md border p-2 text-left transition duration-300 ${
                   index === currentImageIndex 
-                    ? 'bg-primary-400 scale-125' 
-                    : 'bg-white/40 hover:bg-white/70'
+                      ? 'border-primary-300 bg-primary-50'
+                      : 'border-secondary-200 bg-white hover:border-primary-200 hover:bg-primary-50/40'
                 }`}
-              />
+                >
+                  <img
+                    src={image.src}
+                    alt=""
+                    className="h-14 w-full rounded-sm object-cover"
+                    aria-hidden="true"
+                  />
+                  <span className={`text-sm font-extrabold ${
+                    index === currentImageIndex ? 'text-primary-700' : 'text-secondary-800'
+                  }`}>
+                    {image.label}
+                  </span>
+                </button>
             ))}
+            </div>
           </div>
         </div>
-      </div>
-      
-      {/* Bottom spacing to prevent footer overlap */}
-      <div className="pb-8"></div>
+        </div>
+      </section>
     </main>
   );
 };

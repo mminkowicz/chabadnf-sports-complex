@@ -49,29 +49,29 @@ const Contact = () => {
       {/* Contact Information */}
       <section className="section-padding">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr] gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12 lg:items-start">
             {/* Contact Info */}
             <motion.div
               initial={{ x: -50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8 }}
-              className="space-y-4"
+              className="rounded-md bg-secondary-950 p-5 text-white shadow-2xl shadow-secondary-900/10 sm:p-7 lg:p-8"
             >
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-950">
+              <h2 className="font-display text-2xl font-extrabold text-white sm:text-3xl">
                 Get In Touch
               </h2>
               
-              <div className="space-y-3">
-                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
-                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
+              <div className="mt-6 space-y-3">
+                <div className="flex items-start space-x-3 rounded-md border border-white/10 bg-white/5 p-4 sm:space-x-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-primary-500/15 sm:h-12 sm:w-12">
+                    <Mail className="h-5 w-5 text-primary-300 sm:h-6 sm:w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Email</h3>
-                    <p className="text-secondary-600 text-sm sm:text-base">
+                    <h3 className="mb-1 text-sm font-semibold text-white sm:text-base">Email</h3>
+                    <p className="text-sm text-white/70 sm:text-base">
                       <a 
                         href="mailto:rabbi@chabadnf.org" 
-                        className="hover:text-primary-600 hover:underline transition-colors duration-200"
+                        className="transition-colors duration-200 hover:text-primary-300 hover:underline"
                       >
                         rabbi@chabadnf.org
                       </a>
@@ -79,16 +79,16 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
-                    <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 rounded-md border border-white/10 bg-white/5 p-4 sm:space-x-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-primary-500/15 sm:h-12 sm:w-12">
+                    <Phone className="h-5 w-5 text-primary-300 sm:h-6 sm:w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Phone</h3>
-                    <p className="text-secondary-600 text-sm sm:text-base">
+                    <h3 className="mb-1 text-sm font-semibold text-white sm:text-base">Phone</h3>
+                    <p className="text-sm text-white/70 sm:text-base">
                       <a 
                         href="tel:770-410-9000" 
-                        className="hover:text-primary-600 hover:underline transition-colors duration-200"
+                        className="transition-colors duration-200 hover:text-primary-300 hover:underline"
                       >
                         770-410-9000
                       </a>
@@ -96,18 +96,18 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
-                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 rounded-md border border-white/10 bg-white/5 p-4 sm:space-x-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-primary-500/15 sm:h-12 sm:w-12">
+                    <MapPin className="h-5 w-5 text-primary-300 sm:h-6 sm:w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Address</h3>
-                    <p className="text-secondary-600 text-sm sm:text-base">
+                    <h3 className="mb-1 text-sm font-semibold text-white sm:text-base">Address</h3>
+                    <p className="text-sm text-white/70 sm:text-base">
                       <a 
                         href="https://maps.google.com/?q=10180+Jones+Bridge+Road+Alpharetta+Georgia+30022" 
                         target="_blank" 
                         rel="noopener noreferrer"
-                        className="hover:text-primary-600 hover:underline transition-colors duration-200"
+                        className="transition-colors duration-200 hover:text-primary-300 hover:underline"
                       >
                         10180 Jones Bridge Road<br />
                         Alpharetta, Georgia 30022
@@ -116,13 +116,13 @@ const Contact = () => {
                   </div>
                 </div>
 
-                <div className="surface-card flex items-start space-x-3 p-4 sm:space-x-4">
-                  <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-primary-50 rounded-md flex items-center justify-center">
-                    <Clock className="w-5 h-5 sm:w-6 sm:h-6 text-primary-600" />
+                <div className="flex items-start space-x-3 rounded-md border border-white/10 bg-white/5 p-4 sm:space-x-4">
+                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-md bg-primary-500/15 sm:h-12 sm:w-12">
+                    <Clock className="h-5 w-5 text-primary-300 sm:h-6 sm:w-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-secondary-900 mb-1 text-sm sm:text-base">Contact Person</h3>
-                    <p className="text-secondary-600 text-sm sm:text-base">
+                    <h3 className="mb-1 text-sm font-semibold text-white sm:text-base">Contact Person</h3>
+                    <p className="text-sm text-white/70 sm:text-base">
                       Rabbi Hirshy Minkowicz
                     </p>
                   </div>
@@ -135,9 +135,9 @@ const Contact = () => {
               initial={{ x: 50, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="surface-card p-5 sm:p-7 lg:p-8"
+              className="form-frame p-5 pt-8 sm:p-7 sm:pt-10 lg:p-8 lg:pt-10"
             >
-              <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-secondary-950 mb-6">
+              <h2 className="font-display mb-6 text-2xl font-extrabold text-secondary-950 sm:text-3xl">
                 Send Us a Message
               </h2>
               
@@ -150,7 +150,7 @@ const Contact = () => {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="field-control"
                     placeholder="Your full name"
                     required
                   />
@@ -164,7 +164,7 @@ const Contact = () => {
                     type="email"
                     id="email"
                     name="email"
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="field-control"
                     placeholder="your.email@example.com"
                     required
                   />
@@ -178,7 +178,7 @@ const Contact = () => {
                     type="text"
                     id="subject"
                     name="subject"
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors"
+                    className="field-control"
                     placeholder="What is this about?"
                     required
                   />
@@ -192,7 +192,7 @@ const Contact = () => {
                     id="message"
                     name="message"
                     rows={5}
-                    className="w-full px-4 py-3 border border-secondary-300 rounded-md focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-none"
+                    className="field-control resize-none"
                     placeholder="Tell us more about your inquiry..."
                     required
                   ></textarea>
@@ -201,7 +201,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className={`w-full font-semibold py-3 px-6 rounded-md transition-all duration-300 shadow-lg ${
+                  className={`w-full rounded-md px-6 py-3 font-extrabold shadow-lg transition-all duration-300 ${
                     isSubmitting 
                       ? 'bg-gray-400 cursor-not-allowed' 
                       : 'bg-primary-600 hover:bg-primary-700 text-white'
@@ -218,7 +218,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="mt-4 p-4 bg-green-100 border border-green-400 text-green-700 rounded-md"
                 >
-                  ✅ Thank you! Your message has been sent successfully. We'll get back to you soon.
+                  Thank you! Your message has been sent successfully. We'll get back to you soon.
                 </motion.div>
               )}
 
@@ -228,7 +228,7 @@ const Contact = () => {
                   animate={{ opacity: 1, y: 0 }}
                   className="mt-4 p-4 bg-red-100 border border-red-400 text-red-700 rounded-md"
                 >
-                  ❌ Sorry, there was an error sending your message. Please try again or contact us directly.
+                  Sorry, there was an error sending your message. Please try again or contact us directly.
                 </motion.div>
               )}
             </motion.div>

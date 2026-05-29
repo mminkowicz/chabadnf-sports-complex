@@ -12,6 +12,7 @@ import Bricks from './pages/Bricks';
 import Contact from './pages/Contact';
 import Admin from './pages/Admin';
 import Test from './pages/Test';
+import UpdateTotal from './pages/UpdateTotal';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -24,11 +25,13 @@ function ScrollToTop() {
 }
 
 function AppContent() {
+  const { pathname } = useLocation();
+  const isUtilityPage = pathname === '/update-total' || pathname === '/total';
 
   return (
     <div className="min-h-screen bg-[#f6f7f3]">
       <ScrollToTop />
-      <Navbar />
+      {!isUtilityPage && <Navbar />}
       <AnimatePresence mode="wait">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -38,11 +41,13 @@ function AppContent() {
           <Route path="/dedications" element={<Dedications />} />
           <Route path="/bricks" element={<Bricks />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/update-total" element={<UpdateTotal />} />
+          <Route path="/total" element={<UpdateTotal />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/test" element={<Test />} />
         </Routes>
       </AnimatePresence>
-      <Footer />
+      {!isUtilityPage && <Footer />}
     </div>
   );
 }

@@ -12,7 +12,7 @@
   
   body,
   #root {
-    font-family: 'Manrope', system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -26,7 +26,7 @@
   h2,
   h3,
   .font-display {
-    font-family: 'Sora', 'Manrope', system-ui, sans-serif;
+    font-family: 'Sora', 'Plus Jakarta Sans', system-ui, sans-serif;
     letter-spacing: 0;
   }
   
@@ -60,15 +60,15 @@
   }
 
   .page-hero {
-    @apply relative flex min-h-[420px] items-center overflow-hidden bg-secondary-950 pt-20 text-white sm:min-h-[500px];
+    @apply relative flex min-h-[380px] items-end overflow-hidden bg-secondary-950 pb-12 pt-28 text-white sm:min-h-[430px] lg:min-h-[460px];
   }
 
   .hero-title {
-    @apply font-display max-w-4xl text-4xl font-extrabold leading-[0.98] tracking-normal text-white sm:text-5xl md:text-6xl lg:text-7xl;
+    @apply font-display max-w-4xl text-4xl font-extrabold leading-[1.02] tracking-normal text-white sm:text-5xl lg:text-6xl;
   }
 
   .hero-copy {
-    @apply mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg md:text-xl;
+    @apply mt-5 max-w-3xl text-base leading-relaxed text-white/85 sm:text-lg;
   }
 
   .surface-card {
@@ -88,7 +88,16 @@
   }
 
   .form-frame {
-    @apply relative overflow-hidden rounded-md bg-white shadow-2xl shadow-secondary-900/10 ring-1 ring-secondary-200/80;
+    @apply relative overflow-hidden rounded-md border border-secondary-200/80 bg-white shadow-2xl shadow-secondary-900/10;
+  }
+
+  .form-frame::before {
+    content: '';
+    @apply absolute left-0 right-0 top-0 z-10 h-1 bg-primary-500;
+  }
+
+  .field-control {
+    @apply w-full rounded-md border border-secondary-200 bg-white px-4 py-3 text-secondary-950 shadow-sm transition-colors placeholder:text-secondary-400 focus:border-primary-500 focus:outline-none focus:ring-4 focus:ring-primary-100;
   }
   
   .text-gradient {

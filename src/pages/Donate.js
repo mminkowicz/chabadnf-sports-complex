@@ -44,10 +44,10 @@ const Donate = () => {
     <main className="bg-[#f6f7f3]">
       <PageHero image={mainDedication}>
         <h1 className="hero-title">
-          Support Our Sports Complex
+          LAST MILE CAMPAIGN
         </h1>
         <p className="hero-copy mb-7">
-          <strong>We need $1.8 million to complete the project — and thanks to a generous donor, every dollar you give will be matched!</strong> That means your $1 becomes $2, doubling your impact and bringing us twice as close to our goal.
+          We are just $300,000 short of completing our sports campus, and The Zalik Foundation is helping us get there with a generous $150,000 matching grant. All we need to do is raise the remaining $150,000, and the Zalik Foundation will match it to bring us to the finish line. Please help us hit the home run and bring this dream to completion!
         </p>
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link
@@ -74,7 +74,7 @@ const Donate = () => {
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="max-w-4xl mx-auto"
+            className="mx-auto max-w-5xl"
           >
             <div className="form-frame min-h-[2200px]">
               <iframe

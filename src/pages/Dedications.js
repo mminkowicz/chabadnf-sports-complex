@@ -179,13 +179,13 @@ const Dedications = () => {
   const getStatusColor = (status) => {
     switch (status) {
       case 'available':
-        return 'bg-green-100 text-green-800 border-green-200';
+        return 'border-primary-200 bg-primary-50 text-primary-800';
       case 'reserved':
-        return 'bg-yellow-100 text-yellow-800 border-yellow-200';
+        return 'border-primary-200 bg-primary-50 text-primary-800';
       case 'sold':
-        return 'bg-red-100 text-red-800 border-red-200';
+        return 'border-secondary-200 bg-white/90 text-secondary-600';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-200';
+        return 'border-secondary-200 bg-white text-secondary-700';
     }
   };
 
@@ -224,30 +224,30 @@ const Dedications = () => {
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7 }}
-              className="surface-card overflow-hidden"
-            >
-              <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]">
-                <div className="relative min-h-[320px] lg:min-h-[520px]">
+            className="overflow-hidden rounded-md bg-secondary-950 shadow-2xl shadow-secondary-900/15 ring-1 ring-secondary-900/10"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]">
+              <div className="relative min-h-[320px] lg:min-h-[520px]">
                   <img
                     src={campusDedication.image}
                     alt="Main Sports Complex"
                     className="absolute inset-0 h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-secondary-950/70 via-secondary-950/5 to-transparent" />
                 </div>
-                <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-12">
+                <div className="flex flex-col justify-center p-6 text-white sm:p-9 lg:p-12">
                   <div className="mb-5">
                     <span className={`inline-flex rounded-full border px-3 py-1 text-xs font-extrabold ${getStatusColor(campusDedication.status)}`}>
                       {getStatusText(campusDedication.status)}
                     </span>
                   </div>
-                  <h2 className="font-display text-3xl font-extrabold leading-tight text-secondary-950 sm:text-4xl">
+                  <h2 className="font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl">
                     Campus Dedication
                   </h2>
-                  <div className="font-display mt-3 text-4xl font-extrabold text-primary-600 sm:text-5xl">
+                  <div className="font-display mt-3 text-4xl font-extrabold text-primary-400 sm:text-5xl">
                     $900,000
                   </div>
-                  <p className="mt-5 max-w-md text-base leading-relaxed text-secondary-700 sm:text-lg">
+                  <p className="mt-5 max-w-md text-base leading-relaxed text-white/75 sm:text-lg">
                     Leave a lasting legacy — name the entire sports complex in honor of your family or a loved one.
                   </p>
                 </div>
@@ -270,16 +270,19 @@ const Dedications = () => {
                 const isBricks = dedication.title === 'Personalized Bricks';
 
                 const card = (
-                  <div className="surface-card group h-full overflow-hidden transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-secondary-900/10">
-                    <div className="relative overflow-hidden">
+                  <div className="group relative h-full min-h-[340px] overflow-hidden rounded-md bg-secondary-950 shadow-xl shadow-secondary-900/10 ring-1 ring-secondary-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-secondary-900/15">
+                    <div className="absolute inset-0">
                       <img
                         src={dedication.image}
                         alt={dedication.title}
-                        className="h-60 w-full object-cover transition duration-500 group-hover:scale-105 sm:h-64"
+                        className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute left-3 top-3 flex flex-wrap gap-2">
+                      <div className="absolute inset-0 bg-gradient-to-t from-secondary-950 via-secondary-950/25 to-transparent" />
+                    </div>
+                    <div className="relative flex min-h-[340px] flex-col justify-between p-5 sm:p-6">
+                      <div className="flex flex-wrap gap-2">
                         {dedication.phase && (
-                          <span className="rounded-full border border-blue-200 bg-blue-50 px-2 py-1 text-xs font-bold text-blue-800 shadow-sm">
+                          <span className="rounded-full border border-white/20 bg-white/90 px-2 py-1 text-xs font-bold text-secondary-800 shadow-sm">
                             {dedication.phase}
                           </span>
                         )}
@@ -287,16 +290,16 @@ const Dedications = () => {
                           {getStatusText(dedication.status)}
                         </span>
                       </div>
-                    </div>
-                    <div className="p-5 sm:p-6">
-                      <h3 className="font-display text-xl font-extrabold text-secondary-950 sm:text-2xl">
-                        {dedication.title}
-                      </h3>
-                      {dedication.amount && (
-                        <div className="font-display mt-3 text-2xl font-extrabold text-primary-600 sm:text-3xl">
-                          {dedication.amount}
-                        </div>
-                      )}
+                      <div>
+                        <h3 className="font-display text-2xl font-extrabold text-white">
+                          {dedication.title}
+                        </h3>
+                        {dedication.amount && (
+                          <div className="font-display mt-2 text-2xl font-extrabold text-primary-300 sm:text-3xl">
+                            {dedication.amount}
+                          </div>
+                        )}
+                      </div>
                     </div>
                   </div>
                 );

@@ -49,7 +49,7 @@ const Bricks = () => {
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
+            className="mx-auto max-w-5xl"
           >
             <div className="form-frame min-h-[3600px]">
               <iframe

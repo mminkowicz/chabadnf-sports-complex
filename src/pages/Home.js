@@ -38,7 +38,7 @@ const Home = () => {
             playsInline
             poster={mainDedication}
             className="h-full w-full object-cover"
-            style={{ objectPosition: "center 44%" }}
+            style={{ objectPosition: "center 44%", filter: "brightness(1.12) saturate(1.08)" }}
           >
             <source
               src="/camp-video-desktop.mp4"
@@ -62,9 +62,9 @@ const Home = () => {
               className="h-full w-full object-cover"
             />
           </video>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_88%_4%,rgba(250,188,82,0.48)_0%,rgba(237,122,26,0.12)_28%,rgba(8,17,31,0)_48%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(2,8,15,0.96)_0%,rgba(6,14,25,0.78)_33%,rgba(8,17,31,0.25)_72%,rgba(6,14,25,0.18)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(2,8,15,0.86)_0%,rgba(2,8,15,0.12)_42%,rgba(2,8,15,0.42)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_88%_4%,rgba(250,188,82,0.34)_0%,rgba(237,122,26,0.08)_28%,rgba(8,17,31,0)_48%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(2,8,15,0.82)_0%,rgba(6,14,25,0.5)_34%,rgba(8,17,31,0.1)_72%,rgba(6,14,25,0.08)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(2,8,15,0.62)_0%,rgba(2,8,15,0.04)_42%,rgba(2,8,15,0.22)_100%)]" />
         </div>
 
         <div className="container-custom home-hero-content relative z-10 flex min-h-[100svh] flex-col justify-between gap-5 pb-5 pt-24 sm:pt-28 lg:gap-6 lg:pb-6 lg:pt-24 xl:pt-28">
@@ -75,7 +75,7 @@ const Home = () => {
               transition={{ duration: 0.8 }}
               className="max-w-4xl"
             >
-              <h1 className="campaign-gold home-campaign-title font-display text-[3.35rem] font-extrabold uppercase leading-[0.88] tracking-normal sm:text-[4.8rem] md:text-[5.9rem] lg:text-[5.7rem] xl:text-[6.7rem] 2xl:text-[7.8rem]">
+              <h1 className="campaign-gold home-campaign-title font-display text-[3rem] font-extrabold uppercase leading-[0.9] tracking-normal sm:text-[4.1rem] md:text-[4.8rem] lg:text-[4.05rem] xl:text-[4.6rem] 2xl:text-[5.1rem]">
                 <span className="block">LAST MILE</span>
                 <span className="block">CAMPAIGN</span>
               </h1>
@@ -83,7 +83,7 @@ const Home = () => {
                 Build It For They Have Come
               </p>
               <p className="home-hero-description mt-5 max-w-2xl text-base font-semibold leading-relaxed text-white/88 drop-shadow-lg sm:text-lg lg:text-lg xl:text-xl">
-                Help us complete the Camp Sports Field Complex and create a lasting space for play, growth, and connection.
+                Help us complete the Camp Sports Field Complex that will serve thousands of children for decades to come.
               </p>
 
               <div className="home-action-row mt-7 flex flex-col gap-4 sm:flex-row sm:items-center">

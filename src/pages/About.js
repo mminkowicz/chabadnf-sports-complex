@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HeartHandshake, Trophy } from 'lucide-react';
+import { HeartHandshake } from 'lucide-react';
 import mainDedication from '../assets/optimized/main dedication.webp';
 import playground from '../assets/optimized/playground.webp';
 
@@ -58,30 +58,26 @@ const About = () => {
 
             <div className="grid gap-4 py-6">
               <div className="rounded-md border border-white/12 bg-white/[0.04] p-4">
-                <p className="font-display text-3xl font-extrabold text-white">
-                  $150,000 MATCH
+                <p className="font-display text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+                  $300,000 to get to the finish line
                 </p>
               </div>
               <div className="rounded-md border border-white/12 bg-white/[0.04] p-4">
-                <p className="font-display text-3xl font-extrabold text-white">
-                  $300,000 FINISH LINE
+                <p className="font-display text-2xl font-extrabold leading-tight text-white sm:text-3xl">
+                  $150,000 campaign goal
                 </p>
               </div>
               <div className="rounded-md border border-primary-300/30 bg-primary-500/10 p-4">
-                <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-primary-300">
-                  $150,000 MATCHING GRANT
+                <p className="font-display text-2xl font-extrabold leading-tight text-primary-300 sm:text-3xl">
+                  $150,000 matching grant
                 </p>
               </div>
             </div>
 
-            <div>
-              <div className="mb-3 flex items-center justify-between gap-4 text-sm font-extrabold text-white">
-                <span>7% of the way there</span>
-                <Trophy className="h-5 w-5 text-primary-300" />
-              </div>
-              <div className="h-3 overflow-hidden rounded-full border border-white/24 bg-white/12 shadow-inner">
-                <div className="h-full w-[7%] rounded-full bg-gradient-to-r from-primary-400 to-primary-300" />
-              </div>
+            <div className="rounded-md border border-white/12 bg-white/[0.04] p-4">
+              <p className="font-display text-3xl font-extrabold leading-tight text-white sm:text-4xl">
+                FINISH LINE
+              </p>
             </div>
           </motion.aside>
         </div>

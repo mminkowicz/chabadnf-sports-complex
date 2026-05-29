@@ -111,31 +111,6 @@
     text-shadow: 0 5px 28px rgba(255, 162, 35, 0.32);
   }
 
-  .campaign-gold::before,
-  .campaign-gold::after {
-    content: '';
-    position: absolute;
-    pointer-events: none;
-    background: linear-gradient(90deg, transparent, rgba(255, 232, 151, 0.96), transparent);
-    filter: blur(0.3px);
-  }
-
-  .campaign-gold::before {
-    left: -0.18em;
-    top: 0.38em;
-    width: 1.85em;
-    height: 2px;
-    box-shadow: 0 0 22px rgba(255, 184, 61, 0.95);
-  }
-
-  .campaign-gold::after {
-    right: 0.12em;
-    top: 0.44em;
-    width: 1.55em;
-    height: 1px;
-    opacity: 0.7;
-  }
-
   @media (min-width: 1024px) and (max-height: 900px) {
     .home-hero-content {
       padding-top: 5.25rem;
@@ -144,8 +119,8 @@
     }
 
     .home-campaign-title {
-      font-size: clamp(4.75rem, 7.3vw, 6.45rem);
-      line-height: 0.86;
+      font-size: clamp(3.55rem, 4.6vw, 4.5rem);
+      line-height: 0.9;
     }
 
     .home-serif-title {
@@ -203,7 +178,7 @@
     }
 
     .home-campaign-title {
-      font-size: clamp(4.2rem, 6.6vw, 5.5rem);
+      font-size: clamp(3.25rem, 4.2vw, 4.1rem);
     }
 
     .home-serif-title {
@@ -215,16 +190,6 @@
     }
   }
 
-  @media (max-width: 767px) {
-    .campaign-gold::before {
-      width: 1.2em;
-    }
-
-    .campaign-gold::after {
-      width: 1.05em;
-    }
-  }
-  
   .text-gradient {
     @apply bg-gradient-to-r from-primary-600 to-primary-800 bg-clip-text text-transparent;
   }

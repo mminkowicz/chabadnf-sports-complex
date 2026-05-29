@@ -80,8 +80,7 @@ const Home = () => {
                 <span className="block">CAMPAIGN</span>
               </h1>
               <p className="home-serif-title mt-5 max-w-3xl font-['Georgia'] text-[2.55rem] leading-[1.04] text-white drop-shadow-2xl sm:text-5xl md:text-[3.25rem] lg:text-[3.05rem] xl:text-[3.6rem] 2xl:text-[4rem]">
-                They Have Come.
-                <span className="block">Now Let's Build It.</span>
+                Build It For They Have Come
               </p>
               <p className="home-hero-description mt-5 max-w-2xl text-base font-semibold leading-relaxed text-white/88 drop-shadow-lg sm:text-lg lg:text-lg xl:text-xl">
                 Help us complete the Camp Sports Field Complex and create a lasting space for play, growth, and connection.

@@ -91,7 +91,7 @@ const Dedications = () => {
     category: 'facilities',
       amount: '$100,000',
     image: natureWalk,
-      status: 'available'
+      status: 'sold'
   },
   {
     id: 9,
@@ -99,7 +99,7 @@ const Dedications = () => {
     category: 'facilities',
       amount: '$75,000',
       image: natureNest,
-      status: 'available'
+      status: 'sold'
   },
   {
     id: 10,

@@ -6,6 +6,8 @@ export const CAMPAIGN_DEFAULTS = {
 };
 
 const EXTERNAL_API_BASE_URL = 'https://chabadnf-backend.vercel.app/api';
+const SUPABASE_TABLE = process.env.REACT_APP_SUPABASE_CAMPAIGN_TABLE || 'campaign_totals';
+const SUPABASE_ROW_ID = process.env.REACT_APP_SUPABASE_CAMPAIGN_ROW_ID || 'last-mile-campaign';
 
 const asNumber = (value, fallback) => {
   const number = Number(value);
@@ -19,10 +21,33 @@ const getApiBases = () => {
     return [configuredUrl.replace(/\/$/, '')];
   }
 
-  return ['/api', EXTERNAL_API_BASE_URL];
+  return [EXTERNAL_API_BASE_URL];
 };
 
-const getPayloadData = (payload) => payload?.data || payload || {};
+const getSupabaseConfig = () => {
+  const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
+  const supabaseAnonKey = process.env.REACT_APP_SUPABASE_ANON_KEY;
+
+  if (!supabaseUrl || !supabaseAnonKey) {
+    return null;
+  }
+
+  return {
+    anonKey: supabaseAnonKey,
+    rowId: SUPABASE_ROW_ID,
+    table: SUPABASE_TABLE,
+    url: supabaseUrl.replace(/\/$/, ''),
+  };
+};
+
+const getPayloadData = (payload) => {
+  const data = Array.isArray(payload) ? payload[0] : payload?.data || payload || {};
+
+  return {
+    ...data,
+    lastUpdated: data.lastUpdated || data.last_updated,
+  };
+};
 
 export const normalizeCampaignData = (payload) => {
   const data = getPayloadData(payload);
@@ -49,7 +74,93 @@ export const formatCurrency = (amount) => (
   }).format(amount)
 );
 
+const getSupabaseHeaders = (config) => ({
+  apikey: config.anonKey,
+  Authorization: `Bearer ${config.anonKey}`,
+  Accept: 'application/json',
+  'Content-Type': 'application/json',
+});
+
+const readCampaignDataFromSupabase = async () => {
+  const config = getSupabaseConfig();
+
+  if (!config) {
+    return null;
+  }
+
+  const rowFilter = encodeURIComponent(config.rowId);
+  const response = await fetch(
+    `${config.url}/rest/v1/${config.table}?id=eq.${rowFilter}&select=id,goal,raised,match,last_updated&limit=1`,
+    {
+      cache: 'no-store',
+      headers: getSupabaseHeaders(config),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Supabase campaign read returned ${response.status}`);
+  }
+
+  const payload = await response.json();
+
+  if (!Array.isArray(payload) || payload.length === 0) {
+    throw new Error('Supabase campaign row is missing');
+  }
+
+  return normalizeCampaignData(payload[0]);
+};
+
+const updateCampaignTotalInSupabase = async (raised) => {
+  const config = getSupabaseConfig();
+
+  if (!config) {
+    return null;
+  }
+
+  const payload = {
+    id: config.rowId,
+    goal: CAMPAIGN_DEFAULTS.goal,
+    raised,
+    match: CAMPAIGN_DEFAULTS.match,
+    last_updated: new Date().toISOString().split('T')[0],
+  };
+
+  const response = await fetch(
+    `${config.url}/rest/v1/${config.table}?on_conflict=id&select=id,goal,raised,match,last_updated`,
+    {
+      method: 'POST',
+      headers: {
+        ...getSupabaseHeaders(config),
+        Prefer: 'resolution=merge-duplicates,return=representation',
+      },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  if (!response.ok) {
+    throw new Error(`Supabase campaign update returned ${response.status}`);
+  }
+
+  const result = normalizeCampaignData(await response.json());
+
+  if (result.raised !== raised) {
+    throw new Error('Supabase campaign update did not return the saved total');
+  }
+
+  return result;
+};
+
 export const readCampaignData = async () => {
+  try {
+    const supabaseData = await readCampaignDataFromSupabase();
+
+    if (supabaseData) {
+      return supabaseData;
+    }
+  } catch (error) {
+    console.warn('Supabase campaign data unavailable', error);
+  }
+
   for (const apiBase of getApiBases()) {
     try {
       const response = await fetch(`${apiBase}/campaign-data?t=${Date.now()}`, {
@@ -103,6 +214,17 @@ export const updateCampaignTotal = async (raised) => {
 
   let lastError;
 
+  try {
+    const supabaseData = await updateCampaignTotalInSupabase(raised);
+
+    if (supabaseData) {
+      return supabaseData;
+    }
+  } catch (error) {
+    lastError = error;
+    console.warn('Supabase campaign update unavailable', error);
+  }
+
   for (const apiBase of getApiBases()) {
     try {
       const response = await fetch(`${apiBase}/update-campaign`, {
@@ -119,7 +241,13 @@ export const updateCampaignTotal = async (raised) => {
       }
 
       const result = await response.json();
-      return normalizeCampaignData(result);
+      const normalizedResult = normalizeCampaignData(result);
+
+      if (normalizedResult.raised !== raised) {
+        throw new Error('Campaign update did not return the saved total');
+      }
+
+      return normalizedResult;
     } catch (error) {
       lastError = error;
       console.warn(`Campaign update unavailable at ${apiBase}`, error);

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Boxes, Heart, HeartHandshake, Trophy } from 'lucide-react';
+import { Boxes, Heart } from 'lucide-react';
 import mainDedication from '../assets/optimized/main dedication.webp';
 
 const Donate = () => {
@@ -111,35 +111,6 @@ const Donate = () => {
               <p className="mx-auto mt-4 max-w-2xl text-base font-medium leading-relaxed text-white/68 sm:text-lg">
                 Choose your dedication or donation amount below to help us cross the finish line.
               </p>
-            </div>
-
-            <div className="mb-8 grid gap-4 rounded-md border border-white/14 bg-secondary-950/58 p-5 shadow-2xl shadow-black/30 backdrop-blur-xl sm:grid-cols-3 sm:p-6">
-              <div className="flex items-center gap-4">
-                <HeartHandshake className="h-8 w-8 shrink-0 text-primary-300" />
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-white">
-                    $150,000
-                  </p>
-                  <p className="text-sm font-extrabold text-primary-300">Match</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-4 border-t border-white/12 pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
-                <Trophy className="h-8 w-8 shrink-0 text-primary-300" />
-                <div>
-                  <p className="font-display text-2xl font-extrabold text-white">
-                    $300,000
-                  </p>
-                  <p className="text-sm font-extrabold text-primary-300">Finish Line</p>
-                </div>
-              </div>
-              <div className="border-t border-white/12 pt-4 sm:border-l sm:border-t-0 sm:pl-6 sm:pt-0">
-                <p className="mb-3 text-sm font-extrabold text-white">
-                  7% of the way there
-                </p>
-                <div className="h-2 overflow-hidden rounded-full border border-white/22 bg-white/16 shadow-inner">
-                  <div className="h-full w-[7%] rounded-full bg-gradient-to-r from-primary-400 to-primary-300" />
-                </div>
-              </div>
             </div>
 
             <div className="relative overflow-hidden rounded-md border border-white/14 bg-secondary-950/68 p-2 shadow-2xl shadow-black/40 backdrop-blur-xl sm:p-3 lg:p-4">

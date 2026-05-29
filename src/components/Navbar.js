@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Heart } from 'lucide-react';
+import mascot from '../assets/mascot.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,8 +57,8 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
   const isDedicationsActive = location.pathname === '/dedications' || location.pathname === '/bricks';
-  const isHomePage = location.pathname === '/';
-  const navIsTransparent = isHomePage && !isScrolled;
+  const usesTransparentNav = ['/', '/about', '/gallery', '/donate', '/dedications', '/contact'].includes(location.pathname);
+  const navIsTransparent = usesTransparentNav && !isScrolled;
   const closeMobileMenu = () => {
     setIsOpen(false);
     setIsDedicationsOpen(false);
@@ -104,13 +105,11 @@ const Navbar = () => {
               navIsTransparent ? 'text-white lg:hidden' : 'text-secondary-950 lg:hidden'
             }`}
           >
-            <span className={`flex h-10 w-10 items-center justify-center rounded-md text-sm font-extrabold shadow-lg transition ${
-              navIsTransparent
-                ? 'bg-white/10 text-white ring-1 ring-white/20 backdrop-blur'
-                : 'bg-secondary-950 text-white'
-            }`}>
-              CGI
-            </span>
+            <img
+              src={mascot}
+              alt="Camp Gan Israel Sports Complex"
+              className="h-12 w-auto object-contain drop-shadow-lg"
+            />
             <span className="hidden leading-tight sm:block">
               <span className="block text-sm font-extrabold">Camp Gan Israel</span>
               <span className={`block text-xs font-semibold ${
@@ -118,17 +117,32 @@ const Navbar = () => {
               }`}>Sports Complex</span>
             </span>
           </Link>
+
+          <Link
+            to="/"
+            aria-label="Camp Gan Israel Sports Complex home"
+            className="absolute left-0 hidden transition duration-300 hover:scale-[1.03] lg:flex"
+          >
+            <img
+              src={mascot}
+              alt=""
+              aria-hidden="true"
+              className={`h-14 w-auto object-contain transition duration-300 ${
+                navIsTransparent ? 'drop-shadow-2xl' : 'drop-shadow-md'
+              } lg:h-12 xl:h-14`}
+            />
+          </Link>
           
           {/* Desktop Navigation */}
           <div className={`hidden items-center lg:flex ${
-            navIsTransparent ? 'space-x-14 xl:space-x-16' : 'space-x-10'
+            navIsTransparent ? 'space-x-7 xl:space-x-10 2xl:space-x-14' : 'space-x-7 xl:space-x-10'
           }`}>
             {navItems.map((item) => (
               <div key={item.name} className="relative">
                 {item.hasDropdown ? (
                   <div
                     className={`dedications-dropdown relative cursor-pointer transition-colors duration-300 ${
-                      navIsTransparent ? 'text-xl font-medium' : 'text-sm font-bold'
+                      navIsTransparent ? 'text-base font-medium xl:text-lg 2xl:text-xl' : 'text-sm font-bold xl:text-base'
                     } ${
                       isDedicationsActive
                         ? navIsTransparent ? 'text-primary-400' : 'text-primary-600'
@@ -193,7 +207,7 @@ const Navbar = () => {
                   <Link
                     to={item.path}
                     className={`relative transition-colors duration-300 ${
-                      navIsTransparent ? 'text-xl font-medium' : 'text-sm font-bold'
+                      navIsTransparent ? 'text-base font-medium xl:text-lg 2xl:text-xl' : 'text-sm font-bold xl:text-base'
                     } ${
                       isActive(item.path)
                         ? navIsTransparent ? 'text-primary-400' : 'text-primary-600'
@@ -219,12 +233,13 @@ const Navbar = () => {
 
           <Link
             to="/donate"
-            className={`absolute right-0 hidden rounded-md bg-primary-600 font-extrabold text-white transition duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300/40 lg:inline-flex ${
+            className={`absolute right-0 hidden items-center rounded-md bg-primary-600 font-extrabold text-white transition duration-300 hover:bg-primary-700 focus:outline-none focus:ring-4 focus:ring-primary-300/40 lg:inline-flex ${
               navIsTransparent
-                ? 'px-10 py-5 text-xl shadow-2xl shadow-primary-950/25'
-                : 'px-6 py-4 text-base shadow-lg shadow-primary-950/10'
+                ? 'px-5 py-3 text-sm shadow-2xl shadow-primary-950/25 xl:px-7 xl:py-4 xl:text-base 2xl:px-8 2xl:text-lg'
+                : 'px-5 py-3 text-sm shadow-lg shadow-primary-950/10 xl:px-6 xl:py-4 xl:text-base'
             }`}
           >
+            <Heart className="mr-3 h-5 w-5" />
             Donate Now
           </Link>
 

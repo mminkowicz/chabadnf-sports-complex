@@ -26,9 +26,14 @@ const getPayloadData = (payload) => payload?.data || payload || {};
 
 export const normalizeCampaignData = (payload) => {
   const data = getPayloadData(payload);
+  const goal = asNumber(data.goal, CAMPAIGN_DEFAULTS.goal);
+
+  if (goal !== CAMPAIGN_DEFAULTS.goal) {
+    return CAMPAIGN_DEFAULTS;
+  }
 
   return {
-    goal: asNumber(data.goal, CAMPAIGN_DEFAULTS.goal),
+    goal,
     raised: asNumber(data.raised, CAMPAIGN_DEFAULTS.raised),
     match: asNumber(data.match, CAMPAIGN_DEFAULTS.match),
     lastUpdated: data.lastUpdated || CAMPAIGN_DEFAULTS.lastUpdated,
@@ -47,8 +52,12 @@ export const formatCurrency = (amount) => (
 export const readCampaignData = async () => {
   for (const apiBase of getApiBases()) {
     try {
-      const response = await fetch(`${apiBase}/campaign-data`, {
-        headers: { Accept: 'application/json' },
+      const response = await fetch(`${apiBase}/campaign-data?t=${Date.now()}`, {
+        cache: 'no-store',
+        headers: {
+          Accept: 'application/json',
+          'Cache-Control': 'no-cache',
+        },
       });
 
       if (!response.ok) {
@@ -63,8 +72,12 @@ export const readCampaignData = async () => {
   }
 
   try {
-    const response = await fetch('/campaign-data.json', {
-      headers: { Accept: 'application/json' },
+    const response = await fetch(`/campaign-data.json?t=${Date.now()}`, {
+      cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+        'Cache-Control': 'no-cache',
+      },
     });
 
     if (!response.ok) {

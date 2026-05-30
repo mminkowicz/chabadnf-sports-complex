@@ -42,19 +42,6 @@ on public.campaign_totals
 for select
 using (true);
 
--- This keeps /update-total simple for a non-technical updater.
--- For stricter security, replace this with a Supabase Edge Function and remove public write access.
 drop policy if exists "Public can update campaign totals" on public.campaign_totals;
 
-create policy "Public can update campaign totals"
-on public.campaign_totals
-for insert
-with check (id = 'last-mile-campaign');
-
 drop policy if exists "Public can edit campaign totals" on public.campaign_totals;
-
-create policy "Public can edit campaign totals"
-on public.campaign_totals
-for update
-using (id = 'last-mile-campaign')
-with check (id = 'last-mile-campaign');

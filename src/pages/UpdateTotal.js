@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Check, Loader2 } from 'lucide-react';
+import { Check, Loader2, Lock } from 'lucide-react';
 import { CAMPAIGN_DEFAULTS, formatCurrency, readCampaignData, updateCampaignTotal } from '../lib/campaignApi';
 
 const parseAmount = (value) => {
@@ -11,6 +11,7 @@ const parseAmount = (value) => {
 const UpdateTotal = () => {
   const [amount, setAmount] = useState(String(CAMPAIGN_DEFAULTS.raised));
   const [campaignData, setCampaignData] = useState(CAMPAIGN_DEFAULTS);
+  const [password, setPassword] = useState('');
   const [status, setStatus] = useState('idle');
   const [message, setMessage] = useState('');
 
@@ -29,14 +30,18 @@ const UpdateTotal = () => {
     setMessage('');
 
     try {
-      const updatedData = await updateCampaignTotal(numericAmount);
+      const updatedData = await updateCampaignTotal(numericAmount, password);
       setCampaignData(updatedData);
       setAmount(String(updatedData.raised));
       setStatus('saved');
       setMessage(`Saved. The homepage running total is now ${formatCurrency(updatedData.raised)}.`);
     } catch (error) {
       setStatus('error');
-      setMessage('Could not save the total. Please try again.');
+      setMessage(
+        error.code === 'invalid_password' || error.code === 'missing_password'
+          ? 'Please enter the correct password.'
+          : 'Could not save the total. Please try again.'
+      );
     }
   };
 
@@ -50,6 +55,25 @@ const UpdateTotal = () => {
           </h1>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
+            <div>
+              <label htmlFor="update-password" className="mb-2 block text-sm font-extrabold text-secondary-700">
+                Password
+              </label>
+              <div className="relative">
+                <Lock className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-secondary-400" />
+                <input
+                  id="update-password"
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  className="field-control py-4 pl-12 text-lg font-bold"
+                  placeholder="Enter password"
+                  autoComplete="current-password"
+                  autoFocus
+                />
+              </div>
+            </div>
+
             <div>
               <label htmlFor="running-total" className="mb-2 block text-sm font-extrabold text-secondary-700">
                 Running Total
@@ -65,7 +89,6 @@ const UpdateTotal = () => {
                   onChange={(event) => setAmount(event.target.value)}
                   className="field-control py-5 pl-10 text-3xl font-extrabold"
                   placeholder="10400"
-                  autoFocus
                 />
               </div>
             </div>

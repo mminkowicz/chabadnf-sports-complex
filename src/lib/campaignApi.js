@@ -49,6 +49,8 @@ const getPayloadData = (payload) => {
   };
 };
 
+const createCampaignError = (message, code) => Object.assign(new Error(message), { code });
+
 export const normalizeCampaignData = (payload) => {
   const data = getPayloadData(payload);
   const goal = asNumber(data.goal, CAMPAIGN_DEFAULTS.goal);
@@ -73,6 +75,22 @@ export const formatCurrency = (amount) => (
     maximumFractionDigits: 0,
   }).format(amount)
 );
+
+const readCampaignDataFromSiteApi = async () => {
+  const response = await fetch(`/api/campaign-data?t=${Date.now()}`, {
+    cache: 'no-store',
+    headers: {
+      Accept: 'application/json',
+      'Cache-Control': 'no-cache',
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Site campaign API returned ${response.status}`);
+  }
+
+  return normalizeCampaignData(await response.json());
+};
 
 const getSupabaseHeaders = (config) => ({
   apikey: config.anonKey,
@@ -110,47 +128,13 @@ const readCampaignDataFromSupabase = async () => {
   return normalizeCampaignData(payload[0]);
 };
 
-const updateCampaignTotalInSupabase = async (raised) => {
-  const config = getSupabaseConfig();
-
-  if (!config) {
-    return null;
-  }
-
-  const payload = {
-    id: config.rowId,
-    goal: CAMPAIGN_DEFAULTS.goal,
-    raised,
-    match: CAMPAIGN_DEFAULTS.match,
-    last_updated: new Date().toISOString().split('T')[0],
-  };
-
-  const response = await fetch(
-    `${config.url}/rest/v1/${config.table}?on_conflict=id&select=id,goal,raised,match,last_updated`,
-    {
-      method: 'POST',
-      headers: {
-        ...getSupabaseHeaders(config),
-        Prefer: 'resolution=merge-duplicates,return=representation',
-      },
-      body: JSON.stringify(payload),
-    }
-  );
-
-  if (!response.ok) {
-    throw new Error(`Supabase campaign update returned ${response.status}`);
-  }
-
-  const result = normalizeCampaignData(await response.json());
-
-  if (result.raised !== raised) {
-    throw new Error('Supabase campaign update did not return the saved total');
-  }
-
-  return result;
-};
-
 export const readCampaignData = async () => {
+  try {
+    return await readCampaignDataFromSiteApi();
+  } catch (error) {
+    console.warn('Site campaign API unavailable', error);
+  }
+
   try {
     const supabaseData = await readCampaignDataFromSupabase();
 
@@ -204,55 +188,36 @@ export const readCampaignData = async () => {
   return CAMPAIGN_DEFAULTS;
 };
 
-export const updateCampaignTotal = async (raised) => {
-  const payload = {
-    goal: CAMPAIGN_DEFAULTS.goal,
-    raised,
-    match: CAMPAIGN_DEFAULTS.match,
-    lastUpdated: new Date().toISOString().split('T')[0],
-  };
-
-  let lastError;
-
-  try {
-    const supabaseData = await updateCampaignTotalInSupabase(raised);
-
-    if (supabaseData) {
-      return supabaseData;
-    }
-  } catch (error) {
-    lastError = error;
-    console.warn('Supabase campaign update unavailable', error);
+export const updateCampaignTotal = async (raised, password) => {
+  if (!password) {
+    throw createCampaignError('Password is required', 'missing_password');
   }
 
-  for (const apiBase of getApiBases()) {
-    try {
-      const response = await fetch(`${apiBase}/update-campaign`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
-      });
+  const response = await fetch('/api/update-campaign', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+    },
+    body: JSON.stringify({
+      password,
+      raised,
+    }),
+  });
 
-      if (!response.ok) {
-        throw new Error(`Campaign update returned ${response.status}`);
-      }
-
-      const result = await response.json();
-      const normalizedResult = normalizeCampaignData(result);
-
-      if (normalizedResult.raised !== raised) {
-        throw new Error('Campaign update did not return the saved total');
-      }
-
-      return normalizedResult;
-    } catch (error) {
-      lastError = error;
-      console.warn(`Campaign update unavailable at ${apiBase}`, error);
-    }
+  if (response.status === 401) {
+    throw createCampaignError('Invalid password', 'invalid_password');
   }
 
-  throw lastError || new Error('Campaign update failed');
+  if (!response.ok) {
+    throw new Error(`Campaign update returned ${response.status}`);
+  }
+
+  const updatedData = normalizeCampaignData(await response.json());
+
+  if (updatedData.raised !== raised) {
+    throw new Error('Campaign update did not return the saved total');
+  }
+
+  return updatedData;
 };

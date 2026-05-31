@@ -134,7 +134,7 @@ const Home = () => {
               </div>
             </div>
             <div className="flex items-center gap-4 border-l border-white/18 pl-7">
-              <HeartHandshake className="h-9 w-9 shrink-0 text-primary-300" />
+              <span className="font-display text-4xl font-black leading-none text-primary-300 xl:text-5xl">+</span>
               <div>
                 <p className="home-bottom-amount font-display text-2xl font-extrabold text-white">
                   {formatCurrency(campaignStats.match)}
@@ -143,6 +143,7 @@ const Home = () => {
               </div>
             </div>
             <div className="flex items-center gap-4 border-l border-white/18 pl-7">
+              <span className="font-display text-4xl font-black leading-none text-primary-300 xl:text-5xl">=</span>
               <Trophy className="h-9 w-9 shrink-0 text-primary-300" />
               <div>
                 <p className="home-bottom-amount font-display text-2xl font-extrabold text-white">
@@ -194,7 +195,7 @@ const Home = () => {
             </div>
             <div className="grid grid-cols-2 gap-2 border-t border-white/12 pt-3 sm:gap-3 sm:pt-4">
               <div className="flex items-center gap-2 sm:gap-3">
-                <HeartHandshake className="h-6 w-6 shrink-0 text-primary-300 sm:h-8 sm:w-8" />
+                <span className="font-display text-2xl font-black leading-none text-primary-300 sm:text-3xl">+</span>
                 <div>
                   <p className="font-display text-base font-extrabold text-white sm:text-xl">
                     {formatCurrency(campaignStats.match)}
@@ -203,6 +204,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">
+                <span className="font-display text-2xl font-black leading-none text-primary-300 sm:text-3xl">=</span>
                 <Trophy className="h-6 w-6 shrink-0 text-primary-300 sm:h-8 sm:w-8" />
                 <div>
                   <p className="font-display text-base font-extrabold text-white sm:text-xl">

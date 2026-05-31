@@ -59,7 +59,7 @@ const About = () => {
             <div className="grid gap-4 py-6">
               <div className="rounded-md border border-white/12 bg-white/[0.04] p-4">
                 <p className="font-display text-2xl font-extrabold leading-tight text-white sm:text-3xl">
-                  $300,000 to get to the finish line
+                  $300,000 left to the finish line
                 </p>
               </div>
               <div className="rounded-md border border-white/12 bg-white/[0.04] p-4">

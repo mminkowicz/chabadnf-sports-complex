@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Boxes, Heart } from 'lucide-react';
@@ -18,9 +18,25 @@ import gazebos from '../assets/optimized/gazeebos.webp';
 import benches from '../assets/optimized/benches.webp';
 import gym from '../assets/optimized/gym.webp';
 import campaignBricks from '../assets/optimized/campaignbricks.webp';
+import { readDedicationStatuses } from '../lib/dedicationApi';
 
 const Dedications = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [dedicationStatuses, setDedicationStatuses] = useState({});
+
+  useEffect(() => {
+    let isMounted = true;
+
+    readDedicationStatuses().then((statuses) => {
+      if (isMounted) {
+        setDedicationStatuses(statuses);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const dedications = [
   {
@@ -153,6 +169,11 @@ const Dedications = () => {
     }
   ];
 
+  const liveDedications = dedications.map((dedication) => ({
+    ...dedication,
+    status: dedicationStatuses[dedication.id] || dedication.status,
+  }));
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -200,8 +221,8 @@ const Dedications = () => {
     }
   };
 
-  const campusDedication = dedications.find((dedication) => dedication.title === 'Campus Dedication');
-  const dedicationCards = dedications.filter((dedication) => dedication.title !== 'Campus Dedication');
+  const campusDedication = liveDedications.find((dedication) => dedication.title === 'Campus Dedication');
+  const dedicationCards = liveDedications.filter((dedication) => dedication.title !== 'Campus Dedication');
   const filters = [
     { label: 'All', value: 'all' },
     { label: 'Available', value: 'available' },

@@ -38,7 +38,6 @@ const Home = () => {
             playsInline
             poster={mainDedication}
             className="h-full w-full object-cover"
-            style={{ filter: "brightness(1.12) saturate(1.06)" }}
           >
             <source
               src="/camp-video-desktop.mp4"

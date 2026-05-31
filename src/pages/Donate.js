@@ -67,7 +67,7 @@ const Donate = () => {
               LAST MILE CAMPAIGN
             </h1>
             <p className="mt-8 max-w-3xl text-lg font-medium leading-relaxed text-white/84 sm:text-xl">
-              We are just $300,000 short of completing our sports campus, and The Zalik Foundation is helping us get there with a generous $150,000 matching grant. All we need to do is raise the remaining $150,000, and the Zalik Foundation will match it to bring us to the finish line. Please help us hit the home run and bring this dream to completion!
+              We are just $300,000 short of completing our sports campus, and The Zalik Foundation is helping us get there with a generous $150,000 matching grant. All we need to do is raise $150,000, and the Zalik Foundation will match it to bring us to the finish line. Please help us hit the home run and bring this dream to completion!
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-center">
               <Link

@@ -20,7 +20,8 @@
   "scripts": {
     "start": "react-scripts start",
     "server": "node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run start\"",
+    "dev": "concurrently -k \"npm run server\" \"npm run start\"",
+    "dev:clean": "node scripts/free-port.js 3000 3001 && npm run dev",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

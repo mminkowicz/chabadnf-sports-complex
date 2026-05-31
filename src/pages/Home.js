@@ -38,7 +38,7 @@ const Home = () => {
             playsInline
             poster={mainDedication}
             className="h-full w-full object-cover"
-            style={{ objectPosition: "center 44%", filter: "brightness(1.12) saturate(1.08)" }}
+            style={{ objectPosition: "center 44%", filter: "brightness(1.24) saturate(1.14) contrast(1.04)" }}
           >
             <source
               src="/camp-video-desktop.mp4"
@@ -51,7 +51,7 @@ const Home = () => {
               media="(min-width: 768px)"
             />
             <source
-              src="/camp-video-mobile.mp4"
+              src="/camp-video-desktop.mp4"
               type="video/mp4"
               media="(max-width: 767px)"
             />
@@ -62,13 +62,13 @@ const Home = () => {
               className="h-full w-full object-cover"
             />
           </video>
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_88%_4%,rgba(250,188,82,0.34)_0%,rgba(237,122,26,0.08)_28%,rgba(8,17,31,0)_48%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(100deg,rgba(2,8,15,0.82)_0%,rgba(6,14,25,0.5)_34%,rgba(8,17,31,0.1)_72%,rgba(6,14,25,0.08)_100%)]" />
-          <div className="absolute inset-0 bg-[linear-gradient(0deg,rgba(2,8,15,0.62)_0%,rgba(2,8,15,0.04)_42%,rgba(2,8,15,0.22)_100%)]" />
+          <div className="home-hero-glow absolute inset-0" />
+          <div className="home-hero-shade absolute inset-0" />
+          <div className="home-hero-depth absolute inset-0" />
         </div>
 
-        <div className="container-custom home-hero-content relative z-10 flex min-h-[100svh] flex-col justify-between gap-5 pb-5 pt-24 sm:pt-28 lg:gap-6 lg:pb-6 lg:pt-24 xl:pt-28">
-          <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,0.38fr)] lg:gap-10 xl:gap-14">
+        <div className="container-custom home-hero-content relative z-10 flex min-h-[100svh] flex-col justify-between gap-5 pb-5 pt-40 sm:pt-32 lg:gap-6 lg:pb-6 lg:pt-24 xl:pt-28">
+          <div className="grid items-start gap-6 lg:gap-10 xl:gap-14">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -109,33 +109,6 @@ const Home = () => {
               </div>
             </motion.div>
 
-            <motion.aside
-              initial={{ y: 28, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.8, delay: 0.15 }}
-              className="home-progress-card w-full max-w-md rounded-md border border-white/22 bg-secondary-950/36 p-5 shadow-2xl shadow-black/35 backdrop-blur-xl sm:p-6 lg:mt-14 lg:max-w-[350px] lg:justify-self-end xl:mt-16"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/18 bg-secondary-950/42 shadow-xl shadow-black/25">
-                <Heart className="h-6 w-6 text-primary-300" />
-              </div>
-              <div className="mt-6">
-                <p className="home-progress-amount font-display text-4xl font-extrabold leading-none text-white sm:text-5xl">
-                  {formatCurrency(campaignStats.raised)}
-                  <span className="ml-2 align-middle text-base font-extrabold text-primary-300 sm:text-lg">
-                    Raised
-                  </span>
-                </p>
-                <p className="mt-4 text-base font-semibold text-white/80 sm:text-lg">
-                  of {formatCurrency(campaignStats.goal)} match goal
-                </p>
-                <div className="mt-5 h-3 overflow-hidden rounded-full border border-white/28 bg-white/12 shadow-inner">
-                  <div
-                    className="h-full rounded-full bg-gradient-to-r from-primary-400 to-primary-300 transition-all duration-700"
-                    style={{ width: `${campaignStats.percentage}%` }}
-                  />
-                </div>
-              </div>
-            </motion.aside>
           </div>
 
           <div className="home-bottom-bar hidden items-center gap-6 rounded-md border border-white/18 bg-secondary-950/56 px-6 py-5 shadow-2xl shadow-black/35 backdrop-blur-xl lg:grid lg:grid-cols-[1fr_1.08fr_0.72fr_0.72fr] xl:px-9">

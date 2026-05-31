@@ -129,7 +129,7 @@ const Home = () => {
             <div className="border-l border-white/18 pl-7">
               <div className="mb-3 flex items-center gap-3 text-sm font-extrabold text-white">
                 <span className="h-3 w-3 rounded-full bg-primary-400 shadow-lg shadow-primary-400/40" />
-                <span>{Math.round(campaignStats.percentage)}% of finish line</span>
+                <span>{Math.round(campaignStats.percentage)}% of campaign goal</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full border border-white/22 bg-white/16 shadow-inner">
                 <div
@@ -176,7 +176,7 @@ const Home = () => {
             <div>
               <div className="mb-3 flex items-center gap-3 text-sm font-extrabold text-white">
                 <span className="h-3 w-3 rounded-full bg-primary-400 shadow-lg shadow-primary-400/40" />
-                <span>{Math.round(campaignStats.percentage)}% of finish line</span>
+                <span>{Math.round(campaignStats.percentage)}% of campaign goal</span>
               </div>
               <div className="h-2 overflow-hidden rounded-full border border-white/22 bg-white/16 shadow-inner">
                 <div

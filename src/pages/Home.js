@@ -67,7 +67,7 @@ const Home = () => {
           <div className="home-hero-depth absolute inset-0" />
         </div>
 
-        <div className="container-custom home-hero-content relative z-10 flex min-h-[100svh] flex-col justify-between gap-5 pb-5 pt-40 sm:pt-32 lg:gap-6 lg:pb-6 lg:pt-24 xl:pt-28">
+        <div className="container-custom home-hero-content relative z-10 flex min-h-[100svh] flex-col justify-between gap-5 pb-5 pt-52 sm:pt-44 md:pt-36 lg:gap-6 lg:pb-6 lg:pt-32 xl:pt-36">
           <div className="grid items-start gap-6 lg:gap-10 xl:gap-14">
             <motion.div
               initial={{ y: 20, opacity: 0 }}

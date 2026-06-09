@@ -95,13 +95,9 @@
   .campaign-gold {
     position: relative;
     display: inline-block;
-    background:
-      linear-gradient(180deg, #ffe993 0%, #f8c75d 29%, #f39a2f 62%, #b95812 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    text-shadow: 0 5px 28px rgba(255, 162, 35, 0.32);
-    -webkit-text-stroke: 0.85px rgba(248, 199, 93, 0.95);
+    color: #f8c75d;
+    text-shadow: 0 6px 30px rgba(255, 162, 35, 0.35);
+    -webkit-text-stroke: 1.15px #f8c75d;
   }
 
   .home-campaign-title {

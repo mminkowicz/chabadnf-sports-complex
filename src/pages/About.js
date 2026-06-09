@@ -69,7 +69,7 @@ const About = () => {
               </div>
               <div className="rounded-md border border-primary-300/30 bg-primary-500/10 p-4">
                 <p className="font-display text-2xl font-extrabold leading-tight text-primary-300 sm:text-3xl">
-                  $150,000 matching grant
+                  $150,000 Zalik Foundation Fund Match
                 </p>
               </div>
             </div>

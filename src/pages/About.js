@@ -36,7 +36,7 @@ const About = () => {
                 We're building a state-of-the-art sports complex to provide Camp Gan Israel campers with the outdoor facilities they need to play, grow, and thrive in a safe and active environment.
               </p>
               <p>
-                Now, with the project nearly complete, we've launched our Last Mile Campaign to raise the final $300,000 needed to cross the finish line. Thanks to a generous $150,000 challenge grant from the Zalik Foundation, every dollar donated, up to $150,000, will be matched dollar-for-dollar, helping us complete the project and bring this dream to life.
+                Now, with the project nearly complete, we've launched our Last Mile Campaign to raise the final $300,000 needed to cross the finish line. Thanks to a generous $150,000 challenge grant from the Zalik Foundation Fund, every dollar donated, up to $150,000, will be matched dollar-for-dollar, helping us complete the project and bring this dream to life.
               </p>
             </div>
           </motion.div>

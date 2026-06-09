@@ -138,7 +138,7 @@ const Home = () => {
                 <p className="home-bottom-amount font-display text-2xl font-extrabold text-white">
                   {formatCurrency(campaignStats.match)}
                 </p>
-                <p className="text-sm font-extrabold text-primary-300">Zalik match</p>
+                <p className="text-sm font-extrabold text-primary-300">Zalik Foundation Fund Match</p>
               </div>
             </div>
             <div className="flex items-center gap-4 border-l border-white/18 pl-7">
@@ -199,7 +199,7 @@ const Home = () => {
                   <p className="font-display text-base font-extrabold text-white sm:text-xl">
                     {formatCurrency(campaignStats.match)}
                   </p>
-                  <p className="text-xs font-extrabold text-primary-300 sm:text-sm">Zalik match</p>
+                  <p className="text-xs font-extrabold text-primary-300 sm:text-sm">Zalik Foundation Fund Match</p>
                 </div>
               </div>
               <div className="flex items-center gap-2 sm:gap-3">

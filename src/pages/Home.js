@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Boxes, Heart, HeartHandshake, Trophy, Users } from "lucide-react";
@@ -7,9 +7,18 @@ import { CAMPAIGN_DEFAULTS, formatCurrency, readCampaignData } from "../lib/camp
 
 const Home = () => {
   const [campaignData, setCampaignData] = useState(CAMPAIGN_DEFAULTS);
+  const heroVideoRef = useRef(null);
 
   useEffect(() => {
     readCampaignData().then(setCampaignData);
+  }, []);
+
+  useEffect(() => {
+    const timeoutId = window.setTimeout(() => {
+      heroVideoRef.current?.play().catch(() => {});
+    }, 2000);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   const campaignStats = useMemo(() => {
@@ -32,10 +41,11 @@ const Home = () => {
       <section className="home-hero relative min-h-[100svh] overflow-hidden bg-secondary-950 text-white">
         <div className="absolute inset-0">
           <video
-            autoPlay
+            ref={heroVideoRef}
             loop
             muted
             playsInline
+            preload="auto"
             poster={mainDedication}
             className="h-full w-full object-cover"
           >

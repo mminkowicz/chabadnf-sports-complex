@@ -283,11 +283,12 @@ const Dedications = () => {
         <section className="relative overflow-hidden bg-secondary-950 px-4 pb-0 pt-16 sm:px-6 sm:pt-20 lg:px-8 lg:pt-24">
           <div className="absolute inset-0 bg-[linear-gradient(180deg,#02080f_0%,#08111f_100%)]" />
           <div className="container-custom">
+            <Link to="/donate">
             <motion.div
               initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.7 }}
-              className="relative overflow-hidden rounded-md border border-white/14 bg-secondary-950/64 shadow-2xl shadow-black/40 backdrop-blur-xl"
+              className="relative block overflow-hidden rounded-md border border-white/14 bg-secondary-950/64 shadow-2xl shadow-black/40 backdrop-blur-xl transition duration-300 hover:border-primary-300/45 hover:shadow-primary-950/20"
             >
               <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-primary-400 via-primary-300 to-primary-600" />
               <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr]">
@@ -317,6 +318,7 @@ const Dedications = () => {
                 </div>
               </div>
             </motion.div>
+            </Link>
           </div>
         </section>
       )}
@@ -402,11 +404,9 @@ const Dedications = () => {
 
                 return (
                   <motion.div key={dedication.id} variants={itemVariants}>
-                    {isBricks ? (
-                      <Link to="/bricks" className="block h-full">
-                        {card}
-                      </Link>
-                    ) : card}
+                    <Link to={isBricks ? '/bricks' : '/donate'} className="block h-full">
+                      {card}
+                    </Link>
                   </motion.div>
                 );
               })}

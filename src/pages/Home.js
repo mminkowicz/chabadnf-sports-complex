@@ -5,12 +5,32 @@ import { Boxes, Heart, HeartHandshake, Trophy, Users } from "lucide-react";
 import mainDedication from "../assets/optimized/main dedication.webp";
 import { CAMPAIGN_DEFAULTS, formatCurrency, readCampaignData } from "../lib/campaignApi";
 
+const getHeroVideoSrc = (width) => {
+  if (width >= 1024) return "/camp-video-desktop.mp4";
+  if (width >= 768) return "/camp-video-tablet.mp4";
+  return "/camp-video-mobile.mp4";
+};
+
 const Home = () => {
   const [campaignData, setCampaignData] = useState(CAMPAIGN_DEFAULTS);
+  const [heroVideoSrc, setHeroVideoSrc] = useState(() =>
+    typeof window === "undefined" ? "/camp-video-desktop.mp4" : getHeroVideoSrc(window.innerWidth)
+  );
   const heroVideoRef = useRef(null);
 
   useEffect(() => {
     readCampaignData().then(setCampaignData);
+  }, []);
+
+  useEffect(() => {
+    const updateVideoSrc = () => {
+      setHeroVideoSrc(getHeroVideoSrc(window.innerWidth));
+    };
+
+    updateVideoSrc();
+    window.addEventListener("resize", updateVideoSrc);
+
+    return () => window.removeEventListener("resize", updateVideoSrc);
   }, []);
 
   useEffect(() => {
@@ -19,7 +39,7 @@ const Home = () => {
     }, 2000);
 
     return () => window.clearTimeout(timeoutId);
-  }, []);
+  }, [heroVideoSrc]);
 
   const campaignStats = useMemo(() => {
     const raised = Math.max(0, campaignData.raised);
@@ -41,6 +61,7 @@ const Home = () => {
       <section className="home-hero relative min-h-[100svh] overflow-hidden bg-secondary-950 text-white">
         <div className="absolute inset-0">
           <video
+            key={heroVideoSrc}
             ref={heroVideoRef}
             loop
             muted
@@ -49,22 +70,7 @@ const Home = () => {
             poster={mainDedication}
             className="h-full w-full object-cover"
           >
-            <source
-              src="/camp-video-desktop.mp4"
-              type="video/mp4"
-              media="(min-width: 1024px)"
-            />
-            <source
-              src="/camp-video-tablet.mp4"
-              type="video/mp4"
-              media="(min-width: 768px)"
-            />
-            <source
-              src="/camp-video-mobile.mp4"
-              type="video/mp4"
-              media="(max-width: 767px)"
-            />
-            <source src="/camp-video-desktop.mp4" type="video/mp4" />
+            <source src={heroVideoSrc} type="video/mp4" />
             <img
               src={mainDedication}
               alt="Camp Sports Complex"
